@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A topic-first website for verified open research problems.">
+  <title>Research Problems Website</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="mark">?</div><div><strong>Research Problems</strong><small>Verified open questions</small></div></div>
+      <nav id="topicNav" aria-label="Research topics"><div class="nav-title">Topics</div></nav>
+    </aside>
+
+    <main>
+      <header class="masthead">
+        <div>
+          <div class="eyebrow">Research Problems Website</div>
+          <h1>Questions worth<br>working on.</h1>
+          <p class="deck">Start with a field, understand its landscape, then keep only open problems that are explicit, current, and important.</p>
+        </div>
+        <button class="button primary" id="addButton">+ Add candidate</button>
+      </header>
+
+      <section class="overview" aria-label="Atlas summary">
+        <div class="stat"><strong id="topicCount">5</strong><span>research topics</span></div>
+        <div class="stat"><strong id="verifiedCount">2</strong><span>verified open problems</span></div>
+        <div class="stat"><strong>2026</strong><span>status checks current</span></div>
+      </section>
+
+      <div class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Search topics, questions, or your notes…" aria-label="Search the atlas"></div>
+      <section class="topics" id="topics" aria-live="polite"></section>
+      <footer>Research Problems Website · “Verified” means the problem has an explicit literature source and its current status was checked.</footer>
+    </main>
+  </div>
+
+  <dialog id="candidateDialog">
+    <form method="dialog" class="dialog" id="candidateForm">
+      <h3>Add a candidate question</h3>
+      <p>Capture an idea now. It can be promoted after its status, significance, and sources are verified.</p>
+      <label class="field">Topic<select id="topicSelect"></select></label>
+      <label class="field">Question title<input id="candidateTitle" required></label>
+      <label class="field">Precise question<textarea id="candidateStatement" rows="4" required></textarea></label>
+      <div class="actions"><button class="button" value="cancel">Cancel</button><button class="button primary" id="saveCandidate" value="default">Save candidate</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
