@@ -66,8 +66,10 @@ h1 { font: 500 clamp(38px, 5.3vw, 64px)/.96 Georgia, serif; letter-spacing: -.04
 .problem-grid { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 22px; }
 .problem h4 { font: 500 22px/1.2 Georgia, serif; margin: 10px 0 8px; }
 .problem p { color: var(--muted); margin: 0 0 14px; }
+.research-detail h5 { color: var(--ink); font-size: 12px; text-transform: uppercase; letter-spacing: .07em; margin: 18px 0 7px; }
 .statement { font: 17px/1.55 Georgia, serif; border-left: 3px solid var(--green); padding-left: 15px; margin: 16px 0; }
-.formula { display: inline-block; padding: 10px 12px; border-radius: 10px; background: var(--paper); font-family: "Cambria Math", Cambria, serif; margin-bottom: 14px; }
+.formula { display: inline-block; max-width: 100%; overflow-wrap: anywhere; padding: 10px 12px; border-radius: 10px; background: var(--paper); font-family: "Cambria Math", Cambria, serif; margin-bottom: 14px; }
+.problem p.status-note { font-size: 12px; margin: 14px 0 0; padding-top: 12px; border-top: 1px solid var(--line); }
 .facts { display: grid; align-content: start; gap: 13px; }
 .fact { border-top: 1px solid var(--line); padding-top: 10px; }
 .fact span { display: block; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .11em; }

@@ -9,23 +9,23 @@ Built with HTML, CSS, and vanilla JavaScript. No application dependencies, build
 ## What you can do
 
 - Browse topics using the sidebar and expand or collapse their introductions and problem lists.
-- Search topic descriptions, problem titles and statements, and your saved notes. Search filters whole topics.
-- Read curated problem cards with literature links, quantitative bounds where available, status-check references, and explanations of why the questions matter.
+- Search topic descriptions, problem statements, assumptions, known results, bounds, source labels, and your saved notes. Search filters whole topics.
+- Read curated problem cards with explicit models and assumptions, known results, quantitative bounds where available, literature links, and dated status evidence.
 - Track each problem through **Shortlisted**, **Reading**, **Working**, or **Paused**, with notes that save automatically in your browser.
 - Add a personal **candidate question** to an existing topic for a later literature check.
 - Use the responsive layout on desktop or mobile, with colors that follow your system's light or dark theme.
 
 ## Current topics
 
-The initial collection contains five topics and two problems marked **Verified open**. The other three topics have introductions and space for future verified entries.
+The collection contains five topics, seven problems marked **Verified open**, and one sourced **Candidate** research direction. The latest literature review was **7 October 2026**; each card separates its review date from the date of the evidence it cites.
 
 | Topic | Included problem / status |
 | --- | --- |
-| Graph property testing and estimation | Does efficient testing imply efficient distance estimation? |
-| Graph isomorphism and canonization | Is general graph isomorphism solvable in polynomial time? |
-| Graphons, sampling, and identifiability | Candidate topic; no verified entry yet |
-| Regularity, removal, and quantitative bounds | Candidate topic; no verified entry yet |
-| Learning on graphs | Candidate topic; no verified entry yet |
+| Graph property testing and estimation | Testing versus estimation; sharp k-colorability sample complexity, with September 2026 bounds |
+| Graph isomorphism and canonization | Polynomial-time GI; fixed-parameter tractability in maximum degree |
+| Graphons, sampling, and identifiability | Equal-density cospectral graphons and finite cospectral approximation |
+| Regularity, removal, and quantitative bounds | Triangle-removal bounds; polynomial induced-C₄ removal |
+| Learning on graphs | Quantitative transferability of higher-order graphon networks (**Candidate**) |
 
 ## Getting started
 
@@ -69,15 +69,17 @@ You can also open `index.html` directly. A local HTTP server is recommended for 
 
 ## Verification and contributions
 
-**Verified open** is a manually curated label: an entry needs an explicit literature source and a check of its open status against relevant recent work. Each card's **Status checked** field records the reference or period used for that review. Status is not checked automatically; revisit the sources before starting a research project.
+**Verified open** is a manually curated label: an entry needs an explicit literature source and a check of its open status against relevant recent work. Each card's **Status evidence** identifies the source supporting that assessment; **Reviewed on** records when the literature search was performed. The accompanying note explains the scope and limits of that review. Status is not checked automatically; revisit the sources before starting a research project.
+
+The mathematics distinguishes sampled vertices from edge queries and running time, induced removal from ordinary removal, and same-source graph-size transfer from distribution shift. The graph-learning extension remains a candidate because its present open status is less firmly established than the published conjectures.
 
 Contributions can add precise questions, improve topic introductions, update bounds and sources, or improve the website itself. [Open an issue](https://github.com/hadi1373z/research-problems-website/issues) to suggest a change, or submit a pull request.
 
 Public topics and problem cards are defined in the `topics` array at the top of [`app.js`](app.js). For a new or revised problem:
 
 1. Use a unique, stable `id` and place the entry in the appropriate topic's `problems` array.
-2. Include a descriptive `title`, a precise `statement`, a short `lead`, and an `importance` explanation; add `formula` when there is a useful bound or target.
-3. Provide `links` as `[label, URL]` pairs, such as `[["Paper title", "https://arxiv.org/abs/2305.05487"]]`, a `source` identifying the relevant problem or result, and a `checked` reference or date for the status review.
+2. Include a descriptive `title`, a precise `statement`, a short `lead`, and an `importance` explanation. Define the `model` and its assumptions, separate proved results in `known`, and add `formula` for useful bounds or targets.
+3. Provide `links` as `[label, URL]` pairs, such as `[["Paper title", "https://arxiv.org/abs/2305.05487"]]`, a `source` identifying the problem or result, the evidence in `checked`, an ISO review date in `reviewed`, and a `statusNote` describing the review's limits.
 4. Keep `verified: false` for a candidate. Set `verified: true` only after the literature and status checks are complete.
 5. Preview the site locally and check topic navigation, search, and the changed card before opening a pull request.
 
