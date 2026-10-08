@@ -9,9 +9,10 @@ Built with HTML, CSS, and vanilla JavaScript. No application dependencies, build
 ## What you can do
 
 - Browse topics using the sidebar and expand or collapse their introductions and problem lists.
-- Search topic descriptions, problem statements, assumptions, known results, bounds, source labels, and your saved notes. Search filters whole topics.
+- Search topic descriptions, problem statements, assumptions, known results, bounds, source labels, background checklists, and your saved notes. Search filters whole topics.
 - Read curated problem cards with explicit models and assumptions, known results, quantitative bounds where available, literature links, and dated status evidence.
 - Track each problem through **Shortlisted**, **Reading**, **Working**, or **Paused**, with notes that save automatically in your browser.
+- Work through the cospectral graphon question's eight-item **Background checklist**, with exercises and progress saved in your browser.
 - Add a personal **candidate question** to an existing topic for a later literature check.
 - Use the responsive layout on desktop or mobile, with colors that follow your system's light or dark theme.
 
@@ -36,7 +37,7 @@ The collection contains five topics, seven problems marked **Verified open**, an
 
 ## Your notes and local data
 
-Research stages, notes, and browser-added candidates are stored in `localStorage`. They are saved for that browser profile and website origin, without being sent to a server or committed to this repository.
+Research stages, notes, background checklist progress, and browser-added candidates are stored in `localStorage`. They are saved for that browser profile and website origin, without being sent to a server or committed to this repository.
 
 - The hosted website and a local development copy have separate notebooks. Using a different browser, profile, device, or local server address also gives you separate data.
 - Clearing site data removes those saved entries. Keep a separate copy of important notes.
@@ -79,6 +80,7 @@ Public topics and problem cards are defined in the `topics` array at the top of 
 
 1. Use a unique, stable `id` and place the entry in the appropriate topic's `problems` array.
 2. Include a descriptive `title`, a precise `statement`, a short `lead`, and an `importance` explanation. Define the `model` and its assumptions, separate proved results in `known`, and add `formula` for useful bounds or targets.
+   For a study checklist, add an optional `background` array of items with stable `id`, `title`, and `task` fields. Keep IDs unchanged when revising an exercise so readers retain their progress.
 3. Provide `links` as `[label, URL]` pairs, such as `[["Paper title", "https://arxiv.org/abs/2305.05487"]]`, a `source` identifying the problem or result, the evidence in `checked`, an ISO review date in `reviewed`, and a `statusNote` describing the review's limits.
 4. Keep `verified: false` for a candidate. Set `verified: true` only after the literature and status checks are complete.
 5. Preview the site locally and check topic navigation, search, and the changed card before opening a pull request.

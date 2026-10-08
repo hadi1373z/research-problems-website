@@ -117,6 +117,16 @@ const topics = [
       reviewed: "2026-10-07",
       statusNote: "Explicitly open in the published paper; targeted later-work searches found no resolution. The preprint numbers it Problem 4.4.",
       importance: "Which spectral equivalences survive approximation by finite graphs?",
+      background: [
+        { id: "graphon-embedding", title: "Graphons and finite graph embeddings", task: "Construct WG on n equal blocks. Check ∫WG = 2|E(G)|/n²." },
+        { id: "homomorphism-density", title: "Homomorphism densities", task: "Define t(F,W); compute edge, triangle and C4 densities. Distinguish homomorphisms from induced copies." },
+        { id: "cut-distance", title: "Cut distance and weak isomorphism", task: "Define the cut norm and δ□. Explain δ□ = 0 without requiring an exact bijective relabeling." },
+        { id: "integral-operator", title: "Integral operators on L²", task: "Define TWf(x) = ∫W(x,y)f(y)dy. Explain compact self-adjoint Hilbert–Schmidt operators; calculate a two-block example." },
+        { id: "spectral-moments", title: "Cycle densities and spectral moments", task: "Verify t(Ck,W) = Σλᵏ for k ≥ 3 and Σλ² = ∫W². Generally ∫W² ≠ ∫W." },
+        { id: "finite-spectrum", title: "Finite adjacency spectra", task: "Derive WG's nonzero eigenvalues λi(AG)/n and tr(AG²) = 2|E(G)|. Separate exact cospectrality from approximate agreement." },
+        { id: "simultaneous-approximation", title: "Simultaneous finite approximation", task: "Require equal-order cospectral pairs, orders → ∞, and both cut errors → 0. Use the counting lemma to explain necessity of matching cycle densities." },
+        { id: "density-obstruction", title: "The known obstruction", task: "Reproduce U ≡ 1/2, W = 1[0,1/2]² using edge-density continuity and ∫V² = ∫V for binary approximants. Explain why equal density needs a new argument." }
+      ],
       links: [
         ["Published paper · 2026", "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v33i1p10"],
         ["Journal PDF · Problem 7", "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v33i1p10/pdf/"],
@@ -248,6 +258,7 @@ function problemTemplate(problem) {
       <div class="research-detail"><h5>${problem.verified ? "Open question" : "Candidate question"}</h5><div class="statement">${escapeHtml(problem.statement)}</div></div>
       ${problem.known ? `<div class="research-detail"><h5>Known results</h5><p>${escapeHtml(problem.known)}</p></div>` : ""}
       ${problem.formula ? `<div class="formula">${escapeHtml(problem.formula)}</div>` : ""}
+      ${backgroundTemplate(problem, state)}
       <div class="links">${links}</div>
       ${problem.statusNote ? `<p class="status-note">${escapeHtml(problem.statusNote)}</p>` : ""}
     </div><div class="facts">
@@ -258,6 +269,17 @@ function problemTemplate(problem) {
       <div class="fact notes-fact"><span>Your notes</span><textarea class="notes" placeholder="Idea, lemma, or next step…">${escapeHtml(state.notes || "")}</textarea><div class="saved"></div></div>
     </div></div>
   </article>`;
+}
+
+function backgroundTemplate(problem, state) {
+  if (!problem.background?.length) return "";
+  const completed = new Set(Array.isArray(state.background) ? state.background : []);
+  const count = problem.background.filter(item => completed.has(item.id)).length;
+  return `<section class="background-checklist research-detail" aria-labelledby="background-${escapeHtml(problem.id)}">
+    <div class="checklist-heading"><h5 id="background-${escapeHtml(problem.id)}">Background checklist</h5><span class="checklist-progress" aria-live="polite">${count} of ${problem.background.length} complete</span></div>
+    <p class="checklist-intro">Check each item when you can explain it and do the exercise. Reading guide: the linked preprint, §§2–4. Progress saves in this browser.</p>
+    <ul>${problem.background.map(item => `<li><label class="checklist-item"><input type="checkbox" data-background="${escapeHtml(item.id)}"${completed.has(item.id) ? " checked" : ""}><span><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.task)}</span></span></label></li>`).join("")}</ul>
+  </section>`;
 }
 
 function topicTemplate(topic) {
@@ -277,22 +299,29 @@ function bindInteractions() {
     const stage = card.querySelector(".stage");
     const notes = card.querySelector(".notes");
     const saved = card.querySelector(".saved");
+    const checklist = [...card.querySelectorAll("[data-background]")];
     let timer;
     const persist = () => {
-      localStorage.setItem(`atlasState:${id}`, JSON.stringify({ stage: stage.value, notes: notes.value }));
+      const state = { ...storedState(id), stage: stage.value, notes: notes.value };
+      if (checklist.length) {
+        state.background = checklist.filter(item => item.checked).map(item => item.dataset.background);
+        card.querySelector(".checklist-progress").textContent = `${state.background.length} of ${checklist.length} complete`;
+      }
+      localStorage.setItem(`atlasState:${id}`, JSON.stringify(state));
       saved.textContent = "Saved locally";
       clearTimeout(timer);
       timer = setTimeout(() => { saved.textContent = ""; }, 1300);
     };
     stage.addEventListener("change", persist);
     notes.addEventListener("input", persist);
+    checklist.forEach(item => item.addEventListener("change", persist));
   });
 }
 
 function render() {
   const term = search.value.trim().toLowerCase();
   const visible = topics.filter(topic => {
-    const searchable = [topic.title, topic.summary, ...topic.intro, ...topic.problems.flatMap(problem => [problem.title, problem.statement, problem.model || "", problem.known || "", problem.formula || "", problem.source || "", storedState(problem.id).notes || ""])].join(" ").toLowerCase();
+    const searchable = [topic.title, topic.summary, ...topic.intro, ...topic.problems.flatMap(problem => [problem.title, problem.statement, problem.model || "", problem.known || "", problem.formula || "", problem.source || "", ...(problem.background || []).flatMap(item => [item.title, item.task]), storedState(problem.id).notes || ""])].join(" ").toLowerCase();
     return (selected === "all" || selected === topic.id) && searchable.includes(term);
   });
   topicRoot.innerHTML = visible.map(topicTemplate).join("") || '<div class="placeholder">No topic matches this search.</div>';
