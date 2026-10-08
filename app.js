@@ -117,16 +117,64 @@ const topics = [
       reviewed: "2026-10-07",
       statusNote: "Explicitly open in the published paper; targeted later-work searches found no resolution. The preprint numbers it Problem 4.4.",
       importance: "Which spectral equivalences survive approximation by finite graphs?",
-      background: [
-        { id: "graphon-embedding", title: "Graphons and finite graph embeddings", task: "Construct WG on n equal blocks. Check ∫WG = 2|E(G)|/n²." },
-        { id: "homomorphism-density", title: "Homomorphism densities", task: "Define t(F,W); compute edge, triangle and C4 densities. Distinguish homomorphisms from induced copies." },
-        { id: "cut-distance", title: "Cut distance and weak isomorphism", task: "Define the cut norm and δ□. Explain δ□ = 0 without requiring an exact bijective relabeling." },
-        { id: "integral-operator", title: "Integral operators on L²", task: "Define TWf(x) = ∫W(x,y)f(y)dy. Explain compact self-adjoint Hilbert–Schmidt operators; calculate a two-block example." },
-        { id: "spectral-moments", title: "Cycle densities and spectral moments", task: "Verify t(Ck,W) = Σλᵏ for k ≥ 3 and Σλ² = ∫W². Generally ∫W² ≠ ∫W." },
-        { id: "finite-spectrum", title: "Finite adjacency spectra", task: "Derive WG's nonzero eigenvalues λi(AG)/n and tr(AG²) = 2|E(G)|. Separate exact cospectrality from approximate agreement." },
-        { id: "simultaneous-approximation", title: "Simultaneous finite approximation", task: "Require equal-order cospectral pairs, orders → ∞, and both cut errors → 0. Use the counting lemma to explain necessity of matching cycle densities." },
-        { id: "density-obstruction", title: "The known obstruction", task: "Reproduce U ≡ 1/2, W = 1[0,1/2]² using edge-density continuity and ∫V² = ∫V for binary approximants. Explain why equal density needs a new argument." }
+      backgroundResults: [
+        {
+          title: "Finite graphs embed exactly into the graphon model",
+          explanation: "A graphon is a symmetric measurable function W:[0,1]²→[0,1]. For a simple graph G on n vertices, divide [0,1] into n equal intervals and put its adjacency matrix on the resulting blocks. The binary graphon WG preserves normalized homomorphism counts, including maps that are not injective. Every graphon also admits a sequence of finite simple graphs converging to it in cut distance.",
+          formula: "t(F,WG) = hom(F,G)/n^{|V(F)|};   ∫WG = 2|E(G)|/n²",
+          relevance: "Approximating each graphon separately is possible. The extra difficulty is keeping each approximating pair exactly cospectral.",
+          citation: "Borgs–Chayes–Lovász–Sós–Vesztergombi · §3, Theorems 4.5(b) and 3.8",
+          url: "https://renyi.hu/~sos/2008_Convergent_sequences_of_dense_graphs_I.pdf"
+        },
+        {
+          title: "Cut convergence preserves every fixed simple-graph density",
+          explanation: "Cut distance measures discrepancies on measurable rectangles after measure-preserving relabeling. The Counting Lemma bounds the change in t(F,W) for every fixed simple graph F. Consequently, if equal-order cospectral graph pairs converge to U and W, their equal cycle densities pass to the limits. This proves the forward implication behind the question.",
+          formula: "|t(F,U) − t(F,W)| ≤ |E(F)| · δ□(U,W)   (F simple)",
+          relevance: "This continuity theorem supplies necessary conditions for approximation; it does not construct cospectral approximants.",
+          citation: "Borgs et al. · Theorem 3.7(a), nonnegative-kernel refinement in §4.6.1",
+          url: "https://renyi.hu/~sos/2008_Convergent_sequences_of_dense_graphs_I.pdf"
+        },
+        {
+          title: "Cycle densities determine the nonzero operator spectrum",
+          explanation: "The operator (TWf)(x) = ∫W(x,y)f(y)dy is compact and self-adjoint on L². Its nonzero eigenvalues λᵢ are real and square-summable. The identities below express cycle densities as spectral moments. Knowing all moments for k ≥ 3 recovers these eigenvalues, including multiplicities.",
+          formula: "t(Cₖ,W) = ∑ᵢ λᵢᵏ   (k ≥ 3);   ∫W² = ∑ᵢ λᵢ²",
+          relevance: "Spectra fix ∫W², generally not ∫W. Cycle moments cannot detect the zero eigenspace's dimension.",
+          citation: "Lovász · §7.5, equations (7.22)–(7.23)",
+          url: "https://lovasz.web.elte.hu/bookxx/hombook-almost.final.pdf"
+        },
+        {
+          title: "Cospectral graphons can have different edge densities",
+          explanation: "For U ≡ 1/2 and W = 1[0,1/2]² (the indicator of the half-square), both operators have rank one with sole nonzero eigenvalue 1/2. Their edge densities differ.",
+          formula: "t(Cₖ,U) = t(Cₖ,W) = 2^{−k};   ∫U = 1/2,   ∫W = 1/4",
+          relevance: "Equal edge density is an extra assumption, not implied by cospectrality.",
+          citation: "On cospectral graphons · preprint Theorem 4.2 / journal Theorem 5",
+          url: "https://arxiv.org/html/2411.13229#S4"
+        },
+        {
+          title: "Exact finite cospectrality forces equal edge counts",
+          explanation: "Each edge gives two closed walks of length two, so tr(AG²) = 2|E(G)|. Equal adjacency spectra therefore force equal edges and, at common order n, equal normalized densities. Edge-density continuity passes this equality to graphon limits.",
+          formula: "tr(AG²) = ∑ᵢ λᵢ(AG)² = 2|E(G)|;   |∫U − ∫V| ≤ δ□(U,V)",
+          relevance: "This explains why the question requires equal edge density.",
+          citation: "Lovász · Example 5.11 and Lemma 10.23 (F = K₂)",
+          url: "https://lovasz.web.elte.hu/bookxx/hombook-almost.final.pdf"
+        },
+        {
+          title: "Unequal density gives a quantitative obstruction",
+          explanation: "Binary cospectral approximants U′,W′ have equal spectral square sums. Since V² = V for binary V, their edge densities agree. Edge-density continuity and the triangle inequality give this derived obstruction. For the example above, the total cut error is at least 1/4.",
+          formula: "δ□(U,U′) + δ□(W,W′) ≥ |∫U − ∫W|   (U′,W′ binary and cospectral)",
+          relevance: "Equal density makes this lower bound zero, so a new obstruction is needed.",
+          citation: "Derived from preprint Proposition 4.3 / journal Proposition 6",
+          url: "https://arxiv.org/html/2411.13229#S4"
+        },
+        {
+          title: "A related equivalence does admit simultaneous approximation",
+          explanation: "Fractional isomorphism of graphons is characterized by equality of all finite-tree densities. Hladký and Hng prove that any family of fractionally isomorphic graphons can be approximated, within any prescribed cut error, by jointly fractionally isomorphic finite graphs of every sufficiently large common order. Their theorem is an established positive result for preserving an equivalence during finite approximation.",
+          relevance: "The result concerns tree densities. It gives useful precedent, but does not guarantee adjacency-cospectral approximants for the present cycle-density question.",
+          citation: "Hladký–Hng · Theorem 1.2 (2023)",
+          url: "https://arxiv.org/html/2210.14097#S1"
+        }
       ],
+      backgroundConclusion: "Whether a cospectral pair with equal edge density can still resist finite cospectral approximation remains open. Neither the unequal-density counterexample nor the fractional-isomorphism approximation theorem settles that case.",
       links: [
         ["Published paper · 2026", "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v33i1p10"],
         ["Journal PDF · Problem 7", "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v33i1p10/pdf/"],
@@ -258,7 +306,6 @@ function problemTemplate(problem) {
       <div class="research-detail"><h5>${problem.verified ? "Open question" : "Candidate question"}</h5><div class="statement">${escapeHtml(problem.statement)}</div></div>
       ${problem.known ? `<div class="research-detail"><h5>Known results</h5><p>${escapeHtml(problem.known)}</p></div>` : ""}
       ${problem.formula ? `<div class="formula">${escapeHtml(problem.formula)}</div>` : ""}
-      ${backgroundTemplate(problem, state)}
       <div class="links">${links}</div>
       ${problem.statusNote ? `<p class="status-note">${escapeHtml(problem.statusNote)}</p>` : ""}
     </div><div class="facts">
@@ -268,17 +315,17 @@ function problemTemplate(problem) {
       <div class="fact"><span>Your stage</span><select class="stage"><option${state.stage === "Shortlisted" ? " selected" : ""}>Shortlisted</option><option${state.stage === "Reading" ? " selected" : ""}>Reading</option><option${state.stage === "Working" ? " selected" : ""}>Working</option><option${state.stage === "Paused" ? " selected" : ""}>Paused</option></select></div>
       <div class="fact notes-fact"><span>Your notes</span><textarea class="notes" placeholder="Idea, lemma, or next step…">${escapeHtml(state.notes || "")}</textarea><div class="saved"></div></div>
     </div></div>
+    ${backgroundTemplate(problem)}
   </article>`;
 }
 
-function backgroundTemplate(problem, state) {
-  if (!problem.background?.length) return "";
-  const completed = new Set(Array.isArray(state.background) ? state.background : []);
-  const count = problem.background.filter(item => completed.has(item.id)).length;
-  return `<section class="background-checklist research-detail" aria-labelledby="background-${escapeHtml(problem.id)}">
-    <div class="checklist-heading"><h5 id="background-${escapeHtml(problem.id)}">Background checklist</h5><span class="checklist-progress" aria-live="polite">${count} of ${problem.background.length} complete</span></div>
-    <p class="checklist-intro">Check each item when you can explain it and do the exercise. Reading guide: the linked preprint, §§2–4. Progress saves in this browser.</p>
-    <ul>${problem.background.map(item => `<li><label class="checklist-item"><input type="checkbox" data-background="${escapeHtml(item.id)}"${completed.has(item.id) ? " checked" : ""}><span><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.task)}</span></span></label></li>`).join("")}</ul>
+function backgroundTemplate(problem) {
+  if (!problem.backgroundResults?.length) return "";
+  return `<section class="background-results research-detail" aria-labelledby="background-${escapeHtml(problem.id)}">
+    <h5 id="background-${escapeHtml(problem.id)}">Background results</h5>
+    <p class="background-intro">Established results behind this question, with explanations of what they prove and how they connect to the remaining gap.</p>
+    <ol>${problem.backgroundResults.map(result => `<li><h6>${escapeHtml(result.title)}</h6><p>${escapeHtml(result.explanation)}</p>${result.formula ? `<div class="formula">${escapeHtml(result.formula)}</div>` : ""}<p class="result-relevance"><strong>Connection to the question:</strong> ${escapeHtml(result.relevance)}</p><a class="result-source" href="${escapeHtml(result.url)}" target="_blank" rel="noreferrer">${escapeHtml(result.citation)} ↗</a></li>`).join("")}</ol>
+    ${problem.backgroundConclusion ? `<div class="background-gap"><h6>What remains open</h6><p>${escapeHtml(problem.backgroundConclusion)}</p></div>` : ""}
   </section>`;
 }
 
@@ -299,14 +346,9 @@ function bindInteractions() {
     const stage = card.querySelector(".stage");
     const notes = card.querySelector(".notes");
     const saved = card.querySelector(".saved");
-    const checklist = [...card.querySelectorAll("[data-background]")];
     let timer;
     const persist = () => {
       const state = { ...storedState(id), stage: stage.value, notes: notes.value };
-      if (checklist.length) {
-        state.background = checklist.filter(item => item.checked).map(item => item.dataset.background);
-        card.querySelector(".checklist-progress").textContent = `${state.background.length} of ${checklist.length} complete`;
-      }
       localStorage.setItem(`atlasState:${id}`, JSON.stringify(state));
       saved.textContent = "Saved locally";
       clearTimeout(timer);
@@ -314,14 +356,13 @@ function bindInteractions() {
     };
     stage.addEventListener("change", persist);
     notes.addEventListener("input", persist);
-    checklist.forEach(item => item.addEventListener("change", persist));
   });
 }
 
 function render() {
   const term = search.value.trim().toLowerCase();
   const visible = topics.filter(topic => {
-    const searchable = [topic.title, topic.summary, ...topic.intro, ...topic.problems.flatMap(problem => [problem.title, problem.statement, problem.model || "", problem.known || "", problem.formula || "", problem.source || "", ...(problem.background || []).flatMap(item => [item.title, item.task]), storedState(problem.id).notes || ""])].join(" ").toLowerCase();
+    const searchable = [topic.title, topic.summary, ...topic.intro, ...topic.problems.flatMap(problem => [problem.title, problem.statement, problem.model || "", problem.known || "", problem.formula || "", problem.source || "", ...(problem.backgroundResults || []).flatMap(result => [result.title, result.explanation, result.formula || "", result.relevance, result.citation]), problem.backgroundConclusion || "", storedState(problem.id).notes || ""])].join(" ").toLowerCase();
     return (selected === "all" || selected === topic.id) && searchable.includes(term);
   });
   topicRoot.innerHTML = visible.map(topicTemplate).join("") || '<div class="placeholder">No topic matches this search.</div>';
