@@ -1,267 +1,9 @@
-const topics = [
-  {
-    id: "property-testing",
-    status: "verified",
-    title: "Graph Property Testing & Estimation",
-    summary: "What can a tiny random sample reveal about a massive dense graph?",
-    intro: [
-      "In the dense-graph model, distance to a property is the minimum number of edge additions or deletions divided by n². A tester distinguishes membership from distance at least ε, with success probability at least 2/3. A canonical tester observes a uniformly sampled induced subgraph.",
-      "Sample complexity counts vertices; edge-query complexity counts inspected pairs and can be quadratic in that sample size. These bounds concern information used, not the running time of computation on the sample. Estimation asks for a tolerant decision at an arbitrary distance threshold."
-    ],
-    problems: [{
-      id: "testing-estimation",
-      verified: true,
-      title: "Does efficient testing imply efficient distance estimation?",
-      lead: "Qualitative equivalence is proved; a comparable quantitative conversion remains open.",
-      model: "Fix a graph property P in the dense model. qP(ε) counts sampled vertices; dP(G) is normalized edit distance. An estimator distinguishes dP(G) ≤ α from dP(G) ≥ α+ε, for every threshold α, with probability at least 2/3.",
-      statement: "If P is testable using qP(ε) sampled vertices, is it estimable using qP(ε′) vertices for some ε′ = poly(ε)? The polynomial rescaling may depend on P, but not on n or ε.",
-      known: "The 2025 survey's Theorem 5.3 gives a general doubly exponential conversion. Problem 5.4 asks for the much smaller rescaled tester bound.",
-      formula: "Known upper bound: exp(poly(1/ε) · exp(qP(ε/2)))  ·  Target: qP(poly(ε))",
-      source: "Problem 5.4 (2025); Problem 1.8 (2023)",
-      checked: "2025 survey, §5",
-      reviewed: "2026-10-07",
-      statusNote: "Explicit open problem in the survey; subsequent-work searches found no resolution. This is a literature review, not an automatic status guarantee.",
-      importance: "General decision-to-estimation principle",
-      links: [
-        ["2023 paper · Problem 1.8", "https://arxiv.org/html/2305.05487"],
-        ["2025 survey · §5", "https://arxiv.org/html/2508.16878v1#S5"],
-        ["Graph-limit background", "https://users.renyi.hu/~sos/2006_Graph_limits_and_parameter_testing.pdf"]
-      ]
-    }, {
-      id: "colorability-sample-complexity",
-      verified: true,
-      title: "Is the optimal sample complexity of k-colorability Θ(log(k)/ε)?",
-      lead: "A September 2026 result gives a k-dependent lower bound and a sharper upper bound, but they still differ.",
-      model: "For k ≥ 2 and ε sufficiently small for the given k, let Sk(ε) be the least sample size such that a uniformly sampled induced subgraph of every graph ε-far from k-colorable is non-k-colorable with probability at least 2/3. Distance counts edge deletions divided by n².",
-      statement: "Prove or disprove Sk(ε) = Θ(log(k)/ε), as conjectured by Kushnir and Shapira. Determine the sharp dependence on k and ε for the canonical one-sided tester.",
-      known: "Their Theorems 1.1–1.2 prove Ω(log(k)/ε) and O((k/ε) log(1/ε)). This improves both bounds recorded in the 2025 survey.",
-      formula: "Ω(log(k)/ε) ≤ Sk(ε) ≤ O((k/ε) log(1/ε))",
-      source: "Conjecture 1.3 · RANDOM 2026",
-      checked: "9 September 2026 paper",
-      reviewed: "2026-10-07",
-      statusNote: "The conference paper states the conjecture explicitly; no later resolution was located in the review.",
-      importance: "Sharp limits of detecting global colorability from small samples",
-      links: [
-        ["Kushnir–Shapira · 2026", "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2026.35"],
-        ["Paper · Theorems 1.1–1.2", "https://drops.dagstuhl.de/storage/00lipics/lipics-vol392-approx-random2026/LIPIcs.APPROX-RANDOM.2026.35/LIPIcs.APPROX-RANDOM.2026.35.pdf"]
-      ]
-    }]
-  },
-  {
-    id: "isomorphism",
-    status: "verified",
-    title: "Graph Isomorphism & Canonization",
-    summary: "When do two differently labelled graphs encode exactly the same structure?",
-    intro: [
-      "Graph isomorphism asks whether one graph can be transformed into another merely by renaming its vertices. It belongs to NP, yet it has resisted both a polynomial-time algorithm and an NP-completeness proof. Practical programs solve many instances quickly, but the worst-case theory remains exceptional.",
-      "Babai’s breakthrough reduced the general worst-case running time to quasipolynomial. The surrounding theory combines permutation groups, combinatorics, logic, canonical labelling, and Weisfeiler–Leman refinement. It also connects to graph learning because useful representations should respect isomorphism without collapsing genuinely different graphs."
-    ],
-    problems: [{
-      id: "gi-in-p",
-      verified: true,
-      title: "Is general graph isomorphism solvable in polynomial time?",
-      lead: "Babai gave a deterministic quasipolynomial-time algorithm, but no polynomial-time algorithm is known for unrestricted graphs.",
-      model: "Input: two finite simple undirected graphs G,H on n vertices. They are isomorphic when a bijection φ preserves adjacency in both directions. The algorithm must work for every input, without degree or structural restrictions.",
-      statement: "Does a deterministic algorithm decide whether G ≅ H in n^{O(1)} time?",
-      known: "Babai proves a deterministic quasipolynomial-time algorithm. Neuen's 2026 survey still identifies unrestricted polynomial-time GI as open. Polynomial-time algorithms on restricted classes do not settle this question.",
-      formula: "Known general upper bound: exp((log n)^{O(1)})  ·  Target: n^{O(1)}",
-      source: "Babai; Neuen 2026, Introduction",
-      checked: "2026 survey",
-      reviewed: "2026-10-07",
-      statusNote: "The cited survey records the open status; no accepted general polynomial-time solution was located in the review.",
-      importance: "Prominent unresolved complexity classification",
-      links: [
-        ["Babai’s algorithm", "https://arxiv.org/abs/1512.03547"],
-        ["Neuen · 2026 survey", "https://epub.uni-regensburg.de/78630/1/1-s2.0-S1574013726000274-main.pdf"]
-      ]
-    }, {
-      id: "gi-degree-fpt",
-      verified: true,
-      title: "Is graph isomorphism fixed-parameter tractable in maximum degree?",
-      lead: "Polynomial time for each fixed degree is known; a uniform exponent independent of the degree remains elusive.",
-      model: "Both input graphs have n vertices and maximum degree at most d, with d≥2 (degrees 0 and 1 are elementary). Fixed-parameter tractability means time f(d) · n^C for a computable f and an absolute constant C independent of d.",
-      statement: "Is there an isomorphism algorithm with running time f(d) · n^C for all n and d?",
-      known: "Grohe, Neuen and Schweitzer obtain n^{O((log d)^c)} time for an absolute c. The exponent still depends on d; Neuen's 2026 survey, §4.1 after Corollary 4.7, explicitly records FPT in maximum degree as open.",
-      formula: "Known: n^{O((log d)^c)}  ·  Target: f(d) · n^C",
-      source: "Neuen 2026 · after Corollary 4.7",
-      checked: "2026 survey, §4.1",
-      reviewed: "2026-10-07",
-      statusNote: "Explicit open-status statement in the survey; no later FPT resolution was located.",
-      importance: "A uniform algorithmic guarantee for graphs of bounded degree",
-      links: [
-        ["2026 survey · §4.1", "https://epub.uni-regensburg.de/78630/1/1-s2.0-S1574013726000274-main.pdf"],
-        ["Small-degree algorithm", "https://arxiv.org/abs/1802.04659"]
-      ]
-    }]
-  },
-  {
-    id: "graphons",
-    status: "verified",
-    title: "Graphons, Sampling & Identifiability",
-    summary: "How much of an infinite graph limit can finite random samples determine?",
-    intro: [
-      "Graphons W:[0,1]²→[0,1] describe dense graph limits, considered up to weak isomorphism rather than pointwise equality.",
-      "Cycle densities retain spectral information. Does equality of that information lift to finite cospectral approximations in cut distance?"
-    ],
-    problems: [{
-      id: "cospectral-graphon-approximation",
-      verified: true,
-      title: "Can equal-density cospectral graphons resist finite cospectral approximation?",
-      lead: "Cospectrality passes to graph limits; reversing that passage can fail. Is equal edge density enough to remove the obstruction?",
-      model: "U,W are graphons with t(Ck,U)=t(Ck,W) for every k≥3 and ∫U=∫W. Here t is homomorphism density, Ck is a cycle, and δ□ is cut distance after measure-preserving relabeling. WG is the step graphon representing G.",
-      statement: "Do such U,W exist for which no finite simple cospectral graph pairs Gj,Hj of equal order tending to infinity satisfy δ□(WGj,U)→0 and δ□(WHj,W)→0? Cospectral finite graphs have identical adjacency spectra, including multiplicities.",
-      known: "The paper proves inapproximability when ∫U≠∫W. Equal edge density rules out that particular obstruction and is the remaining published question.",
-      formula: "Equal cycle densities + equal edge density ⇒ finite cospectral approximation?",
-      source: "Problem 7 · EJC 33(1), P1.10 (2026)",
-      checked: "January 2026 journal paper",
-      reviewed: "2026-10-07",
-      statusNote: "Explicitly open in the published paper; targeted later-work searches found no resolution. The preprint numbers it Problem 4.4.",
-      importance: "Which spectral equivalences survive approximation by finite graphs?",
-      backgroundResults: [
-        {
-          title: "Finite graphs embed exactly into the graphon model",
-          explanation: "A graphon is a symmetric measurable function W:[0,1]²→[0,1]. For a simple graph G on n vertices, divide [0,1] into n equal intervals and put its adjacency matrix on the resulting blocks. The binary graphon WG preserves normalized homomorphism counts, including maps that are not injective. Every graphon also admits a sequence of finite simple graphs converging to it in cut distance.",
-          formula: "t(F,WG) = hom(F,G)/n^{|V(F)|};   ∫WG = 2|E(G)|/n²",
-          relevance: "Approximating each graphon separately is possible. The extra difficulty is keeping each approximating pair exactly cospectral.",
-          citation: "Borgs–Chayes–Lovász–Sós–Vesztergombi · §3, Theorems 4.5(b) and 3.8",
-          url: "https://renyi.hu/~sos/2008_Convergent_sequences_of_dense_graphs_I.pdf"
-        },
-        {
-          title: "Cut convergence preserves every fixed simple-graph density",
-          explanation: "Cut distance measures discrepancies on measurable rectangles after measure-preserving relabeling. The Counting Lemma bounds the change in t(F,W) for every fixed simple graph F. Consequently, if equal-order cospectral graph pairs converge to U and W, their equal cycle densities pass to the limits. This proves the forward implication behind the question.",
-          formula: "|t(F,U) − t(F,W)| ≤ |E(F)| · δ□(U,W)   (F simple)",
-          relevance: "This continuity theorem supplies necessary conditions for approximation; it does not construct cospectral approximants.",
-          citation: "Borgs et al. · Theorem 3.7(a), nonnegative-kernel refinement in §4.6.1",
-          url: "https://renyi.hu/~sos/2008_Convergent_sequences_of_dense_graphs_I.pdf"
-        },
-        {
-          title: "Cycle densities determine the nonzero operator spectrum",
-          explanation: "The operator (TWf)(x) = ∫W(x,y)f(y)dy is compact and self-adjoint on L². Its nonzero eigenvalues λᵢ are real and square-summable. The identities below express cycle densities as spectral moments. Knowing all moments for k ≥ 3 recovers these eigenvalues, including multiplicities.",
-          formula: "t(Cₖ,W) = ∑ᵢ λᵢᵏ   (k ≥ 3);   ∫W² = ∑ᵢ λᵢ²",
-          relevance: "Spectra fix ∫W², generally not ∫W. Cycle moments cannot detect the zero eigenspace's dimension.",
-          citation: "Lovász · §7.5, equations (7.22)–(7.23)",
-          url: "https://lovasz.web.elte.hu/bookxx/hombook-almost.final.pdf"
-        },
-        {
-          title: "Cospectral graphons can have different edge densities",
-          explanation: "For U ≡ 1/2 and W = 1[0,1/2]² (the indicator of the half-square), both operators have rank one with sole nonzero eigenvalue 1/2. Their edge densities differ.",
-          formula: "t(Cₖ,U) = t(Cₖ,W) = 2^{−k};   ∫U = 1/2,   ∫W = 1/4",
-          relevance: "Equal edge density is an extra assumption, not implied by cospectrality.",
-          citation: "On cospectral graphons · preprint Theorem 4.2 / journal Theorem 5",
-          url: "https://arxiv.org/html/2411.13229#S4"
-        },
-        {
-          title: "Exact finite cospectrality forces equal edge counts",
-          explanation: "Each edge gives two closed walks of length two, so tr(AG²) = 2|E(G)|. Equal adjacency spectra therefore force equal edges and, at common order n, equal normalized densities. Edge-density continuity passes this equality to graphon limits.",
-          formula: "tr(AG²) = ∑ᵢ λᵢ(AG)² = 2|E(G)|;   |∫U − ∫V| ≤ δ□(U,V)",
-          relevance: "This explains why the question requires equal edge density.",
-          citation: "Lovász · Example 5.11 and Lemma 10.23 (F = K₂)",
-          url: "https://lovasz.web.elte.hu/bookxx/hombook-almost.final.pdf"
-        },
-        {
-          title: "Unequal density gives a quantitative obstruction",
-          explanation: "Binary cospectral approximants U′,W′ have equal spectral square sums. Since V² = V for binary V, their edge densities agree. Edge-density continuity and the triangle inequality give this derived obstruction. For the example above, the total cut error is at least 1/4.",
-          formula: "δ□(U,U′) + δ□(W,W′) ≥ |∫U − ∫W|   (U′,W′ binary and cospectral)",
-          relevance: "Equal density makes this lower bound zero, so a new obstruction is needed.",
-          citation: "Derived from preprint Proposition 4.3 / journal Proposition 6",
-          url: "https://arxiv.org/html/2411.13229#S4"
-        },
-        {
-          title: "A related equivalence does admit simultaneous approximation",
-          explanation: "Fractional isomorphism of graphons is characterized by equality of all finite-tree densities. Hladký and Hng prove that any family of fractionally isomorphic graphons can be approximated, within any prescribed cut error, by jointly fractionally isomorphic finite graphs of every sufficiently large common order. Their theorem is an established positive result for preserving an equivalence during finite approximation.",
-          relevance: "The result concerns tree densities. It gives useful precedent, but does not guarantee adjacency-cospectral approximants for the present cycle-density question.",
-          citation: "Hladký–Hng · Theorem 1.2 (2023)",
-          url: "https://arxiv.org/html/2210.14097#S1"
-        }
-      ],
-      backgroundConclusion: "Whether a cospectral pair with equal edge density can still resist finite cospectral approximation remains open. Neither the unequal-density counterexample nor the fractional-isomorphism approximation theorem settles that case.",
-      links: [
-        ["Published paper · 2026", "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v33i1p10"],
-        ["Journal PDF · Problem 7", "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v33i1p10/pdf/"],
-        ["Preprint · Problem 4.4", "https://arxiv.org/html/2411.13229"]
-      ]
-    }]
-  },
-  {
-    id: "regularity",
-    status: "verified",
-    title: "Regularity, Removal & Quantitative Bounds",
-    summary: "Can qualitative decomposition theorems become efficient enough to power real algorithms?",
-    intro: [
-      "Regularity lemmas approximate a large graph by a bounded collection of pseudorandom pieces. They drive results in graph limits, property testing, counting, and removal, but their worst-case partition sizes can grow as towers of exponentials.",
-      "This creates a sharp divide between qualitative existence and useful quantitative bounds. Research asks which graph classes admit polynomial or singly exponential decompositions and whether weaker regularity retains enough information for testing and estimation."
-    ],
-    problems: [{
-      id: "triangle-removal-bounds",
-      verified: true,
-      title: "Narrow the quantitative gap in triangle removal",
-      lead: "A polynomial removal bound is already ruled out. The remaining gap runs from quasipolynomial growth to a tower.",
-      model: "Let T(G) count unordered triangles and τ△(G) be the fewest edge deletions making G triangle-free. Define δ△(ε)=inf T(G)/n³ over all positive integers n and all eligible n-vertex graphs with τ△(G)≥εn². tower(h) denotes a tower of twos of height h.",
-      statement: "Determine sharper asymptotic upper or lower bounds for δ△(ε) as ε→0, reducing the gap between the known construction and removal guarantees.",
-      known: "Fox's removal argument gives a tower of height O(log(1/ε)) for 1/δ△. Behrend-type constructions give exp(Ω(log²(1/ε))); Hunter's 2025 construction improves the constant while retaining this form.",
-      formula: "exp(Ω(log²(1/ε))) ≤ 1/δ△(ε) ≤ tower(O(log(1/ε)))",
-      source: "2026 homomorphisms paper · §1.3",
-      checked: "2026 paper; Hunter 2025",
-      reviewed: "2026-10-07",
-      statusNote: "The 2026 paper explicitly calls narrowing this gap open; no subsequent resolution was located.",
-      importance: "Quantitative foundations of removal and dense graph testing",
-      links: [
-        ["Open-status source · §1.3", "https://arxiv.org/html/2502.20278v1#S1.SS3"],
-        ["Fox · removal upper bound", "https://annals.math.princeton.edu/2011/174-1/p17"],
-        ["Hunter · 2025 lower bound", "https://arxiv.org/abs/2507.05231"]
-      ]
-    }, {
-      id: "induced-c4-removal",
-      verified: true,
-      title: "Does induced C₄ removal admit a polynomial bound?",
-      lead: "The induced four-cycle case has an exponential guarantee, while a polynomial guarantee remains conjectural.",
-      model: "An induced C₄ is a set of four vertices spanning a cycle with no diagonal edges. Distance to induced-C₄-freeness allows both edge additions and deletions, normalized by n².",
-      statement: "Do absolute constants a,b>0 exist such that every n-vertex graph requiring at least εn² edge edits to become induced-C₄-free contains at least aε^b n⁴ induced copies of C₄?",
-      known: "Gishboliner and Shapira prove a lower bound 2^{−(1/ε)^C} n⁴ for some absolute C>0. Gishboliner's 2025 notes restate the polynomial improvement as Conjecture 3.6. Labeled versus unlabeled copies changes only the constant factor.",
-      formula: "Known: 2^{−poly(1/ε)} n⁴ copies  ·  Conjectured: poly(ε) n⁴ copies",
-      source: "Conjecture 3.6 · IBS 2025 notes",
-      checked: "2025 notes, §3",
-      reviewed: "2026-10-07",
-      statusNote: "Explicit conjecture in the author's notes; 2025–2026 searches found no polynomial removal theorem settling it.",
-      importance: "Polynomial testing of induced-subgraph properties",
-      links: [
-        ["2025 notes · Conjecture 3.6", "https://www.ibs.re.kr/ecopro/wp-content/uploads/2025/08/IBS_2025Summer_removal_lemma.pdf"],
-        ["Gishboliner–Shapira · Theorem 1.1", "https://arxiv.org/abs/1709.08159"]
-      ]
-    }]
-  },
-  {
-    id: "graph-learning",
-    status: "candidate",
-    title: "Learning on Graphs",
-    summary: "When can graph neural networks generalize across size, density, and topology?",
-    intro: [
-      "Graph neural networks process data whose relationships matter as much as individual features. Their expressive power is tied to graph isomorphism tests, while their stability and transfer across graphs can be studied through graph limits and graphon operators.",
-      "The question below concerns a fixed network applied to graphs sampled from the same graphon. Quantitative bounds must specify the architecture, activation, and signal assumptions. Size transfer alone does not establish generalization after training or transfer between different graph distributions."
-    ],
-    problems: [{
-      id: "higher-order-transfer-rates",
-      verified: false,
-      title: "Quantitative transferability of higher-order graphon networks",
-      lead: "Qualitative transfer is known; general explicit rates are an author-posed research direction.",
-      model: "Fix an Invariant Graphon Network N (IWN) with architecture and weights independent of n,m and continuous activation. W:[0,1]²→[0,1] is symmetric measurable; f is scalar measurable, ||f||∞≤r>1. Independently sample simple loopless graph-signals using iid uniform positions, conditional Bernoulli(W(xi,xj)) edges, and f(xi) signals.",
-      statement: "Obtain explicit, tight bounds on E|N(Gn,fn)−N(Gm,fm)| beyond the restricted two-layer analytic architecture. Track tensor order, depth, weights, signal bound, and activation regularity.",
-      known: "Theorem 5.2/Corollary 5.3 give qualitative transferability. Theorem 5.4 covers a specified two-layer real-analytic class under Theorem G.1's condition r||(a,b,c)||₁<R, where R is the activation's convergence radius.",
-      formula: "Restricted class, sufficiently large n,m: E|N(Gn,fn)−N(Gm,fm)| ≤ C(N,r)[(log n)^(−1/2)+(log m)^(−1/2)]",
-      source: "Herbst–Jegelka · ICLR 2025, §6",
-      checked: "2025 paper; later status unconfirmed",
-      reviewed: "2026-10-07",
-      statusNote: "Published future direction; later status unconfirmed. No common rate for all continuous activations or distribution-shift guarantee is claimed.",
-      importance: "Finite-sample guarantees for expressive graph models",
-      links: [
-        ["ICLR 2025 · §6 and Theorem 5.4", "https://arxiv.org/html/2503.14338"],
-        ["Later framework · Appendix G.3", "https://papers.neurips.cc/paper_files/paper/2025/file/60b393761eea35bf491687c46e4f1a5a-Paper-Conference.pdf"]
-      ]
-    }]
-  }
-];
+const researchState = window.RESEARCH_STATE;
+const topics = structuredClone(researchState.topics);
 
-const custom = JSON.parse(localStorage.getItem("atlasCandidates") || "[]");
+const core = window.ResearchCore;
+const savedCandidates = core.readStorage(localStorage, "atlasCandidates", []);
+const custom = Array.isArray(savedCandidates) ? savedCandidates : [];
 for (const problem of custom) {
   const topic = topics.find(item => item.id === problem.topic);
   if (topic) topic.problems.push(problem);
@@ -277,7 +19,8 @@ function escapeHtml(value) {
 }
 
 function storedState(id) {
-  return JSON.parse(localStorage.getItem(`atlasState:${id}`) || "{}");
+  const state = core.readStorage(localStorage, `atlasState:${id}`, {});
+  return state && typeof state === "object" && !Array.isArray(state) ? state : {};
 }
 
 function makeNavigation() {
@@ -297,7 +40,7 @@ function makeNavigation() {
 function problemTemplate(problem) {
   const state = storedState(problem.id);
   const links = (problem.links || []).map(link => `<a href="${escapeHtml(link[1])}" target="_blank" rel="noreferrer">${escapeHtml(link[0])} ↗</a>`).join("") || "<span>Sources to be verified</span>";
-  return `<article class="problem" data-problem="${escapeHtml(problem.id)}">
+  return `<article class="problem" id="${escapeHtml(problem.id)}" data-problem="${escapeHtml(problem.id)}">
     <div class="problem-grid"><div>
       <div class="problem-meta"><span class="badge ${problem.verified ? "" : "candidate"}">${problem.verified ? "Verified open" : "Candidate"}</span><span class="badge">${escapeHtml(problem.source || "Needs source")}</span></div>
       <h4>${escapeHtml(problem.title)}</h4>
@@ -315,8 +58,22 @@ function problemTemplate(problem) {
       <div class="fact"><span>Your stage</span><select class="stage"><option${state.stage === "Shortlisted" ? " selected" : ""}>Shortlisted</option><option${state.stage === "Reading" ? " selected" : ""}>Reading</option><option${state.stage === "Working" ? " selected" : ""}>Working</option><option${state.stage === "Paused" ? " selected" : ""}>Paused</option></select></div>
       <div class="fact notes-fact"><span>Your notes</span><textarea class="notes" placeholder="Idea, lemma, or next step…">${escapeHtml(state.notes || "")}</textarea><div class="saved"></div></div>
     </div></div>
+    ${researchTemplate(problem)}
     ${backgroundTemplate(problem)}
   </article>`;
+}
+
+function researchTemplate(problem) {
+  const r = problem.research;
+  if (!r) return "";
+  return `<section class="research-progress" aria-labelledby="progress-${escapeHtml(problem.id)}">
+    <div class="progress-heading"><div><div class="eyebrow">Shared research record</div><h5 id="progress-${escapeHtml(problem.id)}">Where the next attempt starts</h5></div><span class="badge candidate">Full problem ${escapeHtml(r.status)}</span></div>
+    <p class="remaining-gap">${escapeHtml(r.currentGap)}</p>
+    <div class="result-list">${r.results.map(result => `<details class="result-record"><summary><span>${escapeHtml(result.title)}</span><small>${result.kind === "preprint" ? "Reported preprint" : "Derivation · needs independent review"}</small></summary><div class="result-content"><div class="formula">${escapeHtml(result.claim)}</div><h6>Exact assumptions</h6><ul>${result.assumptions.map(a=>`<li>${escapeHtml(a)}</li>`).join("")}</ul><p>${escapeHtml(result.argument)}</p><p><strong>Remaining limitation:</strong> ${escapeHtml(result.limitation)}</p><p class="review-note">Novelty: ${escapeHtml(result.novelty)}. Recorded ${escapeHtml(result.date)}.</p><div class="links"><a href="${core.safeHref(result.proofUrl)}">Read full argument ↗</a>${result.sourceUrl ? `<a href="${core.safeHref(result.sourceUrl)}">Attributed primary source ↗</a>` : ""}${result.verificationUrl ? `<a href="${core.safeHref(result.verificationUrl)}">Finite verification results ↗</a>` : ""}</div></div></details>`).join("")}</div>
+    <div class="frontier-list">${r.nextTasks.filter(t=>t.status === "ready").map(task=>`<article class="frontier-task"><div class="eyebrow">Next task · ${escapeHtml(task.kind)}</div><h6>${escapeHtml(task.title)}</h6><p>${escapeHtml(task.question)}</p><p class="acceptance"><strong>A useful outcome:</strong> ${escapeHtml(task.acceptance)}</p><button class="button compact continue-task" data-problem-id="${escapeHtml(problem.id)}" data-task-id="${escapeHtml(task.id)}">Copy this task for AI</button></article>`).join("")}</div>
+    <details class="attempt-history"><summary>Prior attempts and routes to avoid</summary><div class="result-content">${r.attempts.map(a=>`<div class="attempt-entry"><strong>${escapeHtml(a.date)} · ${escapeHtml(a.outcome)}</strong><p>${escapeHtml(a.claim)}</p><p>${escapeHtml(a.validation)}</p><small>Attempt ${escapeHtml(a.id)} · ${escapeHtml(a.review)}</small></div>`).join("")}<h6>Failed or insufficient routes</h6><ul>${r.obstacles.map(o=>`<li><strong>${escapeHtml(o.route)}</strong> ${escapeHtml(o.reason)}</li>`).join("")}</ul></div></details>
+    <div class="progress-actions"><button class="button record-attempt" data-problem-id="${escapeHtml(problem.id)}">Record an attempt</button><a href="research.html#${escapeHtml(problem.id)}">Readable AI handoff ↗</a><a class="permalink" href="#${escapeHtml(problem.id)}">Link to this problem</a></div>
+  </section>`;
 }
 
 function backgroundTemplate(problem) {
@@ -330,10 +87,13 @@ function backgroundTemplate(problem) {
 }
 
 function topicTemplate(topic) {
-  return `<article class="topic"><header class="topic-head" role="button" aria-expanded="true"><div><div class="kicker"><span class="badge ${topic.status === "candidate" ? "candidate" : ""}">${topic.status === "verified" ? "Active topic" : "Candidate topic"}</span><span class="badge">${topic.problems.length} problem${topic.problems.length === 1 ? "" : "s"}</span></div><h2>${escapeHtml(topic.title)}</h2><p class="topic-summary">${escapeHtml(topic.summary)}</p></div><button class="open-button" aria-label="Collapse topic">−</button></header><div class="topic-body"><div class="intro">${topic.intro.map(paragraph => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div><div class="section-title"><h3>Shortlisted research questions</h3><span>${topic.problems.length ? "Open problems and labeled candidates" : "None verified yet"}</span></div>${topic.problems.length ? topic.problems.map(problemTemplate).join("") : '<div class="placeholder">This topic is ready. The next step is to find and verify one precise, high-impact open problem.</div>'}</div></article>`;
+  return `<article class="topic"><header class="topic-head" role="button" tabindex="0" aria-expanded="true"><div><div class="kicker"><span class="badge ${topic.status === "candidate" ? "candidate" : ""}">${topic.status === "verified" ? "Active topic" : "Candidate topic"}</span><span class="badge">${topic.problems.length} problem${topic.problems.length === 1 ? "" : "s"}</span></div><h2>${escapeHtml(topic.title)}</h2><p class="topic-summary">${escapeHtml(topic.summary)}</p></div><button class="open-button" aria-label="Collapse topic">−</button></header><div class="topic-body"><div class="intro">${topic.intro.map(paragraph => `<p>${escapeHtml(paragraph)}</p>`).join("")}</div><div class="section-title"><h3>Shortlisted research questions</h3><span>${topic.problems.length ? "Open problems and labeled candidates" : "None verified yet"}</span></div>${topic.problems.length ? topic.problems.map(problemTemplate).join("") : '<div class="placeholder">This topic is ready. The next step is to find and verify one precise, high-impact open problem.</div>'}</div></article>`;
 }
 
 function bindInteractions() {
+  document.querySelectorAll(".topic-head").forEach(header => header.addEventListener("keydown", event => {
+    if (event.target === header && ["Enter", " "].includes(event.key)) { event.preventDefault(); header.click(); }
+  }));
   document.querySelectorAll(".topic-head").forEach(header => header.addEventListener("click", () => {
     const body = header.nextElementSibling;
     const wasOpen = !body.hidden;
@@ -349,20 +109,22 @@ function bindInteractions() {
     let timer;
     const persist = () => {
       const state = { ...storedState(id), stage: stage.value, notes: notes.value };
-      localStorage.setItem(`atlasState:${id}`, JSON.stringify(state));
-      saved.textContent = "Saved locally";
+      const ok = core.writeStorage(localStorage, `atlasState:${id}`, state);
+      saved.textContent = ok ? "Saved locally" : "Storage unavailable; copy your note";
       clearTimeout(timer);
       timer = setTimeout(() => { saved.textContent = ""; }, 1300);
     };
     stage.addEventListener("change", persist);
     notes.addEventListener("input", persist);
   });
+  document.querySelectorAll(".continue-task").forEach(button => button.addEventListener("click", () => copyHandoff(button.dataset.problemId, button.dataset.taskId)));
+  document.querySelectorAll(".record-attempt").forEach(button => button.addEventListener("click", () => openAttempt(button.dataset.problemId)));
 }
 
 function render() {
   const term = search.value.trim().toLowerCase();
   const visible = topics.filter(topic => {
-    const searchable = [topic.title, topic.summary, ...topic.intro, ...topic.problems.flatMap(problem => [problem.title, problem.statement, problem.model || "", problem.known || "", problem.formula || "", problem.source || "", ...(problem.backgroundResults || []).flatMap(result => [result.title, result.explanation, result.formula || "", result.relevance, result.citation]), problem.backgroundConclusion || "", storedState(problem.id).notes || ""])].join(" ").toLowerCase();
+    const searchable = [topic.title, topic.summary, ...topic.intro, ...topic.problems.flatMap(problem => [problem.title, problem.statement, problem.model || "", problem.known || "", problem.formula || "", problem.source || "", JSON.stringify(problem.research || {}), ...(problem.backgroundResults || []).flatMap(result => [result.title, result.explanation, result.formula || "", result.relevance, result.citation]), problem.backgroundConclusion || "", storedState(problem.id).notes || ""])].join(" ").toLowerCase();
     return (selected === "all" || selected === topic.id) && searchable.includes(term);
   });
   topicRoot.innerHTML = visible.map(topicTemplate).join("") || '<div class="placeholder">No topic matches this search.</div>';
@@ -386,7 +148,7 @@ document.getElementById("saveCandidate").addEventListener("click", event => {
   event.preventDefault();
   const problem = { id: `candidate-${Date.now()}`, topic: topicSelect.value, verified: false, title, statement, lead: "A proposed question awaiting a literature check.", importance: "To be assessed" };
   custom.unshift(problem);
-  localStorage.setItem("atlasCandidates", JSON.stringify(custom));
+  core.writeStorage(localStorage, "atlasCandidates", custom);
   topics.find(topic => topic.id === problem.topic).problems.unshift(problem);
   document.getElementById("candidateForm").reset();
   dialog.close();
@@ -394,5 +156,106 @@ document.getElementById("saveCandidate").addEventListener("click", event => {
   render();
 });
 
-makeNavigation();
-render();
+const publicProblems = core.allProblems(researchState);
+const handoffDialog = document.getElementById("handoffDialog");
+const handoffText = document.getElementById("handoffText");
+const feedback = document.getElementById("workspaceFeedback");
+async function copyHandoff(problemId, taskId) {
+  const text = core.buildPrompt(researchState, problemId, taskId);
+  handoffText.value = text;
+  handoffDialog.showModal();
+  handoffText.focus();
+  handoffText.select();
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+    await navigator.clipboard.writeText(text);
+    feedback.textContent = "AI handoff copied. Paste it into your research session.";
+    document.getElementById("handoffFeedback").textContent = "Copy requested. You can also select this text and copy it manually.";
+  } catch {
+    feedback.textContent = "Select and copy the handoff below.";
+    document.getElementById("handoffFeedback").textContent = "Automatic copying is unavailable here. Select the text and copy it manually.";
+  }
+}
+document.getElementById("copyHandoff").addEventListener("click", () => copyHandoff());
+document.querySelectorAll("[data-close-dialog]").forEach(button => button.addEventListener("click", () => document.getElementById(button.dataset.closeDialog).close()));
+
+const attemptDialog = document.getElementById("attemptDialog");
+const attemptForm = document.getElementById("attemptForm");
+const attemptProblem = document.getElementById("attemptProblem");
+const attemptTask = document.getElementById("attemptTask");
+const attemptFeedback = document.getElementById("attemptFeedback");
+attemptProblem.innerHTML = publicProblems.map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.title)}</option>`).join("");
+let drafts = core.readStorage(localStorage,"atlasResearchDrafts",[]);
+if (!Array.isArray(drafts)) drafts = [];
+let activeDraftId = null;
+function taskOptions() {
+  const p = publicProblems.find(p=>p.id === attemptProblem.value);
+  attemptTask.innerHTML = p.research.nextTasks.filter(t=>t.status === "ready").map(t=>`<option value="${escapeHtml(t.id)}">${escapeHtml(t.title)}</option>`).join("");
+}
+function loadDraft(problemId) {
+  activeDraftId = null;
+  for (const name of ["claim","assumptions","argument","validation","limitations","sources","nextStep","author"]) attemptForm.elements[name].value = "";
+  attemptForm.elements.outcome.value = "audit";
+  const draft = drafts.find(d=>d.problemId === problemId);
+  if (draft) {
+    activeDraftId = draft.id;
+    if ([...attemptTask.options].some(o=>o.value === draft.taskId)) attemptTask.value = draft.taskId;
+    for (const name of ["claim","argument","validation","limitations","nextStep","author","outcome"]) if (typeof draft[name] === "string") attemptForm.elements[name].value = draft[name];
+    attemptForm.elements.assumptions.value = (draft.assumptions || []).join("\n");
+    attemptForm.elements.sources.value = (draft.sources || []).join("\n");
+  }
+  attemptFeedback.textContent = draft ? "Loaded your private draft. Saving refreshes its baseline to the current shared revision." : "Your draft will stay in this browser until exported and merged through GitHub.";
+}
+function openAttempt(problemId) {
+  attemptProblem.value = problemId || publicProblems[0].id;
+  taskOptions();
+  loadDraft(attemptProblem.value);
+  attemptDialog.showModal();
+}
+attemptProblem.addEventListener("change", () => {taskOptions();loadDraft(attemptProblem.value);});
+document.getElementById("recordAttempt").addEventListener("click", () => openAttempt());
+function makeDraft() {
+  const values = Object.fromEntries(new FormData(attemptForm));
+  const problem = publicProblems.find(p=>p.id === values.problemId);
+  return {
+    schemaVersion:1,id:activeDraftId || `draft-${Date.now()}`,status:"draft",review:"unreviewed",baseRevision:researchState.revision,
+    problemId:values.problemId,taskId:values.taskId,priorAttemptIds:problem.research.attempts.map(a=>a.id),
+    resultIds:[],artifactUrls:[],date:new Date().toISOString().slice(0,10),recordedAt:new Date().toISOString(),author:values.author.trim() || "Browser draft",
+    outcome:values.outcome,claim:values.claim.trim(),assumptions:values.assumptions.split("\n").map(x=>x.trim()).filter(Boolean),
+    argument:values.argument.trim(),validation:values.validation.trim(),limitations:values.limitations.trim(),
+    sources:values.sources.split("\n").map(x=>x.trim()).filter(Boolean),nextStep:values.nextStep.trim(),supersedes:[]
+  };
+}
+function saveDraft() {
+  if (!attemptForm.reportValidity()) return null;
+  const draft = makeDraft();
+  const errors = core.validateDraft(draft,researchState);
+  if (errors.length) {attemptFeedback.textContent = errors.join(" "); return null;}
+  activeDraftId = draft.id;
+  drafts = [draft,...drafts.filter(d=>d.problemId !== draft.problemId)];
+  const saved = core.writeStorage(localStorage,"atlasResearchDrafts",drafts);
+  document.getElementById("draftCount").textContent = drafts.length;
+  attemptFeedback.textContent = saved ? "Saved locally. This is an unreviewed draft; the public research record has not changed." : "Browser storage is unavailable. Export the draft now to keep it.";
+  return draft;
+}
+attemptForm.addEventListener("submit", event => {event.preventDefault();saveDraft();});
+document.getElementById("exportAttempt").addEventListener("click", () => {
+  const draft = saveDraft();
+  if (!draft) return;
+  const url = URL.createObjectURL(new Blob([JSON.stringify(draft,null,2)+"\n"],{type:"application/json"}));
+  const link = document.createElement("a");
+  link.href=url;link.download=`${draft.problemId}-${draft.id}.json`;link.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  attemptFeedback.textContent="Draft exported. Contribute it through the repository to make it available to the next session.";
+});
+document.getElementById("draftCount").textContent = drafts.length;
+document.getElementById("sharedRevision").textContent = researchState.revision;
+function followHash() {
+  const id = location.hash.slice(1);
+  const topic = topics.find(t=>t.problems.some(p=>p.id === id));
+  if (topic) {selected=topic.id;search.value="";}
+  makeNavigation();render();
+  if (topic) document.getElementById(id)?.scrollIntoView({block:"start"});
+}
+window.addEventListener("hashchange",followHash);
+followHash();

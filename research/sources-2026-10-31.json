@@ -1,0 +1,97 @@
+{
+  "checked_on": "2026-10-31",
+  "website": "https://hadi1373z.github.io/research-problems-website/",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "Gishboliner and Shapira, Polynomial Property Testing (2025)",
+      "url": "https://arxiv.org/html/2508.16878v1",
+      "location": "Section 5, Theorem 5.3 and Problem 5.4",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S2",
+      "title": "Kushnir and Shapira, Towards Tight Bounds for Testing k-Colorability (2026)",
+      "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2026.35",
+      "location": "Theorems 1.1-1.2 and Conjecture 1.3",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S3",
+      "title": "Xu, An Improved Bound for Testing k-Colorability (2026), version 2",
+      "url": "https://arxiv.org/html/2610.31489v2",
+      "location": "Theorem 1.1; Sections 4-7; revised 26 October 2026",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S4",
+      "title": "Babai, Graph Isomorphism in Quasipolynomial Time",
+      "url": "https://arxiv.org/abs/1512.03547",
+      "location": "General graph isomorphism upper bound",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S5",
+      "title": "Neuen, Parameterized complexity of graph isomorphism testing (2026)",
+      "url": "https://epub.uni-regensburg.de/78630/1/1-s2.0-S1574013726000274-main.pdf",
+      "location": "Introduction and Section 4.1, after Corollary 4.7",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S6",
+      "title": "Grohe, Neuen and Schweitzer, A Faster Isomorphism Test for Graphs of Small Degree",
+      "url": "https://arxiv.org/abs/1802.04659",
+      "location": "Maximum-degree running time",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S7",
+      "title": "Hladký, Iľkovič, León and Shu, On Cospectral Graphons (2026)",
+      "url": "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v33i1p10",
+      "location": "Journal Problem 7; preprint Problem 4.4",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S8",
+      "title": "On cospectral graphons, preprint",
+      "url": "https://arxiv.org/html/2411.13229",
+      "location": "Section 4, unequal-density obstruction and Problem 4.4",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S9",
+      "title": "Fox, A new proof of the graph removal lemma (2011)",
+      "url": "https://annals.math.princeton.edu/2011/174-1/p17",
+      "location": "Triangle-removal upper bound",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S10",
+      "title": "Hunter, An improved construction for the triangle removal lemma",
+      "url": "https://arxiv.org/html/2507.05231",
+      "location": "Introduction and construction",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S11",
+      "title": "Gishboliner, Removal Lemmas: Summer School 2025",
+      "url": "https://www.ibs.re.kr/ecopro/wp-content/uploads/2025/08/IBS_Summer_Course-July-30-31.pdf",
+      "location": "Section 3, Conjecture 3.6",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S12",
+      "title": "Gishboliner and Shapira, Efficient Removal without Efficient Regularity",
+      "url": "https://arxiv.org/abs/1709.08159",
+      "location": "Induced C4 exponential removal guarantee",
+      "checked_on": "2026-10-31"
+    },
+    {
+      "id": "S13",
+      "title": "Herbst and Jegelka, Higher-Order Graphon Neural Networks: Approximation and Cut Distance (ICLR 2025)",
+      "url": "https://arxiv.org/html/2503.14338",
+      "location": "Definition 4.3; Theorems 5.2, 5.4; Appendices G.3-G.4, equation (182)",
+      "checked_on": "2026-10-31"
+    }
+  ]
+}

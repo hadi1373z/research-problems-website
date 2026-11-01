@@ -1,0 +1,12 @@
+{
+  "name": "research-problems-website",
+  "private": true,
+  "version": "1.0.0",
+  "description": "A static, continuing research notebook for humans and AI sessions.",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "test": "node --test"
+  }
+}

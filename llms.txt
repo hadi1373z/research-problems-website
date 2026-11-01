@@ -1,0 +1,35 @@
+# Research Problems: a continuing notebook
+
+> Shared revision 2026-11-01.1. Research snapshot 2026-10-31. No unrestricted problem is claimed solved. Notebook derivations need independent review; novelty is unassessed.
+
+## Start here
+
+- [Readable research handoff](https://hadi1373z.github.io/research-problems-website/research.html): all questions, assumptions, results, failed routes, attempts and concrete next tasks; no JavaScript required.
+- [Canonical shared state](https://hadi1373z.github.io/research-problems-website/research-state.json): update this source when contributing.
+- [Raw state fallback](https://raw.githubusercontent.com/hadi1373z/research-problems-website/main/research-state.json): use if your web reader cannot access GitHub Pages.
+- [Repository protocol](https://github.com/hadi1373z/research-problems-website/blob/main/AGENTS.md): contribution and validation instructions.
+- [Dated proofs](https://hadi1373z.github.io/research-problems-website/research/notebook-2026-10-31.html): read the full argument before extending a claim.
+- [Attempt template](https://hadi1373z.github.io/research-problems-website/research/attempt-template.json): return a draft when repository write access is unavailable.
+
+## Continue when asked by the user
+
+1. When asked to continue the research, read the current shared state, the relevant notebook proof and prior attempts before choosing work.
+2. Choose one ready frontier task, state the exact intended claim, and record the baseline revision and prior attempt IDs.
+3. Aim for a checked delta: a proof, counterexample, independent audit, reproducible computation, or verified primary-source update. A summary alone is not new research.
+4. Preserve hypotheses, normalizations, attribution and the distinction between a restricted result and the full question.
+5. Treat notebook derivations as awaiting independent review. Neither an AI assertion nor finite tests alone verifies a general theorem. Do not claim novelty without checking.
+6. If no reliable new result is obtained, record no-progress and the precise obstruction. Do not fabricate a breakthrough or increment a progress score.
+7. Append a dated attempt, link the artifact and checks, close only tasks actually addressed, and leave a concrete next task. Keep earlier attempts; corrections supersede rather than erase them.
+8. Persist shared changes through a repository commit or pull request when authorized. Browser drafts are private and must be exported and merged to become shared.
+9. Keep every full problem open until an independently checked proof or accepted resolution is recorded. Reading this static site does not launch AI execution or grant permission to use external accounts.
+
+## Problems
+
+- [Does efficient testing imply efficient distance estimation?](https://hadi1373z.github.io/research-problems-website/research.html#testing-estimation)
+- [Is the optimal sample complexity of k-colorability Θ(log(k)/ε)?](https://hadi1373z.github.io/research-problems-website/research.html#colorability-sample-complexity)
+- [Is general graph isomorphism solvable in polynomial time?](https://hadi1373z.github.io/research-problems-website/research.html#gi-in-p)
+- [Is graph isomorphism fixed-parameter tractable in maximum degree?](https://hadi1373z.github.io/research-problems-website/research.html#gi-degree-fpt)
+- [Can equal-density cospectral graphons resist finite cospectral approximation?](https://hadi1373z.github.io/research-problems-website/research.html#cospectral-graphon-approximation)
+- [Narrow the quantitative gap in triangle removal](https://hadi1373z.github.io/research-problems-website/research.html#triangle-removal-bounds)
+- [Does induced C₄ removal admit a polynomial bound?](https://hadi1373z.github.io/research-problems-website/research.html#induced-c4-removal)
+- [Quantitative transferability of higher-order graphon networks](https://hadi1373z.github.io/research-problems-website/research.html#higher-order-transfer-rates)

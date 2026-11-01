@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "replace-with-a-unique-attempt-id",
+  "status": "draft",
+  "review": "unreviewed",
+  "baseRevision": "2026-11-01.1",
+  "problemId": "higher-order-transfer-rates",
+  "taskId": "audit-local-kernel-root-n",
+  "priorAttemptIds": [
+    "initial-higher-order-transfer-rates"
+  ],
+  "resultIds": [],
+  "artifactUrls": [],
+  "outcome": "audit",
+  "date": "YYYY-MM-DD",
+  "author": "Your name or model/session label",
+  "claim": "State the precise new delta or independent review.",
+  "assumptions": [
+    "List exact hypotheses and normalizations."
+  ],
+  "argument": "Supply the proof, counterexample, reproducible experiment, or precise obstruction.",
+  "validation": "Describe checks and link their artifacts. State what they do not establish.",
+  "limitations": "Explain the remaining gap and whether the result is restricted.",
+  "sources": [],
+  "nextStep": "A concrete next claim and an acceptance condition.",
+  "supersedes": []
+}

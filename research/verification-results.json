@@ -1,0 +1,165 @@
+{
+  "scope": "Finite verification only; none of these computations settles an unrestricted open problem.",
+  "graph_isomorphism_obstruction": {
+    "rook": {
+      "spectrum": {
+        "-2": 9,
+        "2": 6,
+        "6": 1
+      },
+      "K4_count": 8
+    },
+    "shrikhande": {
+      "spectrum": {
+        "-2": 9,
+        "2": 6,
+        "6": 1
+      },
+      "K4_count": 0
+    }
+  },
+  "multipartite_coloring": {
+    "full_vertex_coloring_cases": 24,
+    "coupon_bound_cases": 60
+  },
+  "cospectral_bipartite_pairs": [
+    {
+      "r": 1,
+      "order": 8,
+      "edges": 4,
+      "nonzero_eigenvalues": [
+        -2,
+        2
+      ]
+    },
+    {
+      "r": 2,
+      "order": 16,
+      "edges": 16,
+      "nonzero_eigenvalues": [
+        -4,
+        4
+      ]
+    },
+    {
+      "r": 3,
+      "order": 24,
+      "edges": 36,
+      "nonzero_eigenvalues": [
+        -6,
+        6
+      ]
+    },
+    {
+      "r": 4,
+      "order": 32,
+      "edges": 64,
+      "nonzero_eigenvalues": [
+        -8,
+        8
+      ]
+    },
+    {
+      "r": 5,
+      "order": 40,
+      "edges": 100,
+      "nonzero_eigenvalues": [
+        -10,
+        10
+      ]
+    },
+    {
+      "r": 6,
+      "order": 48,
+      "edges": 144,
+      "nonzero_eigenvalues": [
+        -12,
+        12
+      ]
+    },
+    {
+      "r": 7,
+      "order": 56,
+      "edges": 196,
+      "nonzero_eigenvalues": [
+        -14,
+        14
+      ]
+    },
+    {
+      "r": 8,
+      "order": 64,
+      "edges": 256,
+      "nonzero_eigenvalues": [
+        -16,
+        16
+      ]
+    }
+  ],
+  "triangle_removal_subclass": {
+    "latin_triangle_packings_checked": 125,
+    "equality_example": {
+      "n": 20,
+      "parts": [
+        2,
+        2,
+        2
+      ],
+      "isolates": 14,
+      "epsilon": "1/100",
+      "triangle_density": "1/1000"
+    }
+  },
+  "induced_C4_triangle_free_subclass": [
+    {
+      "order": 4,
+      "graphs_checked": 64,
+      "triangle_free_graphs_at_positive_C4_distance": 3,
+      "max_induced_C4_edit_distance": 1
+    },
+    {
+      "order": 5,
+      "graphs_checked": 1024,
+      "triangle_free_graphs_at_positive_C4_distance": 85,
+      "max_induced_C4_edit_distance": 1
+    },
+    {
+      "order": 6,
+      "graphs_checked": 32768,
+      "triangle_free_graphs_at_positive_C4_distance": 2365,
+      "max_induced_C4_edit_distance": 3
+    }
+  ],
+  "network_sampling_and_slow_rate_moment_checks": [
+    {
+      "n": 8,
+      "E_abs_sample_mean": 0.2734375,
+      "sqrt_n_times_error": 0.7733980419227864
+    },
+    {
+      "n": 16,
+      "E_abs_sample_mean": 0.196380615234375,
+      "sqrt_n_times_error": 0.7855224609375
+    },
+    {
+      "n": 32,
+      "E_abs_sample_mean": 0.13994993409141898,
+      "sqrt_n_times_error": 0.791676379381222
+    },
+    {
+      "n": 64,
+      "E_abs_sample_mean": 0.09934675374796689,
+      "sqrt_n_times_error": 0.7947740299837351
+    },
+    {
+      "n": 128,
+      "E_abs_sample_mean": 0.07038609217001514,
+      "sqrt_n_times_error": 0.796327729194225
+    },
+    {
+      "n": 256,
+      "E_abs_sample_mean": 0.04981910993614015,
+      "sqrt_n_times_error": 0.7971057589782424
+    }
+  ]
+}

@@ -18,7 +18,7 @@ body { margin: 0; background: radial-gradient(circle at 8% -12%, color-mix(in sr
 button, input, textarea, select { font: inherit; }
 a { color: inherit; }
 .app { min-height: 100vh; display: grid; grid-template-columns: 270px minmax(0, 1fr); }
-.sidebar { position: sticky; top: 0; height: 100vh; padding: 28px 22px; border-right: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(18px); }
+.sidebar { position: sticky; top: 0; height: 100vh; min-width: 0; padding: 28px 22px; border-right: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(18px); }
 .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 30px; }
 .mark { width: 40px; height: 40px; border-radius: 13px; display: grid; place-items: center; background: var(--ink); color: var(--paper); font: 24px Georgia, serif; }
 .brand strong, .brand small { display: block; }
@@ -100,19 +100,81 @@ dialog::backdrop { background: color-mix(in srgb, #000 40%, transparent); backdr
 .dialog > p { color: var(--muted); margin-top: 0; }
 .field { display: grid; gap: 6px; margin: 14px 0; color: var(--muted); font-size: 12px; }
 .field input, .field textarea, .field select { border: 1px solid var(--line); border-radius: 10px; padding: 10px; background: var(--bg); color: var(--ink); }
+.field input, .field textarea, .field select { width: 100%; min-width: 0; }
 .actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 20px; }
 
+.handoff-nav { display: block; padding: 10px 11px; border: 1px solid var(--line); border-radius: 12px; color: var(--green); font-size: 13px; text-decoration: none; margin-bottom: 17px; }
+.continuation-panel { border: 1px solid color-mix(in srgb, var(--green) 40%, var(--line)); background: var(--paper); border-radius: 21px; padding: clamp(20px, 3vw, 30px); margin: 0 0 30px; }
+.continuation-top, .progress-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; }
+.continuation-top h2, .continuation-panel > h2 { font: 500 clamp(27px, 3vw, 35px)/1.1 Georgia, serif; margin: 7px 0 14px; letter-spacing: -.02em; }
+.continuation-top .badge { flex-shrink: 0; }
+.continuation-intro { margin: 0; color: var(--muted); max-width: 84ch; }
+.continuation-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; margin: 21px 0; }
+.continuation-steps { padding-left: 21px; margin: 0; display: grid; gap: 12px; color: var(--muted); }
+.continuation-steps strong { color: var(--ink); }
+.continuation-resources { display: grid; align-content: start; gap: 9px; font-size: 13px; }
+.continuation-resources a, .progress-actions a { color: var(--green); text-underline-offset: 3px; }
+.workspace-actions, .progress-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.workspace-meta, .workspace-note, .workspace-feedback { font-size: 12px; color: var(--muted); }
+.workspace-feedback { color: var(--green); min-height: 19px; margin: 12px 0 2px; }
+.workspace-note { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 0; max-width: 98ch; }
+.research-progress { border-top: 1px solid var(--line); margin-top: 25px; padding-top: 24px; }
+.progress-heading h5 { font: 500 23px/1.2 Georgia, serif; margin: 7px 0 14px; }
+.progress-heading .badge { white-space: nowrap; }
+.remaining-gap { max-width: 94ch; }
+.result-list { display: grid; gap: 9px; }
+.result-record, .attempt-history { border: 1px solid var(--line); border-radius: 12px; background: var(--paper); overflow: hidden; }
+.result-record summary, .attempt-history summary { cursor: pointer; padding: 13px 15px; color: var(--ink); font-weight: 550; }
+.result-record summary small { display: block; color: var(--amber); font-size: 11px; font-weight: 400; margin: 4px 0 0 17px; }
+.result-content { padding: 3px 16px 17px; }
+.result-content h6, .frontier-task h6 { font-size: 14px; line-height: 1.45; margin: 12px 0 7px; }
+.result-content ul { color: var(--muted); padding-left: 22px; }
+.result-content .formula { margin-top: 10px; }
+.problem p.review-note { font-size: 12px; }
+.frontier-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 17px 0; }
+.frontier-task { border: 1px solid var(--line); border-radius: 13px; padding: 18px; background: color-mix(in srgb, var(--green-soft) 40%, var(--paper)); min-width: 0; }
+.frontier-task .eyebrow { font-size: 10px; overflow-wrap: anywhere; }
+.frontier-task h6 { font-size: 16px; margin-top: 8px; }
+.problem .frontier-task p { font-size: 13px; }
+.frontier-task .acceptance { font-size: 12px; }
+.button.compact { font-size: 12px; padding: 8px 12px; white-space: normal; }
+.attempt-history { margin-bottom: 17px; }
+.attempt-entry { border-bottom: 1px solid var(--line); margin-bottom: 16px; padding: 9px 0 15px; }
+.attempt-entry small { color: var(--muted); overflow-wrap: anywhere; }
+.progress-actions { font-size: 12px; }
+.problem { scroll-margin-top: 18px; }
+.draft-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+#attemptDialog { width: min(760px, calc(100% - 24px)); max-height: calc(100vh - 32px); }
+#handoffDialog { width: min(830px, calc(100% - 24px)); max-height: calc(100vh - 32px); }
+#handoffText { font-family: ui-monospace, monospace; font-size: 12px; }
+.draft-feedback { color: var(--green); font-size: 12px; }
+.handoff-page { max-width: 1160px; margin: auto; padding: 35px clamp(18px, 5vw, 70px) 70px; }
+.handoff-header { margin: 30px 0; }
+.handoff-index { display: grid; gap: 10px; padding: 22px; border: 1px solid var(--line); border-radius: 15px; margin-bottom: 28px; }
+.handoff-index a { color: var(--green); text-underline-offset: 3px; }
+.handoff-problem { padding: clamp(22px, 4vw, 36px); border: 1px solid var(--line); border-radius: 22px; background: var(--paper); margin: 25px 0; overflow-wrap: anywhere; }
+.handoff-problem h2 { font: 500 32px/1.15 Georgia, serif; }
+.handoff-problem h3 { font-size: 15px; margin: 28px 0 8px; }
+.handoff-problem h4 { font: 500 21px/1.3 Georgia, serif; }
+.handoff-problem h5 { font-size: 13px; margin-bottom: 4px; }
+.handoff-problem p, .handoff-problem li { color: var(--muted); }
+.handoff-result { border-left: 3px solid var(--green); padding: 0 0 5px 19px; margin: 28px 0; }
+.handoff-problem .frontier-task { margin-bottom: 15px; }
+:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+
 @media (max-width: 860px) {
-  .app { grid-template-columns: 1fr; }
+  .app { grid-template-columns: minmax(0, 1fr); }
   .sidebar { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 16px 20px; }
   .brand { margin: 0; }
   .nav-title { display: none; }
   nav { display: flex; gap: 6px; overflow-x: auto; margin-top: 13px; }
-  .topic-nav { width: auto; white-space: nowrap; }
+  .topic-nav { width: auto; flex-shrink: 0; white-space: nowrap; }
   .topic-nav small, .topic-nav .number { display: none; }
   .problem-grid { grid-template-columns: 1fr; }
   .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .notes-fact { grid-column: 1 / -1; }
+  .continuation-grid { grid-template-columns: 1fr; gap: 20px; }
+  .frontier-list { grid-template-columns: 1fr; }
 }
 @media (max-width: 590px) {
   main { padding: 28px 15px 60px; }
@@ -123,4 +185,11 @@ dialog::backdrop { background: color-mix(in srgb, #000 40%, transparent); backdr
   .intro { grid-template-columns: 1fr; gap: 14px; }
   .facts { grid-template-columns: 1fr; }
   .notes-fact { grid-column: auto; }
+  .continuation-top, .progress-heading { display: block; }
+  .continuation-top .badge { display: inline-block; margin-bottom: 14px; white-space: normal; }
+  .progress-heading .badge { display: inline-block; margin-bottom: 13px; }
+  .workspace-actions .button { width: 100%; white-space: normal; }
+  .draft-row { grid-template-columns: 1fr; gap: 0; }
+  .actions { flex-wrap: wrap; }
+  .actions .button { white-space: normal; }
 }

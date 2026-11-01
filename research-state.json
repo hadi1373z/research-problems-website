@@ -1,0 +1,1079 @@
+{
+  "schemaVersion": 1,
+  "revision": "2026-11-01.1",
+  "updated": "2026-11-01",
+  "researchReviewed": "2026-10-31",
+  "siteUrl": "https://hadi1373z.github.io/research-problems-website/",
+  "repositoryUrl": "https://github.com/hadi1373z/research-problems-website",
+  "purpose": "Accumulate reviewable research deltas across AI and human sessions without losing assumptions, failed routes or unresolved gaps.",
+  "protocol": [
+    "When asked to continue the research, read the current shared state, the relevant notebook proof and prior attempts before choosing work.",
+    "Choose one ready frontier task, state the exact intended claim, and record the baseline revision and prior attempt IDs.",
+    "Aim for a checked delta: a proof, counterexample, independent audit, reproducible computation, or verified primary-source update. A summary alone is not new research.",
+    "Preserve hypotheses, normalizations, attribution and the distinction between a restricted result and the full question.",
+    "Treat notebook derivations as awaiting independent review. Neither an AI assertion nor finite tests alone verifies a general theorem. Do not claim novelty without checking.",
+    "If no reliable new result is obtained, record no-progress and the precise obstruction. Do not fabricate a breakthrough or increment a progress score.",
+    "Append a dated attempt, link the artifact and checks, close only tasks actually addressed, and leave a concrete next task. Keep earlier attempts; corrections supersede rather than erase them.",
+    "Persist shared changes through a repository commit or pull request when authorized. Browser drafts are private and must be exported and merged to become shared.",
+    "Keep every full problem open until an independently checked proof or accepted resolution is recorded. Reading this static site does not launch AI execution or grant permission to use external accounts."
+  ],
+  "sessions": [
+    {
+      "id": "initial-2026-10-31",
+      "date": "2026-10-31",
+      "kind": "research",
+      "problemIds": [
+        "testing-estimation",
+        "colorability-sample-complexity",
+        "gi-in-p",
+        "gi-degree-fpt",
+        "cospectral-graphon-approximation",
+        "triangle-removal-bounds",
+        "induced-c4-removal",
+        "higher-order-transfer-rates"
+      ],
+      "summary": "Initial attempts on all eight public questions: restricted derivations, negative examples, a literature update, and remaining gaps. No unrestricted problem solved."
+    }
+  ],
+  "history": [
+    {
+      "date": "2026-11-01",
+      "kind": "site-update",
+      "countsAsResearch": false,
+      "summary": "Imported the dated notebook, added shared state, independent-review labels, concrete frontier tasks, an AI handoff, and draft export. This infrastructure update is not a new mathematical result."
+    }
+  ],
+  "topics": [
+    {
+      "id": "property-testing",
+      "status": "verified",
+      "title": "Graph Property Testing & Estimation",
+      "summary": "What can a tiny random sample reveal about a massive dense graph?",
+      "intro": [
+        "In the dense-graph model, distance to a property is the minimum number of edge additions or deletions divided by n². A tester distinguishes membership from distance at least ε, with success probability at least 2/3. A canonical tester observes a uniformly sampled induced subgraph.",
+        "Sample complexity counts vertices; edge-query complexity counts inspected pairs and can be quadratic in that sample size. These bounds concern information used, not the running time of computation on the sample. Estimation asks for a tolerant decision at an arbitrary distance threshold."
+      ],
+      "problems": [
+        {
+          "id": "testing-estimation",
+          "verified": true,
+          "title": "Does efficient testing imply efficient distance estimation?",
+          "lead": "Qualitative equivalence is proved; a comparable quantitative conversion remains open.",
+          "model": "Fix a graph property P in the dense model. qP(ε) counts sampled vertices; dP(G) is normalized edit distance. An estimator distinguishes dP(G) ≤ α from dP(G) ≥ α+ε, for every threshold α, with probability at least 2/3.",
+          "statement": "If P is testable using qP(ε) sampled vertices, is it estimable using qP(ε′) vertices for some ε′ = poly(ε)? The polynomial rescaling may depend on P, but not on n or ε.",
+          "known": "The 2025 survey's Theorem 5.3 gives a general doubly exponential conversion. Problem 5.4 asks for the much smaller rescaled tester bound.",
+          "formula": "Known upper bound: exp(poly(1/ε) · exp(qP(ε/2)))  ·  Target: qP(poly(ε))",
+          "source": "Problem 5.4 (2025); Problem 1.8 (2023)",
+          "checked": "2025 survey, §5",
+          "reviewed": "2026-10-31",
+          "statusNote": "Explicit open problem in the survey; subsequent-work searches found no resolution. This is a literature review, not an automatic status guarantee. A research snapshot from 31 October 2026 is now recorded below; no unrestricted resolution is claimed.",
+          "importance": "General decision-to-estimation principle",
+          "links": [
+            [
+              "2023 paper · Problem 1.8",
+              "https://arxiv.org/html/2305.05487"
+            ],
+            [
+              "2025 survey · §5",
+              "https://arxiv.org/html/2508.16878v1#S5"
+            ],
+            [
+              "Graph-limit background",
+              "https://users.renyi.hu/~sos/2006_Graph_limits_and_parameter_testing.pdf"
+            ]
+          ],
+          "research": {
+            "status": "open",
+            "currentGap": "The polynomial rescaling conversion for arbitrary graph properties is unproved. The edgeless calculation establishes a necessary loss, not a counterexample to the stated conjecture.",
+            "results": [
+              {
+                "id": "edgeless-quadratic-loss",
+                "title": "A quadratic sample loss is necessary in a simple property",
+                "claim": "For the edgeless property, optimal canonical testing uses Θ(1/ε) vertices and arbitrary-threshold distance estimation needs Θ(1/ε²).",
+                "assumptions": [
+                  "Dense simple graphs; unordered edits divided by n².",
+                  "Sample complexity counts vertices, and n may be arbitrarily large."
+                ],
+                "argument": "Independent pair samples give both upper bounds. Universal-core versus independent-set examples give the testing lower bound; relative entropy for two nearby core proportions gives the estimation lower bound.",
+                "limitation": "This property satisfies the conjectured conversion under ε ↦ ε². It does not refute every polynomial rescaling.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html#proposition-1",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              }
+            ],
+            "obstacles": [
+              {
+                "id": "same-accuracy-conversion",
+                "route": "Use the tester at a constant multiple of the estimation accuracy.",
+                "reason": "The edgeless property separates optimal testing and estimation sample sizes by a quadratic factor.",
+                "evidenceResultIds": [
+                  "edgeless-quadratic-loss"
+                ]
+              }
+            ],
+            "nextTasks": [
+              {
+                "id": "audit-edgeless-lower-bound",
+                "title": "Audit the finite-graph estimation lower bound",
+                "question": "Make the passage from independent core bits to without-replacement samples fully quantitative.",
+                "acceptance": "Give explicit finite n, ε ranges and total-variation or KL estimates, or exhibit an error in Proposition 1.",
+                "resultIds": [
+                  "edgeless-quadratic-loss"
+                ],
+                "priority": 1,
+                "kind": "audit",
+                "status": "ready"
+              },
+              {
+                "id": "conversion-beyond-edgeless",
+                "title": "Test a broader hereditary family",
+                "question": "Can the rescaling argument be proved for a precise family beyond the edgeless property?",
+                "acceptance": "State the family and derive a rigorous sample bound relative to its tester, or provide an explicit obstruction. Merely repeating qualitative estimability is insufficient.",
+                "resultIds": [],
+                "priority": 2,
+                "kind": "new-work",
+                "status": "ready"
+              }
+            ],
+            "attempts": [
+              {
+                "id": "initial-testing-estimation",
+                "sessionId": "initial-2026-10-31",
+                "date": "2026-10-31",
+                "outcome": "partial-progress",
+                "claim": "A quadratic sample loss is necessary in a simple property",
+                "resultIds": [
+                  "edgeless-quadratic-loss"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted notebook",
+                "validation": "Written arguments in the dated notebook; finite checks are corroboration only.",
+                "limitations": "The polynomial rescaling conversion for arbitrary graph properties is unproved. The edgeless calculation establishes a necessary loss, not a counterexample to the stated conjecture.",
+                "artifactUrls": [
+                  "research/notebook-2026-10-31.html",
+                  "research/verification-results.json"
+                ],
+                "baseRevision": "initial-import"
+              }
+            ]
+          }
+        },
+        {
+          "id": "colorability-sample-complexity",
+          "verified": true,
+          "title": "Is the optimal sample complexity of k-colorability Θ(log(k)/ε)?",
+          "lead": "A late-October preprint reports a bound linear in 1/ε for fixed k; the uniform dependence on k remains open.",
+          "model": "For k ≥ 2 and ε sufficiently small for the given k, let Sk(ε) be the least sample size such that a uniformly sampled induced subgraph of every graph ε-far from k-colorable is non-k-colorable with probability at least 2/3. Distance counts edge deletions divided by n².",
+          "statement": "Prove or disprove Sk(ε) = Θ(log(k)/ε), as conjectured by Kushnir and Shapira. Determine the sharp dependence on k and ε for the canonical one-sided tester.",
+          "known": "Published September 2026 bounds are Ω(log(k)/ε) and O((k/ε) log(1/ε)). Xu v2, revised 26 October 2026, reports O(k log(k)/ε). This newer claim is a preprint, and still leaves a factor-k gap in the joint dependence.",
+          "formula": "Published lower bound: Ω(log(k)/ε) · New preprint reports: O(k log(k)/ε) · Conjectured: Θ(log(k)/ε)",
+          "source": "Conjecture 1.3 · RANDOM 2026",
+          "checked": "RANDOM 2026; Xu v2 preprint (26 Oct 2026)",
+          "reviewed": "2026-10-31",
+          "statusNote": "The full two-parameter conjecture remains unresolved in the sources checked on 31 October 2026. The newer upper bound is explicitly a preprint claim. No unrestricted resolution is claimed in the notebook.",
+          "importance": "Sharp limits of detecting global colorability from small samples",
+          "links": [
+            [
+              "Xu · 26 Oct 2026 preprint",
+              "https://arxiv.org/html/2610.31489v2"
+            ],
+            [
+              "Kushnir–Shapira · 2026",
+              "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.APPROX/RANDOM.2026.35"
+            ],
+            [
+              "Paper · Theorems 1.1–1.2",
+              "https://drops.dagstuhl.de/storage/00lipics/lipics-vol392-approx-random2026/LIPIcs.APPROX-RANDOM.2026.35/LIPIcs.APPROX-RANDOM.2026.35.pdf"
+            ]
+          ],
+          "research": {
+            "status": "open",
+            "currentGap": "The full uniform Θ(log(k)/ε) conjecture remains open in the checked sources. A recent preprint reports O(k log(k)/ε), leaving a factor-k gap; its preprint status must stay visible.",
+            "results": [
+              {
+                "id": "xu-2026-preprint",
+                "title": "A newer reported coloring upper bound",
+                "claim": "Xu v2, revised 26 October 2026, reports S_k(ε) = O(k log(k)/ε).",
+                "assumptions": [
+                  "Canonical one-sided dense-graph sampling.",
+                  "The bound is a recent preprint claim, not an independently reviewed theorem of this notebook."
+                ],
+                "argument": "The source uses a palette process, reconstruction, deletion stability, and a block encoding.",
+                "limitation": "For each fixed k this gives the claimed Θ(1/ε) dependence, but does not close the uniform factor-k gap.",
+                "kind": "preprint",
+                "review": "reported-preprint",
+                "novelty": "attributed-to-source",
+                "proofUrl": "research/notebook-2026-10-31.html",
+                "verificationUrl": null,
+                "date": "2026-10-31",
+                "sourceUrl": "https://arxiv.org/html/2610.31489v2"
+              },
+              {
+                "id": "multipartite-samples",
+                "title": "Sharp sample size for complete (k+1)-partite graphs",
+                "claim": "For 0 < ε ≤ 1/(16k²), the worst-case sample size within this class is Θ(1/(kε) + log(k)/√ε).",
+                "assumptions": [
+                  "Exactly k+1 positive independent parts, complete across parts, no extra isolates.",
+                  "Uniform constants for k ≥ 2; sufficiently large blowups handle rounding."
+                ],
+                "argument": "Distance is the product of the two smallest part masses. Missing-part probabilities give the upper bound; one rare part and k equal rare parts give matching lower bounds.",
+                "limitation": "These structured examples do not realize the general Ω(log(k)/ε) obstruction.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html#proposition-2",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              }
+            ],
+            "obstacles": [
+              {
+                "id": "palette-entropy-shortcut",
+                "route": "Replace the kn palette-label budget by an n log(k) entropy budget.",
+                "reason": "Weighted color-availability degrees do not directly control unweighted monochromatic edges in reconstruction.",
+                "evidenceResultIds": []
+              }
+            ],
+            "nextTasks": [
+              {
+                "id": "audit-xu-palette-reconstruction",
+                "title": "Audit the recent palette preprint",
+                "question": "Check Xu v2 Lemmas 4.1 and 6.3 and Proposition 7.2, including the block encoding and sample-dependent coloring.",
+                "acceptance": "Produce a precise independent audit with an explicit verified lemma or counterexample; preserve attribution and preprint status.",
+                "resultIds": [
+                  "xu-2026-preprint"
+                ],
+                "priority": 1,
+                "kind": "audit",
+                "status": "ready"
+              },
+              {
+                "id": "palette-weighted-reconstruction",
+                "title": "Prove or refute a weighted reconstruction lemma",
+                "question": "Can an entropy-sized palette potential yield an unweighted edge-error guarantee without losing a factor k?",
+                "acceptance": "State a precise proposed lemma. Prove it, or give a finite graph and palette sequence satisfying its hypotheses but violating its conclusion.",
+                "resultIds": [],
+                "priority": 2,
+                "kind": "new-work",
+                "status": "ready"
+              }
+            ],
+            "attempts": [
+              {
+                "id": "initial-colorability-sample-complexity",
+                "sessionId": "initial-2026-10-31",
+                "date": "2026-10-31",
+                "outcome": "partial-progress",
+                "claim": "A newer reported coloring upper bound; Sharp sample size for complete (k+1)-partite graphs",
+                "resultIds": [
+                  "xu-2026-preprint",
+                  "multipartite-samples"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted notebook",
+                "validation": "Written arguments in the dated notebook; finite checks are corroboration only.",
+                "limitations": "The full uniform Θ(log(k)/ε) conjecture remains open in the checked sources. A recent preprint reports O(k log(k)/ε), leaving a factor-k gap; its preprint status must stay visible.",
+                "artifactUrls": [
+                  "research/notebook-2026-10-31.html",
+                  "research/verification-results.json"
+                ],
+                "baseRevision": "initial-import"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "isomorphism",
+      "status": "verified",
+      "title": "Graph Isomorphism & Canonization",
+      "summary": "When do two differently labelled graphs encode exactly the same structure?",
+      "intro": [
+        "Graph isomorphism asks whether one graph can be transformed into another merely by renaming its vertices. It belongs to NP, yet it has resisted both a polynomial-time algorithm and an NP-completeness proof. Practical programs solve many instances quickly, but the worst-case theory remains exceptional.",
+        "Babai’s breakthrough reduced the general worst-case running time to quasipolynomial. The surrounding theory combines permutation groups, combinatorics, logic, canonical labelling, and Weisfeiler–Leman refinement. It also connects to graph learning because useful representations should respect isomorphism without collapsing genuinely different graphs."
+      ],
+      "problems": [
+        {
+          "id": "gi-in-p",
+          "verified": true,
+          "title": "Is general graph isomorphism solvable in polynomial time?",
+          "lead": "Babai gave a deterministic quasipolynomial-time algorithm, but no polynomial-time algorithm is known for unrestricted graphs.",
+          "model": "Input: two finite simple undirected graphs G,H on n vertices. They are isomorphic when a bijection φ preserves adjacency in both directions. The algorithm must work for every input, without degree or structural restrictions.",
+          "statement": "Does a deterministic algorithm decide whether G ≅ H in n^{O(1)} time?",
+          "known": "Babai proves a deterministic quasipolynomial-time algorithm. Neuen's 2026 survey still identifies unrestricted polynomial-time GI as open. Polynomial-time algorithms on restricted classes do not settle this question.",
+          "formula": "Known general upper bound: exp((log n)^{O(1)})  ·  Target: n^{O(1)}",
+          "source": "Babai; Neuen 2026, Introduction",
+          "checked": "2026 survey",
+          "reviewed": "2026-10-31",
+          "statusNote": "The cited survey records the open status; no accepted general polynomial-time solution was located in the review. A research snapshot from 31 October 2026 is now recorded below; no unrestricted resolution is claimed.",
+          "importance": "Prominent unresolved complexity classification",
+          "links": [
+            [
+              "Babai’s algorithm",
+              "https://arxiv.org/abs/1512.03547"
+            ],
+            [
+              "Neuen · 2026 survey",
+              "https://epub.uni-regensburg.de/78630/1/1-s2.0-S1574013726000274-main.pdf"
+            ]
+          ],
+          "research": {
+            "status": "open",
+            "currentGap": "No deterministic polynomial-time algorithm for unrestricted graph isomorphism was established. Failure of selected invariants is not a lower bound against all algorithms.",
+            "results": [
+              {
+                "id": "rook-shrikhande-obstruction",
+                "title": "Spectra plus ordinary color refinement are incomplete",
+                "claim": "The rook and Shrikhande graphs have the same 16-vertex spectrum and color-refinement output, yet four-clique counts 8 and 0.",
+                "assumptions": [
+                  "Simple undirected unlabeled graphs.",
+                  "The proposed invariant consists only of adjacency spectra and ordinary vertex color refinement."
+                ],
+                "argument": "Both satisfy A² = 4I + 2J, giving spectrum 6^(1), 2^(6), (−2)^(9). The Shrikhande neighborhood is a 6-cycle, whereas the rook graph has row and column four-cliques.",
+                "limitation": "This defeats that invariant combination only. Adding K4 counts distinguishes this pair but does not solve GI.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              }
+            ],
+            "obstacles": [
+              {
+                "id": "spectral-cr-completeness",
+                "route": "Treat the spectrum and stable ordinary color refinement as a complete invariant.",
+                "reason": "The rook/Shrikhande pair is an exact counterexample.",
+                "evidenceResultIds": [
+                  "rook-shrikhande-obstruction"
+                ]
+              }
+            ],
+            "nextTasks": [
+              {
+                "id": "gi-explicit-invariant-family",
+                "title": "Specify and attack one stronger invariant",
+                "question": "Choose a concrete invariant extending the failed spectrum/refinement combination. Avoid an unspecified “add more motifs” proposal.",
+                "acceptance": "Give an explicit indistinguishable nonisomorphic pair, or prove completeness for a precisely stated graph class with a running-time bound.",
+                "resultIds": [],
+                "priority": 2,
+                "kind": "new-work",
+                "status": "ready"
+              },
+              {
+                "id": "gi-srg-certificate",
+                "title": "Audit the exact graph-isomorphism obstruction",
+                "question": "Turn the rook/Shrikhande certificate into a proof independent of floating-point eigenvalues.",
+                "acceptance": "Verify the matrix identity and neighborhood argument exactly and record any correction.",
+                "resultIds": [
+                  "rook-shrikhande-obstruction"
+                ],
+                "priority": 2,
+                "kind": "audit",
+                "status": "ready"
+              }
+            ],
+            "attempts": [
+              {
+                "id": "initial-gi-in-p",
+                "sessionId": "initial-2026-10-31",
+                "date": "2026-10-31",
+                "outcome": "partial-progress",
+                "claim": "Spectra plus ordinary color refinement are incomplete",
+                "resultIds": [
+                  "rook-shrikhande-obstruction"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted notebook",
+                "validation": "Written arguments in the dated notebook; finite checks are corroboration only.",
+                "limitations": "No deterministic polynomial-time algorithm for unrestricted graph isomorphism was established. Failure of selected invariants is not a lower bound against all algorithms.",
+                "artifactUrls": [
+                  "research/notebook-2026-10-31.html",
+                  "research/verification-results.json"
+                ],
+                "baseRevision": "initial-import"
+              }
+            ]
+          }
+        },
+        {
+          "id": "gi-degree-fpt",
+          "verified": true,
+          "title": "Is graph isomorphism fixed-parameter tractable in maximum degree?",
+          "lead": "Polynomial time for each fixed degree is known; a uniform exponent independent of the degree remains elusive.",
+          "model": "Both input graphs have n vertices and maximum degree at most d, with d≥2 (degrees 0 and 1 are elementary). Fixed-parameter tractability means time f(d) · n^C for a computable f and an absolute constant C independent of d.",
+          "statement": "Is there an isomorphism algorithm with running time f(d) · n^C for all n and d?",
+          "known": "Grohe, Neuen and Schweitzer obtain n^{O((log d)^c)} time for an absolute c. The exponent still depends on d; Neuen's 2026 survey, §4.1 after Corollary 4.7, explicitly records FPT in maximum degree as open.",
+          "formula": "Known: n^{O((log d)^c)}  ·  Target: f(d) · n^C",
+          "source": "Neuen 2026 · after Corollary 4.7",
+          "checked": "2026 survey, §4.1",
+          "reviewed": "2026-10-31",
+          "statusNote": "Explicit open-status statement in the survey; no later FPT resolution was located. A research snapshot from 31 October 2026 is now recorded below; no unrestricted resolution is claimed.",
+          "importance": "A uniform algorithmic guarantee for graphs of bounded degree",
+          "links": [
+            [
+              "2026 survey · §4.1",
+              "https://epub.uni-regensburg.de/78630/1/1-s2.0-S1574013726000274-main.pdf"
+            ],
+            [
+              "Small-degree algorithm",
+              "https://arxiv.org/abs/1802.04659"
+            ]
+          ],
+          "research": {
+            "status": "open",
+            "currentGap": "An FPT algorithm in the number of branching vertices does not imply FPT in maximum degree: a cubic graph may have every vertex branching.",
+            "results": [
+              {
+                "id": "branching-vertex-fpt",
+                "title": "An FPT algorithm for a different parameter",
+                "claim": "GI can be decided in t!·n^O(1) when t counts vertices of degree at least three.",
+                "assumptions": [
+                  "t is the count of branching vertices, not maximum degree d."
+                ],
+                "argument": "Try all bijections of branch vertices. The remaining paths, cycles and isolated vertices are determined by their lengths and endpoint attachments to the branch set.",
+                "limitation": "For cubic graphs t can equal n. This does not supply f(d)·n^C.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html#proposition-3",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              }
+            ],
+            "obstacles": [
+              {
+                "id": "xp-to-fpt-algebra",
+                "route": "Absorb the exponent a(d) in n^a(d) into a prefactor f(d).",
+                "reason": "For fixed d with a(d) > C, n^(a(d)−C) is unbounded as n increases.",
+                "evidenceResultIds": []
+              },
+              {
+                "id": "branch-count-vs-degree",
+                "route": "Use the branching-vertex algorithm with t bounded by d.",
+                "reason": "There is no such bound; arbitrary cubic graphs have t = n.",
+                "evidenceResultIds": [
+                  "branching-vertex-fpt"
+                ]
+              }
+            ],
+            "nextTasks": [
+              {
+                "id": "degree-fpt-component-attachments",
+                "title": "Audit branching-component records",
+                "question": "Check singleton attachments, path reversal, and repeated attachment to the same branching vertex.",
+                "acceptance": "Give complete correctness and running-time arguments, or a minimal counterexample to the component encoding.",
+                "resultIds": [
+                  "branching-vertex-fpt"
+                ],
+                "priority": 2,
+                "kind": "audit",
+                "status": "ready"
+              },
+              {
+                "id": "degree-fpt-restricted-uniformity",
+                "title": "Find one uniform extension beyond few branch vertices",
+                "question": "Choose a class where branching vertices may be unbounded and prove a uniform exponent using a stated additional structural restriction.",
+                "acceptance": "State every parameter in the bound; explain explicitly why it does not establish the unrestricted degree parameterization.",
+                "resultIds": [],
+                "priority": 2,
+                "kind": "new-work",
+                "status": "ready"
+              }
+            ],
+            "attempts": [
+              {
+                "id": "initial-gi-degree-fpt",
+                "sessionId": "initial-2026-10-31",
+                "date": "2026-10-31",
+                "outcome": "partial-progress",
+                "claim": "An FPT algorithm for a different parameter",
+                "resultIds": [
+                  "branching-vertex-fpt"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted notebook",
+                "validation": "Written arguments in the dated notebook; finite checks are corroboration only.",
+                "limitations": "An FPT algorithm in the number of branching vertices does not imply FPT in maximum degree: a cubic graph may have every vertex branching.",
+                "artifactUrls": [
+                  "research/notebook-2026-10-31.html",
+                  "research/verification-results.json"
+                ],
+                "baseRevision": "initial-import"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "graphons",
+      "status": "verified",
+      "title": "Graphons, Sampling & Identifiability",
+      "summary": "How much of an infinite graph limit can finite random samples determine?",
+      "intro": [
+        "Graphons W:[0,1]²→[0,1] describe dense graph limits, considered up to weak isomorphism rather than pointwise equality.",
+        "Cycle densities retain spectral information. Does equality of that information lift to finite cospectral approximations in cut distance?"
+      ],
+      "problems": [
+        {
+          "id": "cospectral-graphon-approximation",
+          "verified": true,
+          "title": "Can equal-density cospectral graphons resist finite cospectral approximation?",
+          "lead": "Cospectrality passes to graph limits; reversing that passage can fail. Is equal edge density enough to remove the obstruction?",
+          "model": "U,W are graphons with t(Ck,U)=t(Ck,W) for every k≥3 and ∫U=∫W. Here t is homomorphism density, Ck is a cycle, and δ□ is cut distance after measure-preserving relabeling. WG is the step graphon representing G.",
+          "statement": "Do such U,W exist for which no finite simple cospectral graph pairs Gj,Hj of equal order tending to infinity satisfy δ□(WGj,U)→0 and δ□(WHj,W)→0? Cospectral finite graphs have identical adjacency spectra, including multiplicities.",
+          "known": "The paper proves inapproximability when ∫U≠∫W. Equal edge density rules out that particular obstruction and is the remaining published question.",
+          "formula": "Equal cycle densities + equal edge density ⇒ finite cospectral approximation?",
+          "source": "Problem 7 · EJC 33(1), P1.10 (2026)",
+          "checked": "January 2026 journal paper",
+          "reviewed": "2026-10-31",
+          "statusNote": "Explicitly open in the published paper; targeted later-work searches found no resolution. The preprint numbers it Problem 4.4. A research snapshot from 31 October 2026 is now recorded below; no unrestricted resolution is claimed.",
+          "importance": "Which spectral equivalences survive approximation by finite graphs?",
+          "backgroundResults": [
+            {
+              "title": "Finite graphs embed exactly into the graphon model",
+              "explanation": "A graphon is a symmetric measurable function W:[0,1]²→[0,1]. For a simple graph G on n vertices, divide [0,1] into n equal intervals and put its adjacency matrix on the resulting blocks. The binary graphon WG preserves normalized homomorphism counts, including maps that are not injective. Every graphon also admits a sequence of finite simple graphs converging to it in cut distance.",
+              "formula": "t(F,WG) = hom(F,G)/n^{|V(F)|};   ∫WG = 2|E(G)|/n²",
+              "relevance": "Approximating each graphon separately is possible. The extra difficulty is keeping each approximating pair exactly cospectral.",
+              "citation": "Borgs–Chayes–Lovász–Sós–Vesztergombi · §3, Theorems 4.5(b) and 3.8",
+              "url": "https://renyi.hu/~sos/2008_Convergent_sequences_of_dense_graphs_I.pdf"
+            },
+            {
+              "title": "Cut convergence preserves every fixed simple-graph density",
+              "explanation": "Cut distance measures discrepancies on measurable rectangles after measure-preserving relabeling. The Counting Lemma bounds the change in t(F,W) for every fixed simple graph F. Consequently, if equal-order cospectral graph pairs converge to U and W, their equal cycle densities pass to the limits. This proves the forward implication behind the question.",
+              "formula": "|t(F,U) − t(F,W)| ≤ |E(F)| · δ□(U,W)   (F simple)",
+              "relevance": "This continuity theorem supplies necessary conditions for approximation; it does not construct cospectral approximants.",
+              "citation": "Borgs et al. · Theorem 3.7(a), nonnegative-kernel refinement in §4.6.1",
+              "url": "https://renyi.hu/~sos/2008_Convergent_sequences_of_dense_graphs_I.pdf"
+            },
+            {
+              "title": "Cycle densities determine the nonzero operator spectrum",
+              "explanation": "The operator (TWf)(x) = ∫W(x,y)f(y)dy is compact and self-adjoint on L². Its nonzero eigenvalues λᵢ are real and square-summable. The identities below express cycle densities as spectral moments. Knowing all moments for k ≥ 3 recovers these eigenvalues, including multiplicities.",
+              "formula": "t(Cₖ,W) = ∑ᵢ λᵢᵏ   (k ≥ 3);   ∫W² = ∑ᵢ λᵢ²",
+              "relevance": "Spectra fix ∫W², generally not ∫W. Cycle moments cannot detect the zero eigenspace's dimension.",
+              "citation": "Lovász · §7.5, equations (7.22)–(7.23)",
+              "url": "https://lovasz.web.elte.hu/bookxx/hombook-almost.final.pdf"
+            },
+            {
+              "title": "Cospectral graphons can have different edge densities",
+              "explanation": "For U ≡ 1/2 and W = 1[0,1/2]² (the indicator of the half-square), both operators have rank one with sole nonzero eigenvalue 1/2. Their edge densities differ.",
+              "formula": "t(Cₖ,U) = t(Cₖ,W) = 2^{−k};   ∫U = 1/2,   ∫W = 1/4",
+              "relevance": "Equal edge density is an extra assumption, not implied by cospectrality.",
+              "citation": "On cospectral graphons · preprint Theorem 4.2 / journal Theorem 5",
+              "url": "https://arxiv.org/html/2411.13229#S4"
+            },
+            {
+              "title": "Exact finite cospectrality forces equal edge counts",
+              "explanation": "Each edge gives two closed walks of length two, so tr(AG²) = 2|E(G)|. Equal adjacency spectra therefore force equal edges and, at common order n, equal normalized densities. Edge-density continuity passes this equality to graphon limits.",
+              "formula": "tr(AG²) = ∑ᵢ λᵢ(AG)² = 2|E(G)|;   |∫U − ∫V| ≤ δ□(U,V)",
+              "relevance": "This explains why the question requires equal edge density.",
+              "citation": "Lovász · Example 5.11 and Lemma 10.23 (F = K₂)",
+              "url": "https://lovasz.web.elte.hu/bookxx/hombook-almost.final.pdf"
+            },
+            {
+              "title": "Unequal density gives a quantitative obstruction",
+              "explanation": "Binary cospectral approximants U′,W′ have equal spectral square sums. Since V² = V for binary V, their edge densities agree. Edge-density continuity and the triangle inequality give this derived obstruction. For the example above, the total cut error is at least 1/4.",
+              "formula": "δ□(U,U′) + δ□(W,W′) ≥ |∫U − ∫W|   (U′,W′ binary and cospectral)",
+              "relevance": "Equal density makes this lower bound zero, so a new obstruction is needed.",
+              "citation": "Derived from preprint Proposition 4.3 / journal Proposition 6",
+              "url": "https://arxiv.org/html/2411.13229#S4"
+            },
+            {
+              "title": "A related equivalence does admit simultaneous approximation",
+              "explanation": "Fractional isomorphism of graphons is characterized by equality of all finite-tree densities. Hladký and Hng prove that any family of fractionally isomorphic graphons can be approximated, within any prescribed cut error, by jointly fractionally isomorphic finite graphs of every sufficiently large common order. Their theorem is an established positive result for preserving an equivalence during finite approximation.",
+              "relevance": "The result concerns tree densities. It gives useful precedent, but does not guarantee adjacency-cospectral approximants for the present cycle-density question.",
+              "citation": "Hladký–Hng · Theorem 1.2 (2023)",
+              "url": "https://arxiv.org/html/2210.14097#S1"
+            }
+          ],
+          "backgroundConclusion": "Whether a cospectral pair with equal edge density can still resist finite cospectral approximation remains open. Neither the unequal-density counterexample nor the fractional-isomorphism approximation theorem settles that case.",
+          "links": [
+            [
+              "Published paper · 2026",
+              "https://www.combinatorics.org/ojs/index.php/eljc/article/view/v33i1p10"
+            ],
+            [
+              "Journal PDF · Problem 7",
+              "https://www.combinatorics.org/ojs/index.php/eljc/article/download/v33i1p10/pdf/"
+            ],
+            [
+              "Preprint · Problem 4.4",
+              "https://arxiv.org/html/2411.13229"
+            ]
+          ],
+          "research": {
+            "status": "open",
+            "currentGap": "A resistant equal-density pair is not known here. Approximation of limiting moments is insufficient: every finite pair must have exactly the same characteristic polynomial.",
+            "results": [
+              {
+                "id": "bipartite-graphon-approximation",
+                "title": "A whole rank-two family is approximable",
+                "claim": "All cospectral complete bipartite graphons with isolates admit simultaneous finite cospectral approximation.",
+                "assumptions": [
+                  "B_(a,b) has complete edges between disjoint sets of masses a,b and zero elsewhere.",
+                  "a+b ≤ 1, c+d ≤ 1, and ab = cd."
+                ],
+                "argument": "Approximate a,b,c rationally and set d′ = a′b′/c′; after a common shrink the support constraints have slack. A common denominator gives equal-order K_(Na′,Nb′) and K_(Nc′,Nd′) with equal spectra.",
+                "limitation": "This treats only complete bipartite graphons with isolates, not arbitrary cospectral graphons.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html#proposition-4",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              }
+            ],
+            "obstacles": [
+              {
+                "id": "edge-density-only",
+                "route": "Reuse the unequal-edge-density obstruction in the equal-density question.",
+                "reason": "The required density equality makes that lower bound zero.",
+                "evidenceResultIds": []
+              },
+              {
+                "id": "independent-spectral-sampling",
+                "route": "Independently sample both limits and infer exact finite cospectrality.",
+                "reason": "Agreement of asymptotic moments does not give identical finite characteristic polynomials.",
+                "evidenceResultIds": []
+              }
+            ],
+            "nextTasks": [
+              {
+                "id": "cospectral-next-finite-rank-family",
+                "title": "Analyze a finite-rank family beyond complete bipartite graphons",
+                "question": "Choose a specified three- or four-block family and impose both equal spectra and equal edge density.",
+                "acceptance": "Construct an exact rational approximation preserving all finite spectral constraints, or identify a proved obstruction; approximate numerical eigenvalue matches do not count.",
+                "resultIds": [],
+                "priority": 2,
+                "kind": "new-work",
+                "status": "ready"
+              },
+              {
+                "id": "cospectral-boundary-audit",
+                "title": "Check boundary cases in the rational construction",
+                "question": "Audit zero products, full support, and common orders tending to infinity.",
+                "acceptance": "Give a complete boundary-safe sequence or an explicit missing case.",
+                "resultIds": [
+                  "bipartite-graphon-approximation"
+                ],
+                "priority": 2,
+                "kind": "audit",
+                "status": "ready"
+              }
+            ],
+            "attempts": [
+              {
+                "id": "initial-cospectral-graphon-approximation",
+                "sessionId": "initial-2026-10-31",
+                "date": "2026-10-31",
+                "outcome": "partial-progress",
+                "claim": "A whole rank-two family is approximable",
+                "resultIds": [
+                  "bipartite-graphon-approximation"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted notebook",
+                "validation": "Written arguments in the dated notebook; finite checks are corroboration only.",
+                "limitations": "A resistant equal-density pair is not known here. Approximation of limiting moments is insufficient: every finite pair must have exactly the same characteristic polynomial.",
+                "artifactUrls": [
+                  "research/notebook-2026-10-31.html",
+                  "research/verification-results.json"
+                ],
+                "baseRevision": "initial-import"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "regularity",
+      "status": "verified",
+      "title": "Regularity, Removal & Quantitative Bounds",
+      "summary": "Can qualitative decomposition theorems become efficient enough to power real algorithms?",
+      "intro": [
+        "Regularity lemmas approximate a large graph by a bounded collection of pseudorandom pieces. They drive results in graph limits, property testing, counting, and removal, but their worst-case partition sizes can grow as towers of exponentials.",
+        "This creates a sharp divide between qualitative existence and useful quantitative bounds. Research asks which graph classes admit polynomial or singly exponential decompositions and whether weaker regularity retains enough information for testing and estimation."
+      ],
+      "problems": [
+        {
+          "id": "triangle-removal-bounds",
+          "verified": true,
+          "title": "Narrow the quantitative gap in triangle removal",
+          "lead": "A polynomial removal bound is already ruled out. The remaining gap runs from quasipolynomial growth to a tower.",
+          "model": "Let T(G) count unordered triangles and τ△(G) be the fewest edge deletions making G triangle-free. Define δ△(ε)=inf T(G)/n³ over all positive integers n and all eligible n-vertex graphs with τ△(G)≥εn². tower(h) denotes a tower of twos of height h.",
+          "statement": "Determine sharper asymptotic upper or lower bounds for δ△(ε) as ε→0, reducing the gap between the known construction and removal guarantees.",
+          "known": "Fox's removal argument gives a tower of height O(log(1/ε)) for 1/δ△. Behrend-type constructions give exp(Ω(log²(1/ε))); Hunter's 2025 construction improves the constant while retaining this form.",
+          "formula": "exp(Ω(log²(1/ε))) ≤ 1/δ△(ε) ≤ tower(O(log(1/ε)))",
+          "source": "2026 homomorphisms paper · §1.3",
+          "checked": "2026 paper; Hunter 2025",
+          "reviewed": "2026-10-31",
+          "statusNote": "The 2026 paper explicitly calls narrowing this gap open; no subsequent resolution was located. A research snapshot from 31 October 2026 is now recorded below; no unrestricted resolution is claimed.",
+          "importance": "Quantitative foundations of removal and dense graph testing",
+          "links": [
+            [
+              "Open-status source · §1.3",
+              "https://arxiv.org/html/2502.20278v1#S1.SS3"
+            ],
+            [
+              "Fox · removal upper bound",
+              "https://annals.math.princeton.edu/2011/174-1/p17"
+            ],
+            [
+              "Hunter · 2025 lower bound",
+              "https://arxiv.org/abs/2507.05231"
+            ]
+          ],
+          "research": {
+            "status": "open",
+            "currentGap": "No new unrestricted bound narrows the quasipolynomial-to-tower gap. The tripartite calculation and progression-free construction are restricted or standard arguments.",
+            "results": [
+              {
+                "id": "tripartite-triangle-removal",
+                "title": "Exact complete-tripartite behavior",
+                "claim": "For a complete tripartite core plus isolates, τ/n² = min(ab,ac,bc) and T/n³ = abc; ε-farness implies T ≥ ε^(3/2)n³.",
+                "assumptions": [
+                  "One complete tripartite core, with all other vertices isolated."
+                ],
+                "argument": "A Latin-rectangle triangle packing supplies min(AB,AC,BC) edge-disjoint triangles. Multiplying ab,ac,bc yields (abc)² ≥ ε³.",
+                "limitation": "This does not improve general triangle removal; the exponent is sharp only within the stated class.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html#proposition-5",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              }
+            ],
+            "obstacles": [
+              {
+                "id": "packing-cubic-scale",
+                "route": "Use edge-disjoint triangle packing alone to derive a uniform cubic-scale count.",
+                "reason": "Packing may supply order εn² triangles, whereas removal needs a bound on the n³ scale; progression-free examples expose this gap.",
+                "evidenceResultIds": [
+                  "tripartite-triangle-removal"
+                ]
+              }
+            ],
+            "nextTasks": [
+              {
+                "id": "triangle-overlap-hypothesis",
+                "title": "Find a checkable overlap condition that improves removal",
+                "question": "Specify a genuine extension of the tripartite-core class and quantify how overlap among triangles is controlled.",
+                "acceptance": "Prove a cubic-scale triangle lower bound from ε-farness under explicit extra hypotheses, and show with examples why those hypotheses matter.",
+                "resultIds": [],
+                "priority": 2,
+                "kind": "new-work",
+                "status": "ready"
+              },
+              {
+                "id": "triangle-ap-reduction-audit",
+                "title": "Audit the progression-free construction",
+                "question": "Verify that every triangle is designated and that the normalization is s/(36M) for distance and s/(216M²) for triangle density.",
+                "acceptance": "Give an exact proof or a finite counterexample, distinguishing the standard construction from Hunter’s stronger constants.",
+                "resultIds": [],
+                "priority": 2,
+                "kind": "audit",
+                "status": "ready"
+              }
+            ],
+            "attempts": [
+              {
+                "id": "initial-triangle-removal-bounds",
+                "sessionId": "initial-2026-10-31",
+                "date": "2026-10-31",
+                "outcome": "partial-progress",
+                "claim": "Exact complete-tripartite behavior",
+                "resultIds": [
+                  "tripartite-triangle-removal"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted notebook",
+                "validation": "Written arguments in the dated notebook; finite checks are corroboration only.",
+                "limitations": "No new unrestricted bound narrows the quasipolynomial-to-tower gap. The tripartite calculation and progression-free construction are restricted or standard arguments.",
+                "artifactUrls": [
+                  "research/notebook-2026-10-31.html",
+                  "research/verification-results.json"
+                ],
+                "baseRevision": "initial-import"
+              }
+            ]
+          }
+        },
+        {
+          "id": "induced-c4-removal",
+          "verified": true,
+          "title": "Does induced C₄ removal admit a polynomial bound?",
+          "lead": "The induced four-cycle case has an exponential guarantee, while a polynomial guarantee remains conjectural.",
+          "model": "An induced C₄ is a set of four vertices spanning a cycle with no diagonal edges. Distance to induced-C₄-freeness allows both edge additions and deletions, normalized by n².",
+          "statement": "Do absolute constants a,b>0 exist such that every n-vertex graph requiring at least εn² edge edits to become induced-C₄-free contains at least aε^b n⁴ induced copies of C₄?",
+          "known": "Gishboliner and Shapira prove a lower bound 2^{−(1/ε)^C} n⁴ for some absolute C>0. Gishboliner's 2025 notes restate the polynomial improvement as Conjecture 3.6. Labeled versus unlabeled copies changes only the constant factor.",
+          "formula": "Known: 2^{−poly(1/ε)} n⁴ copies  ·  Conjectured: poly(ε) n⁴ copies",
+          "source": "Conjecture 3.6 · IBS 2025 notes",
+          "checked": "2025 notes, §3",
+          "reviewed": "2026-10-31",
+          "statusNote": "Explicit conjecture in the author's notes; 2025–2026 searches found no polynomial removal theorem settling it. A research snapshot from 31 October 2026 is now recorded below; no unrestricted resolution is claimed.",
+          "importance": "Polynomial testing of induced-subgraph properties",
+          "links": [
+            [
+              "2025 notes · Conjecture 3.6",
+              "https://www.ibs.re.kr/ecopro/wp-content/uploads/2025/08/IBS_2025Summer_removal_lemma.pdf"
+            ],
+            [
+              "Gishboliner–Shapira · Theorem 1.1",
+              "https://arxiv.org/abs/1709.08159"
+            ]
+          ],
+          "research": {
+            "status": "open",
+            "currentGap": "The polynomial guarantee was proved only for triangle-free inputs. In general, ordinary four-cycles need not be induced, and edge deletion can create induced copies.",
+            "results": [
+              {
+                "id": "triangle-free-induced-c4",
+                "title": "A polynomial induced-C4 bound for triangle-free inputs",
+                "claim": "Every triangle-free n-vertex graph ε-far under arbitrary edits from induced-C4-freeness has at least (ε^5/4)n^4 induced copies.",
+                "assumptions": [
+                  "The input is triangle-free.",
+                  "0 < ε ≤ 1; edits may be additions or deletions.",
+                  "Copies are unordered four-vertex sets."
+                ],
+                "argument": "Distance gives m ≥ εn² and Q ≥ εn². Common-neighbor counting yields Q ≥ ε⁴n⁴/4 for n ≥ ε^(−2); the first bound handles smaller n.",
+                "limitation": "Triangle-freeness is essential to the argument; this does not prove the unrestricted polynomial conjecture.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html#proposition-6",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              }
+            ],
+            "obstacles": [
+              {
+                "id": "ordinary-vs-induced-c4",
+                "route": "Apply ordinary C4 supersaturation to unrestricted input graphs.",
+                "reason": "Complete graphs have many ordinary four-cycles but no induced C4. Deletions can also create induced copies.",
+                "evidenceResultIds": [
+                  "triangle-free-induced-c4"
+                ]
+              }
+            ],
+            "nextTasks": [
+              {
+                "id": "induced-c4-bounded-triangles",
+                "title": "Extend the bound to inputs with few triangles",
+                "question": "Find an explicit robustness theorem when the graph has a quantified triangle density or can be made triangle-free cheaply.",
+                "acceptance": "Account for induced C4 copies created or destroyed by all edits; provide a polynomial bound with every extra hypothesis explicit.",
+                "resultIds": [],
+                "priority": 2,
+                "kind": "new-work",
+                "status": "ready"
+              },
+              {
+                "id": "induced-c4-proof-audit",
+                "title": "Audit the all-orders ε^5/4 proof",
+                "question": "Check the n < ε^(−2) case and that edit distance permits additions as well as deletions.",
+                "acceptance": "Produce an independent written proof or a finite counterexample; finite tests alone do not certify the asymptotic claim.",
+                "resultIds": [
+                  "triangle-free-induced-c4"
+                ],
+                "priority": 1,
+                "kind": "audit",
+                "status": "ready"
+              }
+            ],
+            "attempts": [
+              {
+                "id": "initial-induced-c4-removal",
+                "sessionId": "initial-2026-10-31",
+                "date": "2026-10-31",
+                "outcome": "partial-progress",
+                "claim": "A polynomial induced-C4 bound for triangle-free inputs",
+                "resultIds": [
+                  "triangle-free-induced-c4"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted notebook",
+                "validation": "Written arguments in the dated notebook; finite checks are corroboration only.",
+                "limitations": "The polynomial guarantee was proved only for triangle-free inputs. In general, ordinary four-cycles need not be induced, and edge deletion can create induced copies.",
+                "artifactUrls": [
+                  "research/notebook-2026-10-31.html",
+                  "research/verification-results.json"
+                ],
+                "baseRevision": "initial-import"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "graph-learning",
+      "status": "candidate",
+      "title": "Learning on Graphs",
+      "summary": "When can graph neural networks generalize across size, density, and topology?",
+      "intro": [
+        "Graph neural networks process data whose relationships matter as much as individual features. Their expressive power is tied to graph isomorphism tests, while their stability and transfer across graphs can be studied through graph limits and graphon operators.",
+        "The question below concerns a fixed network applied to graphs sampled from the same graphon. Quantitative bounds must specify the architecture, activation, and signal assumptions. Size transfer alone does not establish generalization after training or transfer between different graph distributions."
+      ],
+      "problems": [
+        {
+          "id": "higher-order-transfer-rates",
+          "verified": false,
+          "title": "Quantitative transferability of higher-order graphon networks",
+          "lead": "Qualitative transfer is known; general explicit rates are an author-posed research direction.",
+          "model": "Fix an Invariant Graphon Network N (IWN) with architecture and weights independent of n,m and continuous activation. W:[0,1]²→[0,1] is symmetric measurable; f is scalar measurable, ||f||∞≤r>1. Independently sample simple loopless graph-signals using iid uniform positions, conditional Bernoulli(W(xi,xj)) edges, and f(xi) signals.",
+          "statement": "Obtain explicit, tight bounds on E|N(Gn,fn)−N(Gm,fm)| beyond the restricted two-layer analytic architecture. Track tensor order, depth, weights, signal bound, and activation regularity.",
+          "known": "Theorem 5.2/Corollary 5.3 give qualitative transferability. Theorem 5.4 covers a specified two-layer real-analytic class under Theorem G.1's condition r||(a,b,c)||₁<R, where R is the activation's convergence radius.",
+          "formula": "Restricted class, sufficiently large n,m: E|N(Gn,fn)−N(Gm,fm)| ≤ C(N,r)[(log n)^(−1/2)+(log m)^(−1/2)]",
+          "source": "Herbst–Jegelka · ICLR 2025, §6",
+          "checked": "2025 paper; later status unconfirmed",
+          "reviewed": "2026-10-31",
+          "statusNote": "Published future direction; later status unconfirmed. No common rate for all continuous activations or distribution-shift guarantee is claimed. A research snapshot from 31 October 2026 is now recorded below; no unrestricted resolution is claimed.",
+          "importance": "Finite-sample guarantees for expressive graph models",
+          "links": [
+            [
+              "ICLR 2025 · §6 and Theorem 5.4",
+              "https://arxiv.org/html/2503.14338"
+            ],
+            [
+              "Later framework · Appendix G.3",
+              "https://papers.neurips.cc/paper_files/paper/2025/file/60b393761eea35bf491687c46e4f1a5a-Paper-Conference.pdf"
+            ]
+          ],
+          "research": {
+            "status": "open",
+            "currentGap": "The local class has an explicit root-n rate and polynomial models have motif-dependent constants. Tight architecture-level rates at arbitrary depth, including activation regularity, are not established. Mere continuity permits arbitrarily slow rates.",
+            "results": [
+              {
+                "id": "local-kernel-root-n",
+                "title": "A direct root-n sampling bound for local networks",
+                "claim": "For a bounded ordered-k local kernel |h| ≤ M, E|N_n−N_m| ≤ Mk(n^(−1/2)+m^(−1/2)) + Mk(k−1)(n^(−1)+m^(−1)).",
+                "assumptions": [
+                  "Fixed k and n,m ≥ k; normalized averages over all ordered tuples.",
+                  "Independent simple loopless graph-signals sampled from one fixed graphon-signal.",
+                  "The kernel depends only on the tuple’s internal edges and signals."
+                ],
+                "argument": "Injective tuple kernels on disjoint vertex sets are independent, so their average has variance at most M²k²/n. Noninjective tuples change the average by at most Mk(k−1)/n.",
+                "limitation": "The limit integrates Bernoulli edge randomness; it need not equal the same formula evaluated directly on W. The result does not cover a nonlinear activation after global pooling.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html#proposition-7",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              },
+              {
+                "id": "motif-polynomial-rate",
+                "title": "An explicit coefficient-dependent bound at fixed polynomial depth",
+                "claim": "A finite motif expansion has transfer bound A(n^(−1/2)+m^(−1/2)) + B(n^(−1)+m^(−1)), with A = Σ|c_j|r^D_j v_j and B = Σ|c_j|r^D_j v_j(v_j−1).",
+                "assumptions": [
+                  "A finite loopless multigraph motif expansion is supplied.",
+                  "Signals are bounded by r; model parameters are independent of sample size."
+                ],
+                "argument": "Apply the local-kernel bound to each motif. Collapse parallel edges in the Bernoulli sampling limit.",
+                "limitation": "This may have very large expansion constants. It is not a tight depth/width/order theorem.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html#proposition-8",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              },
+              {
+                "id": "continuous-arbitrarily-slow",
+                "title": "No common rate shape for all continuous activations",
+                "claim": "For any proposed positive rate tending to zero, some single fixed continuous activation and fixed network violate an O(r_n+r_m) transfer bound.",
+                "assumptions": [
+                  "The network may apply a continuous activation to a globally averaged Rademacher signal.",
+                  "Activation regularity is unrestricted beyond continuity."
+                ],
+                "argument": "Prescribe a continuous increasing modulus on a sequence of typical sample-mean scales. A fourth-moment Paley–Zygmund bound supplies a uniform fluctuation probability, forcing a slower sequence.",
+                "limitation": "This does not rule out root-n behavior for normalized Lipschitz architectures or activation-modulus-dependent rates.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "proofUrl": "research/notebook-2026-10-31.html#proposition-9",
+                "verificationUrl": "research/verification-results.json",
+                "date": "2026-10-31"
+              }
+            ],
+            "obstacles": [
+              {
+                "id": "network-on-w-limit",
+                "route": "Identify the finite-sample limit with N(W,f) for every nonlinear network.",
+                "reason": "For example, averaging A_ij² tends to ∫W, whereas evaluating the square formula on W gives ∫W².",
+                "evidenceResultIds": [
+                  "local-kernel-root-n"
+                ]
+              },
+              {
+                "id": "continuous-uniform-rate",
+                "route": "Claim one algebraic or logarithmic rate for all continuous activations.",
+                "reason": "A single fixed activation can be constructed with arbitrarily slow fluctuations after global pooling.",
+                "evidenceResultIds": [
+                  "continuous-arbitrarily-slow"
+                ]
+              }
+            ],
+            "nextTasks": [
+              {
+                "id": "audit-local-kernel-root-n",
+                "title": "Independently audit the local-kernel bound",
+                "question": "Check covariance for overlapping ordered tuples, the collision correction, and the distinction between the Bernoulli extension and N(W,f).",
+                "acceptance": "Provide a complete independent proof under the exact hypotheses, or an explicit counterexample. Record the audit as a review; do not present it as a new theorem.",
+                "resultIds": [
+                  "local-kernel-root-n"
+                ],
+                "priority": 1,
+                "kind": "audit",
+                "status": "ready"
+              },
+              {
+                "id": "lipschitz-depth-three-rate",
+                "title": "Analyze one genuinely nonlocal Lipschitz architecture",
+                "question": "For a fixed three-layer normalized IWN with nonlinear pooling, prove a quantitative rate or construct a counterexample to a proposed root-n bound.",
+                "acceptance": "Write the architecture exactly; track operator norms, activation constants and collisions. A local two-layer restatement or an uncontrolled polynomial approximation is insufficient.",
+                "resultIds": [
+                  "local-kernel-root-n",
+                  "motif-polynomial-rate",
+                  "continuous-arbitrarily-slow"
+                ],
+                "priority": 2,
+                "kind": "new-work",
+                "status": "ready"
+              }
+            ],
+            "attempts": [
+              {
+                "id": "initial-higher-order-transfer-rates",
+                "sessionId": "initial-2026-10-31",
+                "date": "2026-10-31",
+                "outcome": "partial-progress",
+                "claim": "A direct root-n sampling bound for local networks; An explicit coefficient-dependent bound at fixed polynomial depth; No common rate shape for all continuous activations",
+                "resultIds": [
+                  "local-kernel-root-n",
+                  "motif-polynomial-rate",
+                  "continuous-arbitrarily-slow"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted notebook",
+                "validation": "Written arguments in the dated notebook; finite checks are corroboration only.",
+                "limitations": "The local class has an explicit root-n rate and polynomial models have motif-dependent constants. Tight architecture-level rates at arbitrary depth, including activation regularity, are not established. Mere continuity permits arbitrarily slow rates.",
+                "artifactUrls": [
+                  "research/notebook-2026-10-31.html",
+                  "research/verification-results.json"
+                ],
+                "baseRevision": "initial-import"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

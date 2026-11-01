@@ -1,10 +1,18 @@
 # Research Problems Website
 
-A topic-first research notebook for exploring open questions in graph theory, theoretical computer science, and graph learning. Start with a topic introduction, follow precise problem statements and literature sources, then track your reading and research ideas.
+A topic-first research notebook for exploring open questions in graph theory, theoretical computer science, and graph learning. Start with a topic introduction, follow precise problem statements and literature sources, then continue from a shared record of results, failed approaches, and concrete next tasks.
 
 **[Visit the live website →](https://hadi1373z.github.io/research-problems-website/)**
 
-Built with HTML, CSS, and vanilla JavaScript. No application dependencies, build step, or account required.
+Built with HTML, CSS, and vanilla JavaScript. No application dependencies or account required. Generated handoff files are committed, so visiting the site needs no build. After editing canonical research data, run the small Node.js generation and validation step.
+
+## Continue research across AI sessions
+
+The shared notebook preserves the 31 October 2026 research attempts and supports cumulative, reviewable progress. Start with the [readable AI handoff](research.html), [canonical research state](research-state.json), and [repository research protocol](AGENTS.md). Each public problem has scoped results, review labels, previous attempts, insufficient routes, and frontier tasks with acceptance criteria.
+
+Use **Copy AI research handoff** or a problem's **Copy this task for AI** button to start a session. Ask it to work on one specific claim, check the evidence, append its result, and leave the next task. A proof, counterexample, independent audit, reproducible computation, or sourced update can be useful. If the attempt yields no reliable new result, record **no-progress** honestly. No unrestricted problem is claimed solved; novelty of notebook derivations is unassessed.
+
+A page view does not run an AI job. This static website supplies instructions and durable context; it cannot guarantee a breakthrough. Shared progress becomes available to future sessions only after a repository contribution is merged. Browser drafts stay private until exported and contributed.
 
 ## What you can do
 
@@ -18,11 +26,11 @@ Built with HTML, CSS, and vanilla JavaScript. No application dependencies, build
 
 ## Current topics
 
-The collection contains five topics, seven problems marked **Verified open**, and one sourced **Candidate** research direction. The latest literature review was **7 October 2026**; each card separates its review date from the date of the evidence it cites.
+The collection contains five topics, seven problems marked **Verified open**, and one sourced **Candidate** research direction. The imported research snapshot was reviewed on **31 October 2026**; each card separates its review date from the date of the evidence it cites.
 
 | Topic | Included problem / status |
 | --- | --- |
-| Graph property testing and estimation | Testing versus estimation; sharp k-colorability sample complexity, with September 2026 bounds |
+| Graph property testing and estimation | Testing versus estimation; sharp k-colorability sample complexity, including a clearly labeled late-October 2026 preprint update |
 | Graph isomorphism and canonization | Polynomial-time GI; fixed-parameter tractability in maximum degree |
 | Graphons, sampling, and identifiability | Equal-density cospectral graphons and finite cospectral approximation |
 | Regularity, removal, and quantitative bounds | Triangle-removal bounds; polynomial induced-C₄ removal |
@@ -41,7 +49,7 @@ Research stages, notes, and browser-added candidates are stored in `localStorage
 
 - The hosted website and a local development copy have separate notebooks. Using a different browser, profile, device, or local server address also gives you separate data.
 - Clearing site data removes those saved entries. Keep a separate copy of important notes.
-- There is currently no account system, synchronization, or import/export feature. Candidate editing, deletion, and promotion to verified status are not available in the interface.
+- There is no account system or automatic synchronization. Research attempts can be saved as private drafts and exported as JSON; notes and browser-added candidates are not included in that export. Candidate editing, deletion, and promotion to verified status are not available in the interface.
 
 Adding a candidate on the website updates your personal notebook. To add a problem to the public collection, contribute a repository change as described below.
 
@@ -64,7 +72,14 @@ You can also open `index.html` directly. A local HTTP server is recommended for 
 | File | Purpose |
 | --- | --- |
 | [`index.html`](index.html) | Page structure, summary, search field, and candidate dialog |
-| [`app.js`](app.js) | Public topic and problem data, rendering, search, and local notebook storage |
+| [`research-state.json`](research-state.json) | Canonical questions, results, tasks, attempts, and research protocol |
+| [`research.html`](research.html) | Generated readable AI handoff; works without JavaScript |
+| [`research-data.js`](research-data.js) | Generated browser copy of the canonical state |
+| [`research-core.js`](research-core.js) | Shared prompts, validation, escaping, and storage helpers |
+| [`app.js`](app.js) | Rendering, search, local notes, task copying, and private draft save/export |
+| [`research/`](research/) | Dated proofs, PDF, finite verifier and results, sources, and attempt template |
+| [`scripts/build.mjs`](scripts/build.mjs) | Validate canonical data and regenerate browser state and handoff |
+| [`tests/`](tests/) | Continuation, state-integrity, stale-draft, and artifact checks |
 | [`styles.css`](styles.css) | Layout, responsive styles, and light/dark colors |
 | [`LICENSE`](LICENSE) | MIT license |
 
@@ -76,14 +91,17 @@ The mathematics distinguishes sampled vertices from edge queries and running tim
 
 Contributions can add precise questions, improve topic introductions, update bounds and sources, or improve the website itself. [Open an issue](https://github.com/hadi1373z/research-problems-website/issues) to suggest a change, or submit a pull request.
 
-Public topics and problem cards are defined in the `topics` array at the top of [`app.js`](app.js). For a new or revised problem:
+Public topics and problem cards are defined in the `topics` array in [`research-state.json`](research-state.json). Read [AGENTS.md](AGENTS.md) before contributing research. For a new or revised problem:
 
 1. Use a unique, stable `id` and place the entry in the appropriate topic's `problems` array.
 2. Include a descriptive `title`, a precise `statement`, a short `lead`, and an `importance` explanation. Define the `model` and its assumptions, separate proved results in `known`, and add `formula` for useful bounds or targets.
    For explanatory background, add an optional `backgroundResults` array with `title`, `explanation`, optional `formula`, `relevance`, `citation`, and primary-source `url` fields. Use `backgroundConclusion` to explain the remaining gap.
 3. Provide `links` as `[label, URL]` pairs, such as `[["Paper title", "https://arxiv.org/abs/2305.05487"]]`, a `source` identifying the problem or result, the evidence in `checked`, an ISO review date in `reviewed`, and a `statusNote` describing the review's limits.
 4. Keep `verified: false` for a candidate. Set `verified: true` only after the literature and status checks are complete.
-5. Preview the site locally and check topic navigation, search, and the changed card before opening a pull request.
+5. Append the research attempt and its exact scope, review status, validation, limitations, and next task. Preserve prior attempts; document corrections rather than erasing history.
+6. Run `node scripts/build.mjs`, `node --test`, and `node scripts/build.mjs --check` (Node.js 20+, no packages to install). Preview navigation, search, the changed card, and draft export before contributing.
+
+Optional mathematical verification: `python research/verification.py` requires NumPy. These finite checks corroborate examples; they do not establish general conjectures. The notebook HTML and PDF retain their original date. Website infrastructure updates are recorded separately from mathematical research sessions.
 
 ## Deploy with GitHub Pages
 
