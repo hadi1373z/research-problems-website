@@ -1,8 +1,12 @@
 # Research Problems: a continuing notebook
 
-> Shared revision 2026-11-02.2. Research snapshot 2026-11-02. No unrestricted problem is claimed solved. Notebook derivations need independent review; novelty is unassessed.
+> Shared revision 2026-11-02.3. Research snapshot 2026-11-02. No unrestricted problem is claimed solved. Notebook derivations need independent review; novelty is unassessed.
 
 ## Start here
+
+- [Focused ready-to-use research prompt](https://hadi1373z.github.io/research-problems-website/research/research-prompt.txt): one selected ready task, refreshed baseline, validation requirements and an output contract.
+- [How the prompt works](https://hadi1373z.github.io/research-problems-website/research/prompt-guide.html): research-v2, examples and limitations.
+- [Raw prompt fallback](https://raw.githubusercontent.com/hadi1373z/research-problems-website/main/research/research-prompt.txt).
 
 - [Readable research handoff](https://hadi1373z.github.io/research-problems-website/research.html): all questions, assumptions, results, failed routes, attempts and concrete next tasks; no JavaScript required.
 - [Canonical shared state](https://hadi1373z.github.io/research-problems-website/research-state.json): update this source when contributing.
@@ -13,15 +17,16 @@
 
 ## Continue when asked by the user
 
-1. When asked to continue the research, read the current shared state, the relevant notebook proof and prior attempts before choosing work.
-2. Choose one ready frontier task, state the exact intended claim, and record the baseline revision and prior attempt IDs.
-3. Aim for a checked delta: a proof, counterexample, independent audit, reproducible computation, or verified primary-source update. A summary alone is not new research.
-4. Preserve hypotheses, normalizations, attribution and the distinction between a restricted result and the full question.
-5. Treat notebook derivations as awaiting independent review. Neither an AI assertion nor finite tests alone verifies a general theorem. Do not claim novelty without checking.
-6. If no reliable new result is obtained, record no-progress and the precise obstruction. Do not fabricate a breakthrough or increment a progress score.
-7. Append a dated attempt, link the artifact and checks, close only tasks actually addressed, and leave a concrete next task. Keep earlier attempts; corrections supersede rather than erase them.
-8. Persist shared changes through a repository commit or pull request when authorized. Browser drafts are private and must be exported and merged to become shared.
-9. Keep every full problem open until an independently checked proof or accepted resolution is recorded. Reading this static site does not launch AI execution or grant permission to use external accounts.
+1. Make one reliable contribution to the user-selected research direction, with a falsifiable target, checked evidence and an honest handoff. No prompt guarantees a breakthrough.
+2. Refresh the live revision. Read the selected problem, previous attempts, relevant full proofs and decisive primary sources. Summaries are navigation aids, not proof evidence.
+3. Select one ready task matching the user’s latest direction. State a precise target and what would count as a proof, counterexample or useful obstruction. Explain how it advances the remaining gap.
+4. Audit the specific baseline lemma the new argument needs. If it is still unproved, label the dependent conclusion conditional. A repeated self-check is not independent review.
+5. Compare the target with the closest primary results: match hypotheses, conclusion and quantitative range, with exact theorem/section links and dates. A known special case is a rederivation, not evidence of publication novelty.
+6. Do substantive research and produce a concise, checkable proof or exact counterexample. If the first route fails, use the obstruction to choose a justified alternative. Do not spend the session mostly restyling the website or repeating an earlier result.
+7. Try to falsify the strongest step. Check boundary cases, normalization, hidden labeling and global-versus-local consistency. Use a genuinely different exact computation when useful; keep finite evidence separate from a general proof.
+8. For computations, record input provenance/hash, complete versus sampled range, exact versus numerical arithmetic and the commands actually run. Compare the tested range with existing literature before calling it an advance.
+9. State what survived, failed or remains conditional. If no reliable delta survives, record no-progress with the exact obstruction and a sharper next test. Never manufacture a result or raise review status to satisfy the request.
+10. Save the mathematical delta, evidence, prior-work comparison, limitations and a concrete next task. Preserve historical attempts. Publish only within the user’s authorization; otherwise return a reviewable draft.
 
 ## Problems
 

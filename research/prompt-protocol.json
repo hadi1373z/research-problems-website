@@ -1,0 +1,65 @@
+{
+  "version": "research-v2",
+  "updated": "2026-11-02",
+  "purpose": "Make one reliable contribution to the user-selected research direction, with a falsifiable target, checked evidence and an honest handoff. No prompt guarantees a breakthrough.",
+  "workflow": [
+    "Refresh the live revision. Read the selected problem, previous attempts, relevant full proofs and decisive primary sources. Summaries are navigation aids, not proof evidence.",
+    "Select one ready task matching the user’s latest direction. State a precise target and what would count as a proof, counterexample or useful obstruction. Explain how it advances the remaining gap.",
+    "Audit the specific baseline lemma the new argument needs. If it is still unproved, label the dependent conclusion conditional. A repeated self-check is not independent review.",
+    "Compare the target with the closest primary results: match hypotheses, conclusion and quantitative range, with exact theorem/section links and dates. A known special case is a rederivation, not evidence of publication novelty.",
+    "Do substantive research and produce a concise, checkable proof or exact counterexample. If the first route fails, use the obstruction to choose a justified alternative. Do not spend the session mostly restyling the website or repeating an earlier result.",
+    "Try to falsify the strongest step. Check boundary cases, normalization, hidden labeling and global-versus-local consistency. Use a genuinely different exact computation when useful; keep finite evidence separate from a general proof.",
+    "For computations, record input provenance/hash, complete versus sampled range, exact versus numerical arithmetic and the commands actually run. Compare the tested range with existing literature before calling it an advance.",
+    "State what survived, failed or remains conditional. If no reliable delta survives, record no-progress with the exact obstruction and a sharper next test. Never manufacture a result or raise review status to satisfy the request.",
+    "Save the mathematical delta, evidence, prior-work comparison, limitations and a concrete next task. Preserve historical attempts. Publish only within the user’s authorization; otherwise return a reviewable draft."
+  ],
+  "doneCriteria": [
+    "A theorem must state exact hypotheses and give a complete public proof of its new step, with dependencies and unresolved lemmas identified.",
+    "A counterexample must give exact objects and verify every hypothesis and the failed conclusion. Identify whether it refutes a method, restricted information claim or the full conjecture.",
+    "A computational contribution must have reproducible code/data and accurately bounded scope. More small examples alone do not establish an unrestricted theorem or novelty.",
+    "An audit must identify what was checked and by whom. The same assistant’s second pass is a self-audit. Literature updates need a primary theorem and a hypothesis comparison.",
+    "A polished explanation, a larger session count or a prompt/UI change alone is not a mathematical contribution. An honest, specific obstruction is an acceptable outcome."
+  ],
+  "outputContract": [
+    "Outcome and exact delta from the refreshed baseline.",
+    "Precise claim, assumptions and a proof/evidence artifact.",
+    "Closest prior work, comparison and novelty status.",
+    "Falsification checks actually executed, including failures and computational scope.",
+    "Remaining limitations, dependencies and review status.",
+    "Saved artifact links and one next claim with an acceptance condition."
+  ],
+  "examples": [
+    {
+      "situation": "A script checks a restricted certificate on eight-vertex cores; full reconstruction was already checked through order 13.",
+      "correct": "Report an exact restricted-certificate audit and its new coverage; do not claim a new full reconstruction bound."
+    },
+    {
+      "situation": "The original assistant rereads its own proof and reruns its own program.",
+      "correct": "Record self-audit and keep needs-independent-review."
+    },
+    {
+      "situation": "Two graphs agree on three moments and one card but their full decks were not compared.",
+      "correct": "At most refute that information-based method; do not report a counterexample to graph reconstruction."
+    },
+    {
+      "situation": "A primary paper proves an equivalent theorem under the same hypotheses.",
+      "correct": "Attribute it, record a rederivation or audit, and choose a genuinely unresolved next target."
+    }
+  ],
+  "sources": [
+    [
+      "OpenAI Docs: reasoning model prompting",
+      "https://developers.openai.com/api/docs/guides/reasoning"
+    ],
+    [
+      "OpenAI Docs: prompt structure and evaluation",
+      "https://developers.openai.com/api/docs/guides/prompt-engineering"
+    ]
+  ],
+  "evaluationNote": "Versioned structural/contract checks are included. These do not measure future model research quality or guarantee a breakthrough.",
+  "sharedRevision": "2026-11-02.3",
+  "defaultSelection": {
+    "problemId": "vertex-deleted-reconstruction",
+    "taskId": "extend-prism-moment-method"
+  }
+}

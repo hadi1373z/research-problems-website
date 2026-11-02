@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-02",
+  "scope": "Exact audit of a restricted attachment signature. Not a full-deck counterexample search or an extension of the known 13-vertex reconstruction bound.",
+  "catalogue": {
+    "author": "Brendan McKay",
+    "url": "https://users.cecs.anu.edu.au/~bdm/data/graph8.g6",
+    "sha256": "546a249902101c97d3aa590f93e53366854bd0a6f405aa59bdb32d25c57f845a",
+    "graphs": 12346,
+    "exact_canonical_codes": 12346
+  },
+  "independent_algorithm_crosschecks": 583,
+  "statistics": {
+    "connected": 11117,
+    "eligible_cores": 7442,
+    "cores_separated": 7442
+  },
+  "pair_orbits": 201678,
+  "minimum_sufficient_cutoff_histogram": {
+    "0": 5497,
+    "1": 1293,
+    "2": 578,
+    "3": 74
+  },
+  "collision_examples": []
+}

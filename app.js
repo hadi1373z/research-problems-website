@@ -63,13 +63,19 @@ function problemTemplate(problem) {
   </article>`;
 }
 
+function resultLabel(result) {
+  const kind={preprint:'Reported preprint',computation:'Finite computation',derivation:'Derivation',audit:'Audit'}[result.kind]||'Research record';
+  const review={'needs-independent-review':'needs independent review','independently-checked':'independently checked',published:'published source','reported-preprint':'reported preprint'}[result.review]||'needs review';
+  return result.kind==='preprint'?kind:`${kind} · ${review}`;
+}
+
 function researchTemplate(problem) {
   const r = problem.research;
   if (!r) return "";
   return `<section class="research-progress" aria-labelledby="progress-${escapeHtml(problem.id)}">
     <div class="progress-heading"><div><div class="eyebrow">Shared research record</div><h5 id="progress-${escapeHtml(problem.id)}">Where the next attempt starts</h5></div><span class="badge candidate">Full problem ${escapeHtml(r.status)}</span></div>
     <p class="remaining-gap">${escapeHtml(r.currentGap)}</p>
-    <div class="result-list">${r.results.map(result => `<details class="result-record"><summary><span>${escapeHtml(result.title)}</span><small>${result.kind === "preprint" ? "Reported preprint" : "Derivation · needs independent review"}</small></summary><div class="result-content"><div class="formula">${escapeHtml(result.claim)}</div><h6>Exact assumptions</h6><ul>${result.assumptions.map(a=>`<li>${escapeHtml(a)}</li>`).join("")}</ul><p>${escapeHtml(result.argument)}</p><p><strong>Remaining limitation:</strong> ${escapeHtml(result.limitation)}</p><p class="review-note">Novelty: ${escapeHtml(result.novelty)}. Recorded ${escapeHtml(result.date)}.</p><div class="links"><a href="${core.safeHref(result.proofUrl)}">Read full argument ↗</a>${result.sourceUrl ? `<a href="${core.safeHref(result.sourceUrl)}">Attributed primary source ↗</a>` : ""}${result.verificationUrl ? `<a href="${core.safeHref(result.verificationUrl)}">Finite verification results ↗</a>` : ""}</div></div></details>`).join("")}</div>
+    <div class="result-list">${r.results.map(result => `<details class="result-record"><summary><span>${escapeHtml(result.title)}</span><small>${escapeHtml(resultLabel(result))}</small></summary><div class="result-content"><div class="formula">${escapeHtml(result.claim)}</div><h6>Exact assumptions</h6><ul>${result.assumptions.map(a=>`<li>${escapeHtml(a)}</li>`).join("")}</ul><p>${escapeHtml(result.argument)}</p><p><strong>Remaining limitation:</strong> ${escapeHtml(result.limitation)}</p><p class="review-note">Novelty: ${escapeHtml(result.novelty)}. Recorded ${escapeHtml(result.date)}.</p><div class="links"><a href="${core.safeHref(result.proofUrl)}">Read full argument ↗</a>${result.sourceUrl ? `<a href="${core.safeHref(result.sourceUrl)}">Attributed primary source ↗</a>` : ""}${result.verificationUrl ? `<a href="${core.safeHref(result.verificationUrl)}">Finite verification results ↗</a>` : ""}</div></div></details>`).join("")}</div>
     <div class="frontier-list">${r.nextTasks.filter(t=>t.status === "ready").map(task=>`<article class="frontier-task"><div class="eyebrow">Next task · ${escapeHtml(task.kind)}</div><h6>${escapeHtml(task.title)}</h6><p>${escapeHtml(task.question)}</p><p class="acceptance"><strong>A useful outcome:</strong> ${escapeHtml(task.acceptance)}</p><button class="button compact continue-task" data-problem-id="${escapeHtml(problem.id)}" data-task-id="${escapeHtml(task.id)}">Copy this task for AI</button></article>`).join("")}</div>
     <details class="attempt-history"><summary>Prior attempts and routes to avoid</summary><div class="result-content">${r.attempts.map(a=>`<div class="attempt-entry"><strong>${escapeHtml(a.date)} · ${escapeHtml(a.outcome)}</strong><p>${escapeHtml(a.claim)}</p><p>${escapeHtml(a.validation)}</p><small>Attempt ${escapeHtml(a.id)} · ${escapeHtml(a.review)}</small></div>`).join("")}<h6>Failed or insufficient routes</h6><ul>${r.obstacles.map(o=>`<li><strong>${escapeHtml(o.route)}</strong> ${escapeHtml(o.reason)}</li>`).join("")}</ul></div></details>
     <div class="progress-actions"><button class="button record-attempt" data-problem-id="${escapeHtml(problem.id)}">Record an attempt</button><a href="research.html#${escapeHtml(problem.id)}">Readable AI handoff ↗</a><a class="permalink" href="#${escapeHtml(problem.id)}">Link to this problem</a></div>
@@ -160,9 +166,29 @@ const publicProblems = core.allProblems(researchState);
 const handoffDialog = document.getElementById("handoffDialog");
 const handoffText = document.getElementById("handoffText");
 const feedback = document.getElementById("workspaceFeedback");
+const handoffProblem=document.getElementById("handoffProblem");
+const handoffTask=document.getElementById("handoffTask");
+handoffProblem.innerHTML=publicProblems.filter(p=>p.research.nextTasks.some(t=>t.status==='ready')).map(p=>`<option value="${escapeHtml(p.id)}">${escapeHtml(p.title)}</option>`).join("");
+function updatePromptTasks() {
+  const p=core.allProblems(researchState).find(p=>p.id===handoffProblem.value);
+  handoffTask.innerHTML=p.research.nextTasks.filter(t=>t.status==='ready').map(t=>`<option value="${escapeHtml(t.id)}">${escapeHtml(t.title)} · ${escapeHtml(t.kind)}</option>`).join("");
+  const chosen=core.selectTask(researchState,p.id);
+  handoffTask.value=chosen.task.id;
+  updatePromptTarget();
+}
+function updatePromptTarget() {
+  const {task}=core.selectTask(researchState,handoffProblem.value,handoffTask.value);
+  document.getElementById("promptTarget").textContent=task.question;
+}
+handoffProblem.value=core.selectTask(researchState).problem.id;
+updatePromptTasks();
+handoffProblem.addEventListener("change",updatePromptTasks);
+handoffTask.addEventListener("change",updatePromptTarget);
 async function copyHandoff(problemId, taskId) {
-  const text = core.buildPrompt(researchState, problemId, taskId);
+  const selected=core.selectTask(researchState,problemId||handoffProblem.value,taskId||(!problemId?handoffTask.value:undefined));
+  const text = core.buildPrompt(researchState, selected.problem.id, selected.task.id);
   handoffText.value = text;
+  document.getElementById("handoffSelection").textContent=`${selected.problem.title} · ${selected.task.title} · ${researchState.prompting.version}`;
   handoffDialog.showModal();
   handoffText.focus();
   handoffText.select();
@@ -206,14 +232,15 @@ function loadDraft(problemId) {
   }
   attemptFeedback.textContent = draft ? "Loaded your private draft. Saving refreshes its baseline to the current shared revision." : "Your draft will stay in this browser until exported and merged through GitHub.";
 }
-function openAttempt(problemId) {
+function openAttempt(problemId, taskId) {
   attemptProblem.value = problemId || publicProblems[0].id;
   taskOptions();
+  if (taskId && [...attemptTask.options].some(o=>o.value === taskId)) attemptTask.value = taskId;
   loadDraft(attemptProblem.value);
   attemptDialog.showModal();
 }
 attemptProblem.addEventListener("change", () => {taskOptions();loadDraft(attemptProblem.value);});
-document.getElementById("recordAttempt").addEventListener("click", () => openAttempt());
+document.getElementById("recordAttempt").addEventListener("click", () => openAttempt(handoffProblem.value,handoffTask.value));
 function makeDraft() {
   const values = Object.fromEntries(new FormData(attemptForm));
   const problem = publicProblems.find(p=>p.id === values.problemId);

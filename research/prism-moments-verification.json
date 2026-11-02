@@ -1,0 +1,318 @@
+{
+  "date": "2026-11-02",
+  "scope": "Exact finite checks of a written general theorem; not independent proof review or a novelty certificate.",
+  "classification": [
+    {
+      "clique_size": 3,
+      "leaves": 1,
+      "configuration_orbits": 1,
+      "distinct_leaf_decks": 1,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 3,
+      "leaves": 2,
+      "configuration_orbits": 4,
+      "distinct_leaf_decks": 1,
+      "maximum_collision": 4
+    },
+    {
+      "clique_size": 3,
+      "leaves": 3,
+      "configuration_orbits": 7,
+      "distinct_leaf_decks": 7,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 3,
+      "leaves": 4,
+      "configuration_orbits": 16,
+      "distinct_leaf_decks": 16,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 3,
+      "leaves": 5,
+      "configuration_orbits": 26,
+      "distinct_leaf_decks": 26,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 3,
+      "leaves": 6,
+      "configuration_orbits": 50,
+      "distinct_leaf_decks": 50,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 3,
+      "leaves": 7,
+      "configuration_orbits": 76,
+      "distinct_leaf_decks": 76,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 3,
+      "leaves": 8,
+      "configuration_orbits": 126,
+      "distinct_leaf_decks": 126,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 4,
+      "leaves": 1,
+      "configuration_orbits": 1,
+      "distinct_leaf_decks": 1,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 4,
+      "leaves": 2,
+      "configuration_orbits": 4,
+      "distinct_leaf_decks": 1,
+      "maximum_collision": 4
+    },
+    {
+      "clique_size": 4,
+      "leaves": 3,
+      "configuration_orbits": 7,
+      "distinct_leaf_decks": 7,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 4,
+      "leaves": 4,
+      "configuration_orbits": 19,
+      "distinct_leaf_decks": 19,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 4,
+      "leaves": 5,
+      "configuration_orbits": 32,
+      "distinct_leaf_decks": 32,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 4,
+      "leaves": 6,
+      "configuration_orbits": 68,
+      "distinct_leaf_decks": 68,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 4,
+      "leaves": 7,
+      "configuration_orbits": 114,
+      "distinct_leaf_decks": 114,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 4,
+      "leaves": 8,
+      "configuration_orbits": 210,
+      "distinct_leaf_decks": 210,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 5,
+      "leaves": 1,
+      "configuration_orbits": 1,
+      "distinct_leaf_decks": 1,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 5,
+      "leaves": 2,
+      "configuration_orbits": 4,
+      "distinct_leaf_decks": 1,
+      "maximum_collision": 4
+    },
+    {
+      "clique_size": 5,
+      "leaves": 3,
+      "configuration_orbits": 7,
+      "distinct_leaf_decks": 7,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 5,
+      "leaves": 4,
+      "configuration_orbits": 19,
+      "distinct_leaf_decks": 19,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 5,
+      "leaves": 5,
+      "configuration_orbits": 35,
+      "distinct_leaf_decks": 35,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 5,
+      "leaves": 6,
+      "configuration_orbits": 76,
+      "distinct_leaf_decks": 76,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 5,
+      "leaves": 7,
+      "configuration_orbits": 136,
+      "distinct_leaf_decks": 136,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 5,
+      "leaves": 8,
+      "configuration_orbits": 263,
+      "distinct_leaf_decks": 263,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 6,
+      "leaves": 1,
+      "configuration_orbits": 1,
+      "distinct_leaf_decks": 1,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 6,
+      "leaves": 2,
+      "configuration_orbits": 4,
+      "distinct_leaf_decks": 1,
+      "maximum_collision": 4
+    },
+    {
+      "clique_size": 6,
+      "leaves": 3,
+      "configuration_orbits": 7,
+      "distinct_leaf_decks": 7,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 6,
+      "leaves": 4,
+      "configuration_orbits": 19,
+      "distinct_leaf_decks": 19,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 6,
+      "leaves": 5,
+      "configuration_orbits": 35,
+      "distinct_leaf_decks": 35,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 6,
+      "leaves": 6,
+      "configuration_orbits": 80,
+      "distinct_leaf_decks": 80,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 6,
+      "leaves": 7,
+      "configuration_orbits": 145,
+      "distinct_leaf_decks": 145,
+      "maximum_collision": 1
+    },
+    {
+      "clique_size": 6,
+      "leaves": 8,
+      "configuration_orbits": 291,
+      "distinct_leaf_decks": 291,
+      "maximum_collision": 1
+    }
+  ],
+  "configuration_orbits_checked": 1884,
+  "moment_reconstructions_checked": 1864,
+  "independently_relabeled_graph_decks_checked": 40,
+  "larger_random_weighted_configs_checked": 120,
+  "random_seed": 20261102,
+  "example_beyond_absent_predecessor_rule": {
+    "columns": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "leaves": 4,
+    "moments_Q_R_D2": [
+      4,
+      1,
+      0
+    ],
+    "restored": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  "moments_alone_are_insufficient": {
+    "clique_size": 3,
+    "leaves": 5,
+    "moments_Q_R_D2": [
+      7,
+      2,
+      1
+    ],
+    "columns_A": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "columns_B": [
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "leaf_decks_different": true
+  },
+  "theorem_scope": "H_s=K_s box K_2, s>=3; direct pendant attachments. Leaf-deck reconstruction for r=1 or r>=3. Exactly four types share the r=2 leaf-deck; full cards resolve that case by the saved path certificate."
+}

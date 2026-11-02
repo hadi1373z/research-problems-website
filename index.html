@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Open research problems with shared proofs, failed approaches, and concrete next tasks for human and AI research sessions.">
   <title>Research Problems Website</title>
-  <link rel="stylesheet" href="styles.css?v=2026-11-02.2">
+  <link rel="stylesheet" href="styles.css?v=2026-11-02.3">
   <link rel="alternate" type="application/json" href="research-state.json" title="Shared research state">
   <link rel="alternate" type="text/plain" href="llms.txt" title="AI research overview">
 </head>
@@ -35,9 +35,11 @@
 
       <section class="continuation-panel" id="continue-research" aria-labelledby="continuationTitle">
         <div class="continuation-top"><div><div class="eyebrow">Continue the research</div><h2 id="continuationTitle">Make the next attempt count.</h2></div><span class="badge"><span id="openProblemCount">9</span> full questions still open</span></div>
-        <p class="continuation-intro">The shared notebook now includes the first attempts, their exact assumptions, and <span id="frontierCount">21</span> concrete frontier tasks. New derivations need independent review; novelty is unassessed.</p>
+        <p class="continuation-intro">Choose one question and one next task. The prompt includes the latest results, exact assumptions, routes to avoid, and a standard for checking the outcome. There are <span id="frontierCount">23</span> ready tasks. New derivations need independent review.</p>
         <div class="continuation-grid"><ol class="continuation-steps"><li><strong>Read the baseline.</strong> Start from the existing proof and prior attempts.</li><li><strong>Check one next claim.</strong> Produce a proof, counterexample, audit, computation, or sourced update.</li><li><strong>Leave a handoff.</strong> Save the delta, its limitations, and the next task. Record no-progress honestly when needed.</li></ol><div class="continuation-resources"><a href="research.html">Read the AI handoff and all next tasks ↗</a><a href="research-state.json">Shared research state · JSON ↗</a><a href="research/notebook-2026-10-31.html">Initial notebook · full arguments ↗</a><a href="research/notebook-2026-10-31.pdf">Download the dated report ↗</a><a href="https://github.com/hadi1373z/research-problems-website">Contribute through GitHub ↗</a></div></div>
-        <div class="workspace-actions"><button class="button primary" id="copyHandoff">Copy AI research handoff</button><button class="button" id="recordAttempt">Record an attempt</button><span class="workspace-meta">Revision <span id="sharedRevision">2026-11-02.2</span> · <span id="draftCount">0</span> private drafts</span></div>
+        <div class="prompt-picker"><label class="field">Research question<select id="handoffProblem"></select></label><label class="field">Next research task<select id="handoffTask"></select></label></div>
+        <p class="prompt-target" id="promptTarget"></p>
+        <div class="workspace-actions"><button class="button primary" id="copyHandoff">Copy focused research prompt</button><button class="button" id="recordAttempt">Record an attempt</button><a href="research/prompt-guide.html">How this prompt works ↗</a><span class="workspace-meta">Revision <span id="sharedRevision">2026-11-02.3</span> · <span id="draftCount">0</span> private drafts</span></div>
         <p class="workspace-feedback" id="workspaceFeedback" role="status" aria-live="polite"></p>
         <p class="workspace-note">A page view does not run an AI researcher. Paste the handoff into an authorized AI session. Browser drafts stay private; a repository contribution makes progress available to future sessions. No new mathematical result is implied by a website update.</p>
       </section>
@@ -59,11 +61,11 @@
     </form>
   </dialog>
 
-  <dialog id="handoffDialog"><div class="dialog"><h3>AI research handoff</h3><p>Select and copy this text into the AI session you want to use.</p><label class="field">Continuation prompt<textarea id="handoffText" rows="16" readonly></textarea></label><p class="draft-feedback" id="handoffFeedback" role="status"></p><div class="actions"><button class="button" data-close-dialog="handoffDialog">Close</button></div></div></dialog>
+  <dialog id="handoffDialog"><div class="dialog"><h3>Focused research prompt</h3><p id="handoffSelection">One question, one task, and a checkable outcome. Select and copy this into your AI session.</p><label class="field">Continuation prompt<textarea id="handoffText" rows="16" readonly></textarea></label><p class="draft-feedback" id="handoffFeedback" role="status"></p><div class="actions"><button class="button" data-close-dialog="handoffDialog">Close</button></div></div></dialog>
   <dialog id="attemptDialog"><form class="dialog" id="attemptForm"><div class="eyebrow">Private draft · not a shared update</div><h3>Record a research attempt</h3><p>Save the exact delta and its evidence. Export the draft and contribute it through GitHub so the next session can use it.</p>
     <label class="field">Problem<select id="attemptProblem" name="problemId" required></select></label>
     <label class="field">Frontier task<select id="attemptTask" name="taskId" required></select></label>
-    <div class="draft-row"><label class="field">Outcome<select name="outcome"><option value="audit">Independent audit</option value="proof">Proof or lemma</option><option value="counterexample">Counterexample</option><option value="computation">Reproducible computation</option><option value="literature-update">Primary-source update</option><option value="no-progress">No reliable progress</option></select></label><label class="field">Author or session label<input name="author" maxlength="160"></label></div>
+    <div class="draft-row"><label class="field">Outcome<select name="outcome"><option value="audit">Audit or self-check</option><option value="proof">Proof or lemma</option><option value="counterexample">Counterexample</option><option value="computation">Reproducible computation</option><option value="literature-update">Primary-source update</option><option value="no-progress">No reliable progress</option></select></label><label class="field">Author or session label<input name="author" maxlength="160"></label></div>
     <label class="field">Precise claim or new delta<input name="claim" required maxlength="1200"></label>
     <label class="field">Assumptions and normalization · one per line<textarea name="assumptions" rows="3" required></textarea></label>
     <label class="field">Proof, counterexample, computation, or exact obstruction<textarea name="argument" rows="5" required></textarea></label>
@@ -74,8 +76,8 @@
     <p class="draft-feedback" id="attemptFeedback" role="status" aria-live="polite"></p>
     <div class="actions"><button class="button" type="button" data-close-dialog="attemptDialog">Close</button><button class="button" type="submit">Save draft locally</button><button class="button primary" type="button" id="exportAttempt">Export draft JSON</button></div>
   </form></dialog>
-  <script src="research-core.js?v=2026-11-02.2"></script>
-  <script src="research-data.js?v=2026-11-02.2"></script>
-  <script src="app.js?v=2026-11-02.2"></script>
+  <script src="research-core.js?v=2026-11-02.3"></script>
+  <script src="research-data.js?v=2026-11-02.3"></script>
+  <script src="app.js?v=2026-11-02.3"></script>
 </body>
 </html>

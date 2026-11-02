@@ -115,6 +115,10 @@ dialog::backdrop { background: color-mix(in srgb, #000 40%, transparent); backdr
 .continuation-resources { display: grid; align-content: start; gap: 9px; font-size: 13px; }
 .continuation-resources a, .progress-actions a { color: var(--green); text-underline-offset: 3px; }
 .workspace-actions, .progress-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.prompt-picker { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0 0; }
+.prompt-picker .field { min-width: 0; }
+.prompt-picker select { width: 100%; min-width: 0; }
+.prompt-target { margin: 2px 0 18px; color: var(--muted); font-size: 13px; line-height: 1.65; }
 .workspace-meta, .workspace-note, .workspace-feedback { font-size: 12px; color: var(--muted); }
 .workspace-feedback { color: var(--green); min-height: 19px; margin: 12px 0 2px; }
 .workspace-note { border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: 0; max-width: 98ch; }
@@ -190,6 +194,7 @@ dialog::backdrop { background: color-mix(in srgb, #000 40%, transparent); backdr
   .progress-heading .badge { display: inline-block; margin-bottom: 13px; }
   .workspace-actions .button { width: 100%; white-space: normal; }
   .draft-row { grid-template-columns: 1fr; gap: 0; }
+  .prompt-picker { grid-template-columns: 1fr; gap: 0; }
   .actions { flex-wrap: wrap; }
   .actions .button { white-space: normal; }
 }

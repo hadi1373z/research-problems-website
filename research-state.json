@@ -1,21 +1,22 @@
 {
   "schemaVersion": 1,
-  "revision": "2026-11-02.2",
+  "revision": "2026-11-02.3",
   "updated": "2026-11-02",
   "researchReviewed": "2026-11-02",
   "siteUrl": "https://hadi1373z.github.io/research-problems-website/",
   "repositoryUrl": "https://github.com/hadi1373z/research-problems-website",
   "purpose": "Accumulate reviewable research deltas across AI and human sessions without losing assumptions, failed routes or unresolved gaps.",
   "protocol": [
-    "When asked to continue the research, read the current shared state, the relevant notebook proof and prior attempts before choosing work.",
-    "Choose one ready frontier task, state the exact intended claim, and record the baseline revision and prior attempt IDs.",
-    "Aim for a checked delta: a proof, counterexample, independent audit, reproducible computation, or verified primary-source update. A summary alone is not new research.",
-    "Preserve hypotheses, normalizations, attribution and the distinction between a restricted result and the full question.",
-    "Treat notebook derivations as awaiting independent review. Neither an AI assertion nor finite tests alone verifies a general theorem. Do not claim novelty without checking.",
-    "If no reliable new result is obtained, record no-progress and the precise obstruction. Do not fabricate a breakthrough or increment a progress score.",
-    "Append a dated attempt, link the artifact and checks, close only tasks actually addressed, and leave a concrete next task. Keep earlier attempts; corrections supersede rather than erase them.",
-    "Persist shared changes through a repository commit or pull request when authorized. Browser drafts are private and must be exported and merged to become shared.",
-    "Keep every full problem open until an independently checked proof or accepted resolution is recorded. Reading this static site does not launch AI execution or grant permission to use external accounts."
+    "Make one reliable contribution to the user-selected research direction, with a falsifiable target, checked evidence and an honest handoff. No prompt guarantees a breakthrough.",
+    "Refresh the live revision. Read the selected problem, previous attempts, relevant full proofs and decisive primary sources. Summaries are navigation aids, not proof evidence.",
+    "Select one ready task matching the user’s latest direction. State a precise target and what would count as a proof, counterexample or useful obstruction. Explain how it advances the remaining gap.",
+    "Audit the specific baseline lemma the new argument needs. If it is still unproved, label the dependent conclusion conditional. A repeated self-check is not independent review.",
+    "Compare the target with the closest primary results: match hypotheses, conclusion and quantitative range, with exact theorem/section links and dates. A known special case is a rederivation, not evidence of publication novelty.",
+    "Do substantive research and produce a concise, checkable proof or exact counterexample. If the first route fails, use the obstruction to choose a justified alternative. Do not spend the session mostly restyling the website or repeating an earlier result.",
+    "Try to falsify the strongest step. Check boundary cases, normalization, hidden labeling and global-versus-local consistency. Use a genuinely different exact computation when useful; keep finite evidence separate from a general proof.",
+    "For computations, record input provenance/hash, complete versus sampled range, exact versus numerical arithmetic and the commands actually run. Compare the tested range with existing literature before calling it an advance.",
+    "State what survived, failed or remains conditional. If no reliable delta survives, record no-progress with the exact obstruction and a sharper next test. Never manufacture a result or raise review status to satisfy the request.",
+    "Save the mathematical delta, evidence, prior-work comparison, limitations and a concrete next task. Preserve historical attempts. Publish only within the user’s authorization; otherwise return a reviewable draft."
   ],
   "sessions": [
     {
@@ -61,6 +62,21 @@
         "research/graph-reconstruction-2026-11-02.html",
         "research/reconstruction-verification.json"
       ]
+    },
+    {
+      "id": "prism-moments-2026-11-02",
+      "date": "2026-11-02",
+      "kind": "research",
+      "problemIds": [
+        "vertex-deleted-reconstruction"
+      ],
+      "baseRevision": "2026-11-02.2",
+      "summary": "Draft arbitrary-leaf clique-prism reconstruction via three quadratic moments, sharp leaf-deck exception r=2, polynomial algorithm and an exact order-eight certificate audit. Self-audited; independent review and novelty comparison pending.",
+      "artifactUrls": [
+        "research/reconstruction-moments-2026-11-02.html",
+        "research/prism-moments-verification.json",
+        "research/order8-path-audit.json"
+      ]
     }
   ],
   "history": [
@@ -81,6 +97,18 @@
       "kind": "research-contribution",
       "countsAsResearch": true,
       "summary": "Added graph reconstruction as a ninth full question, preserving all eight earlier questions and attempts. Saved the leaf-attachment proof draft, exact verifier and concrete independent-audit/collision/prior-art tasks. No full question marked resolved."
+    },
+    {
+      "date": "2026-11-02",
+      "kind": "research-contribution",
+      "countsAsResearch": true,
+      "summary": "Appended the arbitrary-multiplicity prism proof and exact order-eight path audit. Preserved earlier claims and attempts; all full questions remain open."
+    },
+    {
+      "date": "2026-11-02",
+      "kind": "site-update",
+      "countsAsResearch": false,
+      "summary": "Introduced research-v2: one selected task per prompt, baseline-lemma checks, primary-source equivalence checks, adversarial validation, explicit result/evidence labels, a completion contract, prompt examples, and static handoff artifacts. Prompt contract tests do not certify better future model outputs."
     }
   ],
   "topics": [
@@ -553,11 +581,11 @@
           "id": "vertex-deleted-reconstruction",
           "verified": true,
           "title": "Does the vertex-deleted deck determine every graph?",
-          "lead": "The Kelly-Ulam reconstruction conjecture remains open. A new notebook direction studies how to recover relative leaf attachments over a symmetric core.",
+          "lead": "The full conjecture remains open. A new draft recovers arbitrary leaf multiplicities on clique-prism cores, and exact path-certificate checks now cover core order eight.",
           "model": "G is a finite simple undirected graph on n>=3 vertices. Its deck is the complete multiset of n unlabeled vertex-deleted induced subgraphs G-v. Repeated isomorphism types retain multiplicity; the vertex correspondence between cards is hidden.",
           "statement": "Prove that graphs with identical full vertex-deleted decks are isomorphic, or give two nonisomorphic graphs on at least three vertices with rigorously identical full decks.",
           "known": "McKay verified the full and set conjectures through 13 vertices and specified larger classes. Heinrich, Kiyomi, Otachi and Schweitzer prove interval graphs reconstructible in a 2026-revised paper. Contemporary 2026 primary papers continue to treat the general conjecture as open. Anchor and endvertex methods predate this notebook.",
-          "formula": "Restricted two-leaf certificate: p_l^H(x,y)=c(P_(l+3),G)-c(P_(l+3),G-a)-c(P_(l+3),G-b)+c(P_(l+3),H), 0<=l<=h-2.",
+          "formula": "Clique-prism leaf decks, r>=3: sum Q_card=(r-2)Q+r; sum R_card=(r-2)R; sum D_card^2=(r-2)D^2+r. The three moments plus one suitable card determine the graph in this class.",
           "source": "Kelly-Ulam; 2026 primary literature; notebook draft 2 Nov 2026",
           "checked": "Dufresne et al. 2026, Sections 1-3; Heinrich et al. v2, 12 May 2026; McKay v4, 2022",
           "reviewed": "2026-11-02",
@@ -587,11 +615,15 @@
             [
               "2 Nov 2026 · complete draft proof",
               "https://hadi1373z.github.io/research-problems-website/research/graph-reconstruction-2026-11-02.html"
+            ],
+            [
+              "New moment theorem and order-eight audit",
+              "https://hadi1373z.github.io/research-problems-website/research/reconstruction-moments-2026-11-02.html"
             ]
           ],
           "research": {
             "status": "open",
-            "currentGap": "The full Kelly-Ulam conjecture remains open. The new draft gives explicit certificates only for recognized leaf extensions of minimum-degree-two cores, with conditional path-signature separation or a multiplicity-gap condition. General cores and leaf-free graphs are not resolved. Independent proof review and comparison with established anchor/endvertex results are pending.",
+            "currentGap": "A new draft reconstructs arbitrary direct leaf multiplicities on clique-prism cores using three quadratic moments and one card; only r=2 needs the saved additional full-deck path information. Exact path-certificate coverage now reaches all 7,442 eligible eight-vertex cores. The general conjecture, arbitrary cores, and universal signature separation remain unresolved. Independent proof review and primary-literature equivalence checks are pending.",
             "results": [
               {
                 "id": "two-leaf-path-certificate",
@@ -670,6 +702,49 @@
                 "novelty": "unassessed",
                 "date": "2026-11-02",
                 "verificationUrl": "research/reconstruction-verification.json"
+              },
+              {
+                "id": "prism-arbitrary-leaf-moments",
+                "title": "A draft reconstruction theorem for arbitrary leaf multiplicities",
+                "claim": "For H_s=K_s box K_2, s>=3, attach any r>=1 leaves directly to core vertices, allowing repeated bases. The graph is reconstructible from its full vertex deck. More strongly, its leaf-deletion deck alone suffices for r=1 or r>=3; for r=2 exactly four nonisomorphic placements share that restricted deck. For r>=3 a constructive three-moment algorithm uses O(n^3) arithmetic operations on O(log n)-bit integers for adjacency-matrix input.",
+                "assumptions": [
+                  "Finite simple undirected graphs; complete multisets of the stated cards with multiplicities.",
+                  "Two s-cliques joined by a perfect matching, s>=3. Every added vertex is a leaf directly adjacent to a core vertex.",
+                  "The leaf count r is the size of the leaf-deletion deck; from a full deck, recover deleted degrees by the edge-count identity. Recognition against arbitrary deck-mates is included.",
+                  "The algorithm uses both the three recovered quadratic moments and the full structure of one leaf card. The moments alone are insufficient."
+                ],
+                "argument": "Write the two row occupancies as a_i,b_i. Recover Q=sum(a_i^2+b_i^2), R=sum a_i b_i and D^2=(sum a_i-sum b_i)^2 from leaf-card sums: sum Q_card=(r-2)Q+r, sum R_card=(r-2)R, sum D_card^2=(r-2)D^2+r. For r>=3 choose a card with unequal row totals. D^2 uniquely determines which row lost a leaf; Q identifies its previous occupancy q; R identifies the opposite matching partner occupancy t. In that row, all candidate columns of type (q-1,t) are interchangeable by a weight-preserving core automorphism. At least one unequal-row card exists unless r=1. Handle r=1 by vertex transitivity and r=2 by the saved proper-path certificate.",
+                "limitation": "This strictly extends the previous notebook from two leaves or an absent-predecessor gap to arbitrary multiplicities on this core family. It does not handle arbitrary cores, and s=2 lacks the required canonical clique/matching distinction. Prior endvertex/group-action methods may cover an equivalent class; independent review and novelty comparison remain pending. The algorithm is polynomial, not a claimed optimal bound.",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "date": "2026-11-02",
+                "proofUrl": "research/reconstruction-moments-2026-11-02.html#moment-theorem",
+                "verificationUrl": "research/prism-moments-verification.json",
+                "sourceUrl": "https://combinatorialpress.com/article/ars/Volume%20036/volume-36-paper-16.pdf",
+                "extendsResultIds": [
+                  "symmetric-clique-prism-case",
+                  "leaf-multiplicity-restoration"
+                ]
+              },
+              {
+                "id": "order-eight-path-certificate-audit",
+                "title": "An exact order-eight audit of the proper-path certificate",
+                "claim": "All 7,442 connected minimum-degree-two eight-vertex cores in McKay’s 12,346-graph catalogue pass the saved proper-path signature test, covering 201,678 unordered-pair orbits. For this finite range, endpoint vertex-orbits and path lengths 0..3 already separate every pair orbit. No collision was found.",
+                "assumptions": [
+                  "The exact eight-vertex McKay graph6 catalogue, SHA256 546a249902101c97d3aa590f93e53366854bd0a6f405aa59bdb32d25c57f845a.",
+                  "Connected cores with minimum degree at least two; unordered attachment pairs may repeat a vertex.",
+                  "This checks a restricted certificate and relies on the catalogue for enumeration, with exact canonical uniqueness verification."
+                ],
+                "argument": "Parse and round-trip graph6 against the primary specification. Verify 12,346 distinct exact canonical codes and the connected count 11,117. Enumerate full automorphism groups using invariant color classes only to prune permutations; compute vertex-simple paths by subset dynamic programming. Cross-check both new algorithms against independent prior exhaustive methods on all 583 eligible cores through order seven. Compare every pair orbit and every prefix of its proper path signature.",
+                "limitation": "This is a finite computational audit, not a proof of universal signature separation, independent mathematical review, or a new full reconstruction verification range. Full reconstruction is already verified through order 13 in McKay’s cited work. Search for a signature collision remains open from core order nine onward.",
+                "kind": "computation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "date": "2026-11-02",
+                "proofUrl": "research/reconstruction-moments-2026-11-02.html#order-eight",
+                "verificationUrl": "research/order8-path-audit.json",
+                "sourceUrl": "https://users.cecs.anu.edu.au/~bdm/data/graphs.html"
               }
             ],
             "obstacles": [
@@ -696,9 +771,46 @@
                 "evidenceResultIds": [
                   "fixed-path-cutoff-obstruction"
                 ]
+              },
+              {
+                "id": "moments-without-a-card",
+                "route": "Treat the three recovered global moments as a complete graph invariant.",
+                "reason": "At s=3 and r=5, column multisets [(0,1),(0,1),(2,1)] and [(0,1),(1,0),(1,2)] are inequivalent but both have (Q,R,D^2)=(7,2,1). Their leaf decks differ. The reconstruction algorithm also needs an actual leaf card.",
+                "evidenceResultIds": [
+                  "prism-arbitrary-leaf-moments"
+                ]
               }
             ],
             "nextTasks": [
+              {
+                "id": "extend-prism-moment-method",
+                "title": "Identify the symmetry needed beyond clique-prism cores",
+                "question": "Test the three-moment plus one-card method on two matching-linked copies of a noncomplete graph F. Prove a correct extension under explicit core-symmetry hypotheses, or give exact nonisomorphic completions agreeing on the proposed information.",
+                "acceptance": "Identify the exact orbit-transitivity step used in the clique-prism proof. If a marked decomposition is used, prove that the unlabeled deck recognizes it. Supply a complete theorem/proof or an exact method counterexample; do not call a collision of moments or one-card data a full-deck counterexample.",
+                "resultIds": [
+                  "prism-arbitrary-leaf-moments"
+                ],
+                "priority": 1,
+                "kind": "new-work",
+                "status": "ready",
+                "stressTests": [
+                  "Does the matching have a deck-recognizable meaning?",
+                  "Are equal-weight candidate columns actually interchangeable by a core automorphism?",
+                  "Which data are equal in a proposed counterexample: three numbers, one card, leaf deck, or full deck?"
+                ]
+              },
+              {
+                "id": "audit-prism-three-moment-reconstruction",
+                "title": "Audit the arbitrary-multiplicity reconstruction proof",
+                "question": "Independently check the three moment identities, existence of an unequal-row card, candidate-column automorphism, recognition and polynomial-time claim. Compare with prior endvertex reconstruction results.",
+                "acceptance": "Give a complete proof or a specific counterexample; handle r=1,2,3, balanced rows, repeated weights, s=3, and why s=2 is excluded. A self-check by the original assistant stays a self-audit. Record a prior equivalent theorem if located.",
+                "resultIds": [
+                  "prism-arbitrary-leaf-moments"
+                ],
+                "priority": 2,
+                "kind": "audit",
+                "status": "ready"
+              },
               {
                 "id": "audit-leaf-reconstruction-certificate",
                 "title": "Independently audit recognition and path recovery",
@@ -717,16 +829,18 @@
               {
                 "id": "find-path-profile-orbit-collision",
                 "title": "Find the first attachment signature collision or prove a class",
-                "question": "Seek a connected minimum-degree-two core of order at least eight with two inequivalent unordered pairs sharing endpoint vertex-orbits and every proper simple-path count. Alternatively prove separation for a precisely stated new core class.",
+                "question": "Seek a connected minimum-degree-two core of order at least nine with two inequivalent unordered pairs sharing endpoint vertex-orbits and every proper simple-path count. All eligible cores through eight now pass. Alternatively prove separation for a precisely stated additional core class.",
                 "acceptance": "Supply exact adjacency data, the full automorphism pair-orbits and all path counts, or a proof with every hypothesis explicit. A signature collision limits this certificate; it is not a full-deck counterexample.",
                 "resultIds": [
                   "two-leaf-path-certificate",
                   "symmetric-clique-prism-case",
-                  "fixed-path-cutoff-obstruction"
+                  "fixed-path-cutoff-obstruction",
+                  "order-eight-path-certificate-audit"
                 ],
                 "priority": 2,
                 "kind": "new-work",
-                "status": "ready"
+                "status": "ready",
+                "lastAttemptId": "prism-three-moment-progress-2026-11-02"
               },
               {
                 "id": "audit-leaf-reconstruction-prior-art",
@@ -759,6 +873,20 @@
                 "status": "completed",
                 "completedAt": "2026-11-02",
                 "completionAttemptId": "leaf-attachment-reconstruction-2026-11-02"
+              },
+              {
+                "id": "extend-prism-to-arbitrary-leaves",
+                "title": "Extend the two-leaf prism case to arbitrary multiplicities",
+                "question": "Determine whether all direct leaf attachments to clique-prism cores are reconstructible, and whether the leaf-deletion deck alone suffices.",
+                "acceptance": "Prove recognition, exact missing-coordinate recovery and all small-r exceptions; corroborate with a solver that receives only unlabeled cards.",
+                "resultIds": [
+                  "prism-arbitrary-leaf-moments"
+                ],
+                "priority": 1,
+                "kind": "new-work",
+                "status": "completed",
+                "completedAt": "2026-11-02",
+                "completionAttemptId": "prism-three-moment-progress-2026-11-02"
               }
             ],
             "attempts": [
@@ -803,8 +931,57 @@
                 ],
                 "nextStep": "Independently audit the certificate and prior art, then search for a proper-path signature collision on a symmetric core of order at least eight.",
                 "supersedes": []
+              },
+              {
+                "id": "prism-three-moment-progress-2026-11-02",
+                "sessionId": "prism-moments-2026-11-02",
+                "date": "2026-11-02",
+                "status": "contributed",
+                "baseRevision": "2026-11-02.2",
+                "taskId": "extend-prism-to-arbitrary-leaves",
+                "originTaskId": "find-path-profile-orbit-collision",
+                "priorAttemptIds": [
+                  "leaf-attachment-reconstruction-2026-11-02"
+                ],
+                "outcome": "proof",
+                "claim": "Extended direct leaf-attachment reconstruction on clique-prism cores to every positive leaf count, with an exact leaf-deck classification and constructive quadratic-moment recovery for r>=3; also completed an order-eight proper-path certificate audit.",
+                "scopeAdjustment": "Started from the ready path-signature collision task. The order-eight search found no collision; the prior small prism occupancy experiment suggested a stronger arbitrary-multiplicity theorem, which was proved as a new scoped subtask. The general collision task remains ready at order nine.",
+                "assumptions": [
+                  "Finite simple undirected graphs; complete multisets of the stated cards with multiplicities.",
+                  "Two s-cliques joined by a perfect matching, s>=3. Every added vertex is a leaf directly adjacent to a core vertex.",
+                  "The leaf count r is the size of the leaf-deletion deck; from a full deck, recover deleted degrees by the edge-count identity. Recognition against arbitrary deck-mates is included.",
+                  "The algorithm uses both the three recovered quadratic moments and the full structure of one leaf card. The moments alone are insufficient."
+                ],
+                "argument": "See the complete moment proof, recognition argument, sharp r=2 leaf-deck exception, algorithm and finite audit. Three global moments plus an unequal-row card identify the missing row, old occupancy and matching-partner occupancy.",
+                "deltaFromBaseline": "The earlier prism result covered two leaves; the earlier arbitrary-core multiplicity criterion required a gap among occupancies. The new prism theorem handles every multiplicity pattern and uses only leaf cards for r=1 or r>=3. The certificate audit advances from core order seven to eight.",
+                "priorWorkComparison": "Lauri (1993) already develops the colored-core/endvertex framework and group-action criteria. The present exact three-moment argument has not been matched to a prior theorem in the bounded search, so no priority or novelty is claimed.",
+                "falsification": "Checked the singular r=2 case, coincident bases, balanced and one-unit row imbalances, repeated candidate columns, and a concrete pair of inequivalent configurations sharing all three moments. The latter confirms that the actual card remains essential.",
+                "validation": "Exact checks cover 1,884 occupancy orbits for s=3..6 and r=1..8; reconstruct all 1,864 cases with r>=3, and confirm the four-way r=2 leaf-deck ambiguity. Also checked 40 independently relabeled adjacency-card decks and 120 seeded larger configurations. The order-eight audit checks 201,678 pair orbits, 12,346 exact canonical graph codes and 583 cross-checks against separate algorithms. These are self-audits and finite corroboration.",
+                "limitations": "A new draft reconstructs arbitrary direct leaf multiplicities on clique-prism cores using three quadratic moments and one card; only r=2 needs the saved additional full-deck path information. Exact path-certificate coverage now reaches all 7,442 eligible eight-vertex cores. The general conjecture, arbitrary cores, and universal signature separation remain unresolved. Independent proof review and primary-literature equivalence checks are pending.",
+                "sources": [
+                  "https://combinatorialpress.com/article/ars/Volume%20036/volume-36-paper-16.pdf",
+                  "https://users.cecs.anu.edu.au/~bdm/data/graphs.html",
+                  "https://users.cecs.anu.edu.au/~bdm/data/formats.txt"
+                ],
+                "resultIds": [
+                  "prism-arbitrary-leaf-moments",
+                  "order-eight-path-certificate-audit"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted research session, 2 November 2026",
+                "artifactUrls": [
+                  "research/reconstruction-moments-2026-11-02.html",
+                  "research/reconstruction-moments-2026-11-02.pdf",
+                  "research/verify-prism-moments.py",
+                  "research/prism-moments-verification.json",
+                  "research/audit-order8-paths.py",
+                  "research/order8-path-audit.json"
+                ],
+                "nextStep": "Audit the moment theorem and its prior art; then test whether the candidate-column transitivity step extends beyond clique-prism cores, with exact information-level distinctions.",
+                "supersedes": []
               }
-            ]
+            ],
+            "recommendedTaskId": "extend-prism-moment-method"
           }
         }
       ]
@@ -1533,5 +1710,65 @@
         }
       ]
     }
-  ]
+  ],
+  "prompting": {
+    "version": "research-v2",
+    "updated": "2026-11-02",
+    "purpose": "Make one reliable contribution to the user-selected research direction, with a falsifiable target, checked evidence and an honest handoff. No prompt guarantees a breakthrough.",
+    "workflow": [
+      "Refresh the live revision. Read the selected problem, previous attempts, relevant full proofs and decisive primary sources. Summaries are navigation aids, not proof evidence.",
+      "Select one ready task matching the user’s latest direction. State a precise target and what would count as a proof, counterexample or useful obstruction. Explain how it advances the remaining gap.",
+      "Audit the specific baseline lemma the new argument needs. If it is still unproved, label the dependent conclusion conditional. A repeated self-check is not independent review.",
+      "Compare the target with the closest primary results: match hypotheses, conclusion and quantitative range, with exact theorem/section links and dates. A known special case is a rederivation, not evidence of publication novelty.",
+      "Do substantive research and produce a concise, checkable proof or exact counterexample. If the first route fails, use the obstruction to choose a justified alternative. Do not spend the session mostly restyling the website or repeating an earlier result.",
+      "Try to falsify the strongest step. Check boundary cases, normalization, hidden labeling and global-versus-local consistency. Use a genuinely different exact computation when useful; keep finite evidence separate from a general proof.",
+      "For computations, record input provenance/hash, complete versus sampled range, exact versus numerical arithmetic and the commands actually run. Compare the tested range with existing literature before calling it an advance.",
+      "State what survived, failed or remains conditional. If no reliable delta survives, record no-progress with the exact obstruction and a sharper next test. Never manufacture a result or raise review status to satisfy the request.",
+      "Save the mathematical delta, evidence, prior-work comparison, limitations and a concrete next task. Preserve historical attempts. Publish only within the user’s authorization; otherwise return a reviewable draft."
+    ],
+    "doneCriteria": [
+      "A theorem must state exact hypotheses and give a complete public proof of its new step, with dependencies and unresolved lemmas identified.",
+      "A counterexample must give exact objects and verify every hypothesis and the failed conclusion. Identify whether it refutes a method, restricted information claim or the full conjecture.",
+      "A computational contribution must have reproducible code/data and accurately bounded scope. More small examples alone do not establish an unrestricted theorem or novelty.",
+      "An audit must identify what was checked and by whom. The same assistant’s second pass is a self-audit. Literature updates need a primary theorem and a hypothesis comparison.",
+      "A polished explanation, a larger session count or a prompt/UI change alone is not a mathematical contribution. An honest, specific obstruction is an acceptable outcome."
+    ],
+    "outputContract": [
+      "Outcome and exact delta from the refreshed baseline.",
+      "Precise claim, assumptions and a proof/evidence artifact.",
+      "Closest prior work, comparison and novelty status.",
+      "Falsification checks actually executed, including failures and computational scope.",
+      "Remaining limitations, dependencies and review status.",
+      "Saved artifact links and one next claim with an acceptance condition."
+    ],
+    "examples": [
+      {
+        "situation": "A script checks a restricted certificate on eight-vertex cores; full reconstruction was already checked through order 13.",
+        "correct": "Report an exact restricted-certificate audit and its new coverage; do not claim a new full reconstruction bound."
+      },
+      {
+        "situation": "The original assistant rereads its own proof and reruns its own program.",
+        "correct": "Record self-audit and keep needs-independent-review."
+      },
+      {
+        "situation": "Two graphs agree on three moments and one card but their full decks were not compared.",
+        "correct": "At most refute that information-based method; do not report a counterexample to graph reconstruction."
+      },
+      {
+        "situation": "A primary paper proves an equivalent theorem under the same hypotheses.",
+        "correct": "Attribute it, record a rederivation or audit, and choose a genuinely unresolved next target."
+      }
+    ],
+    "sources": [
+      [
+        "OpenAI Docs: reasoning model prompting",
+        "https://developers.openai.com/api/docs/guides/reasoning"
+      ],
+      [
+        "OpenAI Docs: prompt structure and evaluation",
+        "https://developers.openai.com/api/docs/guides/prompt-engineering"
+      ]
+    ],
+    "evaluationNote": "Versioned structural/contract checks are included. These do not measure future model research quality or guarantee a breakthrough."
+  }
 }

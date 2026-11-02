@@ -4,7 +4,7 @@ This is a static GitHub Pages notebook, not an autonomous AI service. Follow the
 
 ## When asked to continue research
 
-1. Read the latest `research-state.json`, `research.html`, the relevant proof in `research/notebook-2026-10-31.html`, and the problem's earlier attempts. Do not start from an old chat summary alone.
+1. Read the latest `research-state.json`, `research.html`, `research/prompt-guide.html`, and the problem's earlier attempts. Open the full proofs linked by the selected task's results, including newer dated artifacts. The initial notebook is historical context, not the only proof source. Do not start from an old chat summary alone.
 2. Choose one `ready` frontier task. Record the current revision, problem ID, task ID, and prior attempt IDs. State the precise claim you will investigate.
 3. Work toward one checked delta: a proof, counterexample, independent audit, reproducible computation, or verified primary-source update. An honest failed attempt can narrow the next task. A rewritten summary is not new research.
 4. Preserve hypotheses and normalizations. Distinguish vertex samples from edge queries and runtime; induced from ordinary removal; asymptotic cospectral moments from exact finite cospectrality; and same-source size transfer from distribution shift.
@@ -17,10 +17,23 @@ This is a static GitHub Pages notebook, not an autonomous AI service. Follow the
 11. Keep the full problem `open` unless a full-scope resolution has documented independent review and evidence. Passing finite tests or an AI's own assertion is insufficient. `resolved` requires resolution metadata, a reviewed result, and an evidence link; schema checks cannot certify the proof itself.
 12. Run the checks below. Publish or contribute through GitHub only within the user's authorized scope. If write access is unavailable, return the exact draft or patch and say that it has not joined the shared notebook.
 
+## Research quality: research-v2
+
+- Follow the user's latest selected direction. Work on one falsifiable claim; a switch to an easier question needs a mathematical reason and a recorded scope adjustment.
+- Check the baseline lemma the new argument needs. Identify any remaining unproved dependency and label dependent conclusions conditional.
+- Compare the closest primary theorem by hypotheses, conclusion and quantitative range. A known special case can be a useful rederivation, but is not publication novelty. Record exact theorem or section links.
+- Try to break the strongest step: boundary cases, normalization, hidden labels and local-versus-global compatibility. State what was actually checked and include failed tests. Use a different exact algorithm for computational corroboration when useful.
+- Do not count a repeated self-audit as independent review. Do not keep repeating the same self-audit as progress without a new issue or evidence. A new session by itself does not make the reviewer independent.
+- Preserve the information level of a counterexample: moments, one card, a leaf deck and a full vertex deck are different claims. State complete versus sampled computational coverage and compare it with known finite benchmarks.
+- Append `deltaFromBaseline`, `priorWorkComparison`, `falsification`, any unreviewed dependencies, and a precise next claim with an acceptance condition. A concise public proof is required; private chain-of-thought is not.
+- Prompt or UI changes belong in infrastructure history with `countsAsResearch: false`. Contract tests verify the handoff structure; they do not measure future model research quality or guarantee a breakthrough.
+
+The canonical prompt policy is `research-state.json` → `prompting`; `research/prompt-protocol.json`, `research/prompt-guide.html` and `research/research-prompt.txt` are generated from it. The focused prompt selects one ready task, using a problem's `recommendedTaskId` when available. An explicit user or task selection takes precedence.
+
 ## Canonical data and generated pages
 
 - Edit `research-state.json` for public questions, sources, results, tasks, attempts, and history.
-- `research-data.js`, `research.html`, `llms.txt`, and `research/attempt-template.json` are generated. Do not edit them by hand.
+- `research-data.js`, `research.html`, `llms.txt`, `research/attempt-template.json`, and the three prompt files above are generated. Do not edit them by hand.
 - The static `research.html` exposes the complete research handoff to readers that do not execute JavaScript.
 - `app.js` renders the interactive notebook. `research-core.js` contains shared prompt and validation helpers.
 - Browser notes, candidates, and attempt drafts remain private in `localStorage`. Saving a draft does not update GitHub. Do not claim that local data was published.

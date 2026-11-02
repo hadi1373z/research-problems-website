@@ -3,11 +3,12 @@
   "id": "replace-with-a-unique-attempt-id",
   "status": "draft",
   "review": "unreviewed",
-  "baseRevision": "2026-11-02.2",
+  "baseRevision": "2026-11-02.3",
   "problemId": "vertex-deleted-reconstruction",
-  "taskId": "audit-leaf-reconstruction-certificate",
+  "taskId": "extend-prism-moment-method",
   "priorAttemptIds": [
-    "leaf-attachment-reconstruction-2026-11-02"
+    "leaf-attachment-reconstruction-2026-11-02",
+    "prism-three-moment-progress-2026-11-02"
   ],
   "resultIds": [],
   "artifactUrls": [],
@@ -23,5 +24,11 @@
   "limitations": "Explain the remaining gap and whether the result is restricted.",
   "sources": [],
   "nextStep": "A concrete next claim and an acceptance condition.",
-  "supersedes": []
+  "supersedes": [],
+  "promptVersion": "research-v2",
+  "deltaFromBaseline": "State exactly what changed relative to the refreshed record.",
+  "priorWorkComparison": "Compare the closest primary theorem, with matching hypotheses and a source link.",
+  "falsification": "List the boundary cases and strongest attempted counterexample; include failures.",
+  "dependencies": [],
+  "checksExecuted": []
 }
