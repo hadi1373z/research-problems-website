@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "revision": "2026-11-02.1",
+  "revision": "2026-11-02.2",
   "updated": "2026-11-02",
   "researchReviewed": "2026-11-02",
   "siteUrl": "https://hadi1373z.github.io/research-problems-website/",
@@ -47,6 +47,20 @@
         "research/deep-iwn-transfer-2026-11-02.html",
         "research/deep-transfer-verification.json"
       ]
+    },
+    {
+      "id": "reconstruction-2026-11-02",
+      "date": "2026-11-02",
+      "kind": "research",
+      "problemIds": [
+        "vertex-deleted-reconstruction"
+      ],
+      "baseRevision": "2026-11-02.1",
+      "summary": "Added the user-selected vertex-deleted reconstruction direction with draft path-orbit and multiplicity certificates, an explicit symmetric-core family, restricted-information obstructions and exact finite checks. Independent review and novelty comparison remain pending. Full conjecture open.",
+      "artifactUrls": [
+        "research/graph-reconstruction-2026-11-02.html",
+        "research/reconstruction-verification.json"
+      ]
     }
   ],
   "history": [
@@ -61,6 +75,12 @@
       "kind": "research-contribution",
       "countsAsResearch": true,
       "summary": "Appended the conditional-tuple proof draft and reproducible checks; completed the nonlocal three-layer task and opened independent proof and novelty audits. All older attempts are preserved; no full problem is marked resolved."
+    },
+    {
+      "date": "2026-11-02",
+      "kind": "research-contribution",
+      "countsAsResearch": true,
+      "summary": "Added graph reconstruction as a ninth full question, preserving all eight earlier questions and attempts. Saved the leaf-attachment proof draft, exact verifier and concrete independent-audit/collision/prior-art tasks. No full question marked resolved."
     }
   ],
   "topics": [
@@ -314,7 +334,8 @@
       "summary": "When do two differently labelled graphs encode exactly the same structure?",
       "intro": [
         "Graph isomorphism asks whether one graph can be transformed into another merely by renaming its vertices. It belongs to NP, yet it has resisted both a polynomial-time algorithm and an NP-completeness proof. Practical programs solve many instances quickly, but the worst-case theory remains exceptional.",
-        "Babai’s breakthrough reduced the general worst-case running time to quasipolynomial. The surrounding theory combines permutation groups, combinatorics, logic, canonical labelling, and Weisfeiler–Leman refinement. It also connects to graph learning because useful representations should respect isomorphism without collapsing genuinely different graphs."
+        "Babai’s breakthrough reduced the general worst-case running time to quasipolynomial. The surrounding theory combines permutation groups, combinatorics, logic, canonical labelling, and Weisfeiler–Leman refinement. It also connects to graph learning because useful representations should respect isomorphism without collapsing genuinely different graphs.",
+        "Graph reconstruction asks whether an unlabeled graph is determined by the complete multiset of its one-vertex-deleted subgraphs. Card isomorphisms need not align consistently. The new direction below records restricted attachment-recovery certificates and the remaining global alignment problem."
       ],
       "problems": [
         {
@@ -524,6 +545,264 @@
                   "research/verification-results.json"
                 ],
                 "baseRevision": "initial-import"
+              }
+            ]
+          }
+        },
+        {
+          "id": "vertex-deleted-reconstruction",
+          "verified": true,
+          "title": "Does the vertex-deleted deck determine every graph?",
+          "lead": "The Kelly-Ulam reconstruction conjecture remains open. A new notebook direction studies how to recover relative leaf attachments over a symmetric core.",
+          "model": "G is a finite simple undirected graph on n>=3 vertices. Its deck is the complete multiset of n unlabeled vertex-deleted induced subgraphs G-v. Repeated isomorphism types retain multiplicity; the vertex correspondence between cards is hidden.",
+          "statement": "Prove that graphs with identical full vertex-deleted decks are isomorphic, or give two nonisomorphic graphs on at least three vertices with rigorously identical full decks.",
+          "known": "McKay verified the full and set conjectures through 13 vertices and specified larger classes. Heinrich, Kiyomi, Otachi and Schweitzer prove interval graphs reconstructible in a 2026-revised paper. Contemporary 2026 primary papers continue to treat the general conjecture as open. Anchor and endvertex methods predate this notebook.",
+          "formula": "Restricted two-leaf certificate: p_l^H(x,y)=c(P_(l+3),G)-c(P_(l+3),G-a)-c(P_(l+3),G-b)+c(P_(l+3),H), 0<=l<=h-2.",
+          "source": "Kelly-Ulam; 2026 primary literature; notebook draft 2 Nov 2026",
+          "checked": "Dufresne et al. 2026, Sections 1-3; Heinrich et al. v2, 12 May 2026; McKay v4, 2022",
+          "reviewed": "2026-11-02",
+          "statusNote": "Full conjecture open in the primary sources checked on 2 November 2026. The notebook draft proves restricted sufficient criteria; novelty and independent validation are unassessed. Its finite checks do not extend the established 13-vertex benchmark.",
+          "importance": "Whether hidden global structure is uniquely determined by all of its one-vertex-deleted views",
+          "links": [
+            [
+              "2026 overview and invariant theory",
+              "https://arxiv.org/html/2604.16567"
+            ],
+            [
+              "Anchor framework",
+              "https://arxiv.org/html/1611.01609"
+            ],
+            [
+              "Endvertex framework · 1993",
+              "https://combinatorialpress.com/article/ars/Volume%20036/volume-36-paper-16.pdf"
+            ],
+            [
+              "Finite benchmark · up to 13 vertices",
+              "https://arxiv.org/abs/2102.01942"
+            ],
+            [
+              "Interval graphs · v2 May 2026",
+              "https://arxiv.org/html/2504.02353"
+            ],
+            [
+              "2 Nov 2026 · complete draft proof",
+              "https://hadi1373z.github.io/research-problems-website/research/graph-reconstruction-2026-11-02.html"
+            ]
+          ],
+          "research": {
+            "status": "open",
+            "currentGap": "The full Kelly-Ulam conjecture remains open. The new draft gives explicit certificates only for recognized leaf extensions of minimum-degree-two cores, with conditional path-signature separation or a multiplicity-gap condition. General cores and leaf-free graphs are not resolved. Independent proof review and comparison with established anchor/endvertex results are pending.",
+            "results": [
+              {
+                "id": "two-leaf-path-certificate",
+                "title": "A draft certificate for two leaves over a symmetric core",
+                "claim": "For G=H plus leaves a-x and b-y, n=h+2, the full deck recovers the unordered endpoint vertex-orbits and every simple-path count p_l^H(x,y), 0<=l<=h-2. If this signature identifies one unordered-pair orbit under Aut(H), G is reconstructible among all graphs with its deck.",
+                "assumptions": [
+                  "Finite simple undirected graphs; the full multiset of unlabeled one-vertex-deleted induced cards is given, including multiplicities.",
+                  "The restricted model is a connected core H of order h with minimum degree at least two, plus leaves directly attached to core vertices. Recognition against arbitrary full-deck mates is part of the proof.",
+                  "Path subgraph counts are ordinary, not induced; endpoint paths in H are vertex-simple. Only proper patterns with fewer than n vertices are recovered by Kelly counting.",
+                  "The two attachment vertices may coincide. Signature separation is a stated hypothesis, not a universal theorem."
+                ],
+                "argument": "Recover edge count and each deleted degree; leaf cards expose H and force any deck-mate to be the same type of leaf extension. Kelly counting gives c(P_k,G). Inclusion-exclusion c(P_k,G)-c(P_k,G-a)-c(P_k,G-b)+c(P_k,H) counts paths containing both leaves, which must be endpoints, hence equals p_(k-3)^H(x,y). A unique pair orbit then yields an isomorphism.",
+                "limitation": "This extends the distance-only certificate in this notebook, not a claimed literature-first theorem. The anchor/endvertex framework is established. Separation has not been proved for arbitrary cores; automorphism and simple-path enumeration may be expensive. Independent review and novelty comparison are pending.",
+                "proofUrl": "research/graph-reconstruction-2026-11-02.html#path-recovery",
+                "sourceUrl": "https://arxiv.org/html/1611.01609",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "date": "2026-11-02",
+                "verificationUrl": "research/reconstruction-verification.json"
+              },
+              {
+                "id": "symmetric-clique-prism-case",
+                "title": "An explicit infinite family with nontrivial core symmetry",
+                "claim": "Every graph obtained by attaching two leaves, allowing a shared base, to K_s box K_2 for s>=3 is reconstructed by the path certificate. The four pair signatures (p0,p1,p2) are (1,0,0), (0,1,s-2), (0,1,0), (0,0,2).",
+                "assumptions": [
+                  "Finite simple undirected graphs; the full multiset of unlabeled one-vertex-deleted induced cards is given, including multiplicities.",
+                  "The restricted model is a connected core H of order h with minimum degree at least two, plus leaves directly attached to core vertices. Recognition against arbitrary full-deck mates is part of the proof.",
+                  "Path subgraph counts are ordinary, not induced; endpoint paths in H are vertex-simple. Only proper patterns with fewer than n vertices are recovered by Kelly counting.",
+                  "H consists of two s-cliques joined by a perfect matching; s>=3."
+                ],
+                "argument": "Simultaneously permuting clique positions and swapping the two cliques acts transitively on each of the four listed pair types. Their path signatures differ, proving they are precisely the unordered-pair orbits. The general certificate applies using proper paths on at most five vertices.",
+                "limitation": "A same-clique edge and a matching edge have equal distance and endpoint orbits; their common-neighbor counts differ. This is a self-contained sufficient-family proof, not a claim that the reconstructibility of this class was previously unknown.",
+                "proofUrl": "research/graph-reconstruction-2026-11-02.html#prism-family",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "date": "2026-11-02",
+                "verificationUrl": "research/reconstruction-verification.json"
+              },
+              {
+                "id": "leaf-multiplicity-restoration",
+                "title": "Quadratic recovery of attachment multiplicities and a gap criterion",
+                "claim": "For G=H(a) with r attached leaves, the leaf-card sum satisfies sum Q(b)=(r-2)Q(a)+r, Q(a)=sum a_v^2. If r!=2, any leaf card with exactly one coordinate of the inferred value (Q(a)-Q(b)-1)/2 restores a uniquely. In particular a positive occupancy with an absent predecessor suffices, and every r>h(h-1)/2 forces such a gap.",
+                "assumptions": [
+                  "Finite simple undirected graphs; the full multiset of unlabeled one-vertex-deleted induced cards is given, including multiplicities.",
+                  "The restricted model is a connected core H of order h with minimum degree at least two, plus leaves directly attached to core vertices. Recognition against arbitrary full-deck mates is part of the proof.",
+                  "Path subgraph counts are ordinary, not induced; endpoint paths in H are vertex-simple. Only proper patterns with fewer than n vertices are recovered by Kelly counting.",
+                  "There may be any number r>=1 of directly attached leaves, with nonnegative integer multiplicities a_v. The moment formula can be inverted only for r!=2."
+                ],
+                "argument": "Each card b=a-e_v occurs a_v times. Expanding the square gives the identity and the removed value q=(Q(a)-Q(b)+1)/2. A unique coordinate of value q-1 determines the completion. If no positive occupancy has an absent predecessor, all values 0..M occur; then r<=Mh-M(M+1)/2<=h(h-1)/2.",
+                "limitation": "The strict threshold is sharp only for forcing this elementary gap; it is not a lower bound on reconstructibility. Lauri and the endvertex literature already provide strong group-action criteria. No priority or improvement over those results is claimed. The case r=2 needs other information.",
+                "proofUrl": "research/graph-reconstruction-2026-11-02.html#multiplicity-gap",
+                "sourceUrl": "https://combinatorialpress.com/article/ars/Volume%20036/volume-36-paper-16.pdf",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "date": "2026-11-02",
+                "verificationUrl": "research/reconstruction-verification.json"
+              },
+              {
+                "id": "fixed-path-cutoff-obstruction",
+                "title": "A fixed path cutoff cannot handle every large core",
+                "claim": "For every fixed L>=0, two nonisomorphic two-leaf extensions of C_(2L+5), at attachment distances L+1 and L+2, have the same leaf cards, endpoint vertex-orbits and p0..pL. On the triangular prism, four nonisomorphic two-leaf extensions even have the same entire leaf-deletion deck.",
+                "assumptions": [
+                  "Finite simple undirected graphs; the full multiset of unlabeled one-vertex-deleted induced cards is given, including multiplicities.",
+                  "The restricted model is a connected core H of order h with minimum degree at least two, plus leaves directly attached to core vertices. Recognition against arbitrary full-deck mates is part of the proof.",
+                  "Path subgraph counts are ordinary, not induced; endpoint paths in H are vertex-simple. Only proper patterns with fewer than n vertices are recovered by Kelly counting.",
+                  "This compares restricted information: two leaf cards and a bounded path signature. It does not assert equality of the full vertex-deleted decks."
+                ],
+                "argument": "The cycle is vertex-transitive. Both chosen pair distances exceed L, so all the listed simple-path counts vanish. The distances differ and are invariant under cycle automorphisms, making the full graphs nonisomorphic. For the prism, all single-leaf attachments lie in one orbit while unordered pairs have four orbits.",
+                "limitation": "These are counterexamples to truncated or restricted reconstruction methods, not counterexamples to the Kelly-Ulam conjecture. The full proper profile separates the cycle pairs.",
+                "proofUrl": "research/graph-reconstruction-2026-11-02.html#limits",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "date": "2026-11-02",
+                "verificationUrl": "research/reconstruction-verification.json"
+              }
+            ],
+            "obstacles": [
+              {
+                "id": "two-leaf-cards-lose-alignment",
+                "route": "Align two leaf cards independently and assume the joint attachment is fixed.",
+                "reason": "A vertex-transitive triangular-prism core has four unordered-pair orbits but all four two-leaf extensions have the same two leaf cards. Additional full-deck information is necessary.",
+                "evidenceResultIds": [
+                  "fixed-path-cutoff-obstruction"
+                ]
+              },
+              {
+                "id": "walks-versus-simple-paths",
+                "route": "Use adjacency-matrix powers in place of the simple-path counts in the proof.",
+                "reason": "Matrix powers permit repeated vertices. The leaf endpoint bijection and Kelly occurrence counts use copies of an ordinary path graph with distinct vertices.",
+                "evidenceResultIds": [
+                  "two-leaf-path-certificate"
+                ]
+              },
+              {
+                "id": "finite-path-cutoff",
+                "route": "Replace the full proper path profile by one fixed length cutoff for all graph sizes.",
+                "reason": "Cycle cores of order 2L+5 with attachment distances L+1 and L+2 defeat the cutoff L. This limits the method, not the full conjecture.",
+                "evidenceResultIds": [
+                  "fixed-path-cutoff-obstruction"
+                ]
+              }
+            ],
+            "nextTasks": [
+              {
+                "id": "audit-leaf-reconstruction-certificate",
+                "title": "Independently audit recognition and path recovery",
+                "question": "Reprove or refute the full-deck recognition step, noninduced path inclusion-exclusion, pair-orbit criterion, clique-prism application and multiplicity-gap statement.",
+                "acceptance": "Provide a complete independent proof or a specific counterexample under the exact hypotheses. Handle coincident bases, repeated leaf cards, the h-2 cutoff, r=2 singularity and deck-mates outside the initial model. Simulations alone are insufficient.",
+                "resultIds": [
+                  "two-leaf-path-certificate",
+                  "symmetric-clique-prism-case",
+                  "leaf-multiplicity-restoration",
+                  "fixed-path-cutoff-obstruction"
+                ],
+                "priority": 1,
+                "kind": "audit",
+                "status": "ready"
+              },
+              {
+                "id": "find-path-profile-orbit-collision",
+                "title": "Find the first attachment signature collision or prove a class",
+                "question": "Seek a connected minimum-degree-two core of order at least eight with two inequivalent unordered pairs sharing endpoint vertex-orbits and every proper simple-path count. Alternatively prove separation for a precisely stated new core class.",
+                "acceptance": "Supply exact adjacency data, the full automorphism pair-orbits and all path counts, or a proof with every hypothesis explicit. A signature collision limits this certificate; it is not a full-deck counterexample.",
+                "resultIds": [
+                  "two-leaf-path-certificate",
+                  "symmetric-clique-prism-case",
+                  "fixed-path-cutoff-obstruction"
+                ],
+                "priority": 2,
+                "kind": "new-work",
+                "status": "ready"
+              },
+              {
+                "id": "audit-leaf-reconstruction-prior-art",
+                "title": "Compare the draft with earlier anchor and endvertex results",
+                "question": "Locate equivalent path-profile, weighted-attachment or multiplicity-gap criteria in primary literature, beginning with Farhadian and Lauri.",
+                "acceptance": "Give exact theorem/section citations and compare hypotheses and conclusions. Attribute known results explicitly; otherwise record search scope and leave novelty unassessed.",
+                "resultIds": [
+                  "two-leaf-path-certificate",
+                  "symmetric-clique-prism-case",
+                  "leaf-multiplicity-restoration",
+                  "fixed-path-cutoff-obstruction"
+                ],
+                "priority": 3,
+                "kind": "literature-review",
+                "status": "ready"
+              },
+              {
+                "id": "recover-two-leaf-relative-placement",
+                "title": "Recover relative attachments beyond distance alone",
+                "question": "Derive a full-deck certificate for two leaf attachments to a symmetric core and identify a checkable sufficient class.",
+                "acceptance": "State recognition against arbitrary deck-mates, prove the recovered invariants and orbit criterion, and corroborate finite examples with exact arithmetic.",
+                "resultIds": [
+                  "two-leaf-path-certificate",
+                  "symmetric-clique-prism-case",
+                  "leaf-multiplicity-restoration",
+                  "fixed-path-cutoff-obstruction"
+                ],
+                "priority": 1,
+                "kind": "new-work",
+                "status": "completed",
+                "completedAt": "2026-11-02",
+                "completionAttemptId": "leaf-attachment-reconstruction-2026-11-02"
+              }
+            ],
+            "attempts": [
+              {
+                "id": "leaf-attachment-reconstruction-2026-11-02",
+                "sessionId": "reconstruction-2026-11-02",
+                "date": "2026-11-02",
+                "status": "contributed",
+                "baseRevision": "2026-11-02.1",
+                "taskId": "recover-two-leaf-relative-placement",
+                "priorAttemptIds": [],
+                "outcome": "proof",
+                "claim": "Introduced the requested vertex-deleted reconstruction direction. Derived a simple-path pair-orbit certificate for two leaves over a recognized core, an infinite clique-prism family, a quadratic multiplicity-restoration criterion, and exact counterexamples to restricted leaf-card/fixed-cutoff shortcuts.",
+                "assumptions": [
+                  "Finite simple undirected graphs; the full multiset of unlabeled one-vertex-deleted induced cards is given, including multiplicities.",
+                  "The restricted model is a connected core H of order h with minimum degree at least two, plus leaves directly attached to core vertices. Recognition against arbitrary full-deck mates is part of the proof.",
+                  "Path subgraph counts are ordinary, not induced; endpoint paths in H are vertex-simple. Only proper patterns with fewer than n vertices are recovered by Kelly counting."
+                ],
+                "argument": "Complete eight-section proof linked below: recover deleted degrees and recognize direct leaf extensions; recover paths containing both leaves by Kelly counting and inclusion-exclusion; separate attachment pair-orbits; prove the four clique-prism signatures; recover quadratic occupancy moments and a gap; construct fixed-cutoff cycle obstructions.",
+                "validation": "Exact exhaustive S_h orbit generation at h=3..7 checks 583 connected minimum-degree-two cores and 9,518 pair orbits; all pass the path certificate. Direct calculations check 3,637 counting identities and compare 693 complete extension decks. Additional exact checks cover triangular-prism occupancy orbits for 1..8 leaves, 302 moment identities, 189 restoration certificates, 1,500 threshold occupancy vectors and clique-prism signatures at s=3..9. This is not a general proof, independent audit, novelty certificate or improvement of McKay finite verification.",
+                "limitations": "The full Kelly-Ulam conjecture remains open. The new draft gives explicit certificates only for recognized leaf extensions of minimum-degree-two cores, with conditional path-signature separation or a multiplicity-gap condition. General cores and leaf-free graphs are not resolved. Independent proof review and comparison with established anchor/endvertex results are pending.",
+                "sources": [
+                  "https://arxiv.org/html/2604.16567",
+                  "https://arxiv.org/html/1611.01609",
+                  "https://combinatorialpress.com/article/ars/Volume%20036/volume-36-paper-16.pdf",
+                  "https://arxiv.org/abs/2102.01942",
+                  "https://arxiv.org/html/2504.02353"
+                ],
+                "resultIds": [
+                  "two-leaf-path-certificate",
+                  "symmetric-clique-prism-case",
+                  "leaf-multiplicity-restoration",
+                  "fixed-path-cutoff-obstruction"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted research session, 2 November 2026",
+                "artifactUrls": [
+                  "research/graph-reconstruction-2026-11-02.html",
+                  "research/graph-reconstruction-2026-11-02.pdf",
+                  "research/verify-reconstruction.py",
+                  "research/reconstruction-verification.json"
+                ],
+                "nextStep": "Independently audit the certificate and prior art, then search for a proper-path signature collision on a symmetric core of order at least eight.",
+                "supersedes": []
               }
             ]
           }

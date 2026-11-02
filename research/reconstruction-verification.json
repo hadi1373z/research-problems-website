@@ -1,0 +1,363 @@
+{
+  "date": "2026-11-02",
+  "scope": "Exact finite certificate checks, not a proof of the full reconstruction conjecture or a novelty claim.",
+  "records": [
+    {
+      "core_order": 3,
+      "all_unlabeled_graphs": 4,
+      "connected_min_degree_2_cores": 1,
+      "cores_where_all_pair_orbits_separated": 1,
+      "pair_orbits": 2,
+      "pair_orbits_certified": 2,
+      "pair_orbits_not_separated_by_distance": 0
+    },
+    {
+      "core_order": 4,
+      "all_unlabeled_graphs": 11,
+      "connected_min_degree_2_cores": 3,
+      "cores_where_all_pair_orbits_separated": 3,
+      "pair_orbits": 10,
+      "pair_orbits_certified": 10,
+      "pair_orbits_not_separated_by_distance": 0
+    },
+    {
+      "core_order": 5,
+      "all_unlabeled_graphs": 34,
+      "connected_min_degree_2_cores": 11,
+      "cores_where_all_pair_orbits_separated": 11,
+      "pair_orbits": 64,
+      "pair_orbits_certified": 64,
+      "pair_orbits_not_separated_by_distance": 0
+    },
+    {
+      "core_order": 6,
+      "all_unlabeled_graphs": 156,
+      "connected_min_degree_2_cores": 61,
+      "cores_where_all_pair_orbits_separated": 61,
+      "pair_orbits": 617,
+      "pair_orbits_certified": 617,
+      "pair_orbits_not_separated_by_distance": 12
+    },
+    {
+      "core_order": 7,
+      "all_unlabeled_graphs": 1044,
+      "connected_min_degree_2_cores": 507,
+      "cores_where_all_pair_orbits_separated": 507,
+      "pair_orbits": 8825,
+      "pair_orbits_certified": 8825,
+      "pair_orbits_not_separated_by_distance": 92
+    }
+  ],
+  "example_strictly_beyond_distance": {
+    "n": 6,
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "automorphism_count": 4,
+    "pairs": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        3
+      ]
+    ],
+    "endpoint_orbits": [
+      0,
+      0
+    ],
+    "distance": 1,
+    "profiles": [
+      [
+        0,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        1,
+        2
+      ]
+    ]
+  },
+  "first_unseparated_example": null,
+  "kelly_inclusion_exclusion_checks": 3637,
+  "complete_extension_decks_compared": 693,
+  "leaf_multiplicity_checks": {
+    "triangular_prism_leaf_decks": [
+      {
+        "leaves": 1,
+        "occupancy_orbits": 1,
+        "distinct_leaf_decks": 1,
+        "largest_leaf_deck_collision": 1,
+        "unique_coordinate_certificates": 0
+      },
+      {
+        "leaves": 2,
+        "occupancy_orbits": 4,
+        "distinct_leaf_decks": 1,
+        "largest_leaf_deck_collision": 4,
+        "unique_coordinate_certificates": 0
+      },
+      {
+        "leaves": 3,
+        "occupancy_orbits": 7,
+        "distinct_leaf_decks": 7,
+        "largest_leaf_deck_collision": 1,
+        "unique_coordinate_certificates": 1
+      },
+      {
+        "leaves": 4,
+        "occupancy_orbits": 16,
+        "distinct_leaf_decks": 16,
+        "largest_leaf_deck_collision": 1,
+        "unique_coordinate_certificates": 7
+      },
+      {
+        "leaves": 5,
+        "occupancy_orbits": 26,
+        "distinct_leaf_decks": 26,
+        "largest_leaf_deck_collision": 1,
+        "unique_coordinate_certificates": 13
+      },
+      {
+        "leaves": 6,
+        "occupancy_orbits": 50,
+        "distinct_leaf_decks": 50,
+        "largest_leaf_deck_collision": 1,
+        "unique_coordinate_certificates": 26
+      },
+      {
+        "leaves": 7,
+        "occupancy_orbits": 76,
+        "distinct_leaf_decks": 76,
+        "largest_leaf_deck_collision": 1,
+        "unique_coordinate_certificates": 48
+      },
+      {
+        "leaves": 8,
+        "occupancy_orbits": 126,
+        "distinct_leaf_decks": 126,
+        "largest_leaf_deck_collision": 1,
+        "unique_coordinate_certificates": 94
+      }
+    ],
+    "norm_identity_orbits_checked": 302,
+    "restoration_certificates_checked": 189,
+    "all_threshold_occupancies_checked": 1500,
+    "clique_prism_signatures": [
+      {
+        "clique_size": 3,
+        "pair_signatures": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "clique_size": 4,
+        "pair_signatures": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "clique_size": 5,
+        "pair_signatures": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "clique_size": 6,
+        "pair_signatures": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            4
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "clique_size": 7,
+        "pair_signatures": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            5
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "clique_size": 8,
+        "pair_signatures": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            6
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      },
+      {
+        "clique_size": 9,
+        "pair_signatures": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            7
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            2
+          ]
+        ]
+      }
+    ]
+  }
+}

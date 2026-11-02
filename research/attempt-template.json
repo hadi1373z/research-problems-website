@@ -3,12 +3,11 @@
   "id": "replace-with-a-unique-attempt-id",
   "status": "draft",
   "review": "unreviewed",
-  "baseRevision": "2026-11-02.1",
-  "problemId": "higher-order-transfer-rates",
-  "taskId": "audit-conditional-tuple-induction",
+  "baseRevision": "2026-11-02.2",
+  "problemId": "vertex-deleted-reconstruction",
+  "taskId": "audit-leaf-reconstruction-certificate",
   "priorAttemptIds": [
-    "initial-higher-order-transfer-rates",
-    "conditional-tuple-induction-2026-11-02"
+    "leaf-attachment-reconstruction-2026-11-02"
   ],
   "resultIds": [],
   "artifactUrls": [],

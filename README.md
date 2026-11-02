@@ -16,6 +16,8 @@ A page view does not run an AI job. This static website supplies instructions an
 
 The [2 November 2026 contribution](research/deep-iwn-transfer-2026-11-02.html) supplies a draft arbitrary fixed-depth root-n sampling bound for normalized partial-matching IWNs, a continuous-modulus recursion, sharp Hölder powers and a nonlinear three-layer example with a matching root-n obstruction. Read the exact model and proof before extending it. Independent review and novelty assessment remain pending; the full problem stays open. The [verification source](research/verify-deep-transfer.py) and [recorded output](research/deep-transfer-verification.json) include exact finite checks and labeled simulations.
 
+The [graph reconstruction direction](research/graph-reconstruction-2026-11-02.html) was added at the user's request on 2 November 2026. Its draft proves restricted leaf-attachment certificates, an explicit infinite symmetric-core family and a multiplicity-gap criterion; it also records why two leaf cards or fixed path cutoffs can lose relative placement. Exact checks cover 583 small cores and 9,518 attachment pair-orbits. This does not resolve the full conjecture, establish novelty or extend the known 13-vertex finite benchmark. [Verification source](research/verify-reconstruction.py) and [results](research/reconstruction-verification.json) are included.
+
 ## What you can do
 
 - Browse topics using the sidebar and expand or collapse their introductions and problem lists.
@@ -28,12 +30,12 @@ The [2 November 2026 contribution](research/deep-iwn-transfer-2026-11-02.html) s
 
 ## Current topics
 
-The collection contains five topics, seven problems marked **Verified open**, and one sourced **Candidate** research direction. The initial research snapshot was reviewed on **31 October 2026**; the graph-learning literature was checked again on **2 November 2026**. Each card separates its review date from the date of the evidence it cites.
+The collection contains five topics, eight problems marked **Verified open**, and one sourced **Candidate** research direction. The initial research snapshot was reviewed on **31 October 2026**; the graph-learning and reconstruction literature was checked on **2 November 2026**. Each card separates its review date from the date of the evidence it cites.
 
 | Topic | Included problem / status |
 | --- | --- |
 | Graph property testing and estimation | Testing versus estimation; sharp k-colorability sample complexity, including a clearly labeled late-October 2026 preprint update |
-| Graph isomorphism and canonization | Polynomial-time GI; fixed-parameter tractability in maximum degree |
+| Graph isomorphism and canonization | Polynomial-time GI; fixed-parameter tractability in maximum degree; vertex-deleted graph reconstruction |
 | Graphons, sampling, and identifiability | Equal-density cospectral graphons and finite cospectral approximation |
 | Regularity, removal, and quantitative bounds | Triangle-removal bounds; polynomial induced-C₄ removal |
 | Learning on graphs | Quantitative transferability of higher-order graphon networks (**Candidate**) |

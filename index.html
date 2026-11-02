@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Open research problems with shared proofs, failed approaches, and concrete next tasks for human and AI research sessions.">
   <title>Research Problems Website</title>
-  <link rel="stylesheet" href="styles.css?v=2026-11-02.1">
+  <link rel="stylesheet" href="styles.css?v=2026-11-02.2">
   <link rel="alternate" type="application/json" href="research-state.json" title="Shared research state">
   <link rel="alternate" type="text/plain" href="llms.txt" title="AI research overview">
 </head>
@@ -29,15 +29,15 @@
 
       <section class="overview" aria-label="Atlas summary">
         <div class="stat"><strong id="topicCount">5</strong><span>research topics</span></div>
-        <div class="stat"><strong id="verifiedCount">7</strong><span>verified open problems</span></div>
+        <div class="stat"><strong id="verifiedCount">8</strong><span>verified open problems</span></div>
         <div class="stat"><strong id="reviewedDate">2 Nov 2026</strong><span>latest literature review</span></div>
       </section>
 
       <section class="continuation-panel" id="continue-research" aria-labelledby="continuationTitle">
-        <div class="continuation-top"><div><div class="eyebrow">Continue the research</div><h2 id="continuationTitle">Make the next attempt count.</h2></div><span class="badge"><span id="openProblemCount">8</span> full questions still open</span></div>
-        <p class="continuation-intro">The shared notebook now includes the first attempts, their exact assumptions, and <span id="frontierCount">18</span> concrete frontier tasks. New derivations need independent review; novelty is unassessed.</p>
+        <div class="continuation-top"><div><div class="eyebrow">Continue the research</div><h2 id="continuationTitle">Make the next attempt count.</h2></div><span class="badge"><span id="openProblemCount">9</span> full questions still open</span></div>
+        <p class="continuation-intro">The shared notebook now includes the first attempts, their exact assumptions, and <span id="frontierCount">21</span> concrete frontier tasks. New derivations need independent review; novelty is unassessed.</p>
         <div class="continuation-grid"><ol class="continuation-steps"><li><strong>Read the baseline.</strong> Start from the existing proof and prior attempts.</li><li><strong>Check one next claim.</strong> Produce a proof, counterexample, audit, computation, or sourced update.</li><li><strong>Leave a handoff.</strong> Save the delta, its limitations, and the next task. Record no-progress honestly when needed.</li></ol><div class="continuation-resources"><a href="research.html">Read the AI handoff and all next tasks ↗</a><a href="research-state.json">Shared research state · JSON ↗</a><a href="research/notebook-2026-10-31.html">Initial notebook · full arguments ↗</a><a href="research/notebook-2026-10-31.pdf">Download the dated report ↗</a><a href="https://github.com/hadi1373z/research-problems-website">Contribute through GitHub ↗</a></div></div>
-        <div class="workspace-actions"><button class="button primary" id="copyHandoff">Copy AI research handoff</button><button class="button" id="recordAttempt">Record an attempt</button><span class="workspace-meta">Revision <span id="sharedRevision">2026-11-02.1</span> · <span id="draftCount">0</span> private drafts</span></div>
+        <div class="workspace-actions"><button class="button primary" id="copyHandoff">Copy AI research handoff</button><button class="button" id="recordAttempt">Record an attempt</button><span class="workspace-meta">Revision <span id="sharedRevision">2026-11-02.2</span> · <span id="draftCount">0</span> private drafts</span></div>
         <p class="workspace-feedback" id="workspaceFeedback" role="status" aria-live="polite"></p>
         <p class="workspace-note">A page view does not run an AI researcher. Paste the handoff into an authorized AI session. Browser drafts stay private; a repository contribution makes progress available to future sessions. No new mathematical result is implied by a website update.</p>
       </section>
@@ -74,8 +74,8 @@
     <p class="draft-feedback" id="attemptFeedback" role="status" aria-live="polite"></p>
     <div class="actions"><button class="button" type="button" data-close-dialog="attemptDialog">Close</button><button class="button" type="submit">Save draft locally</button><button class="button primary" type="button" id="exportAttempt">Export draft JSON</button></div>
   </form></dialog>
-  <script src="research-core.js?v=2026-11-02.1"></script>
-  <script src="research-data.js?v=2026-11-02.1"></script>
-  <script src="app.js?v=2026-11-02.1"></script>
+  <script src="research-core.js?v=2026-11-02.2"></script>
+  <script src="research-data.js?v=2026-11-02.2"></script>
+  <script src="app.js?v=2026-11-02.2"></script>
 </body>
 </html>

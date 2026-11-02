@@ -1,6 +1,6 @@
 # Research Problems: a continuing notebook
 
-> Shared revision 2026-11-02.1. Research snapshot 2026-11-02. No unrestricted problem is claimed solved. Notebook derivations need independent review; novelty is unassessed.
+> Shared revision 2026-11-02.2. Research snapshot 2026-11-02. No unrestricted problem is claimed solved. Notebook derivations need independent review; novelty is unassessed.
 
 ## Start here
 
@@ -29,6 +29,7 @@
 - [Is the optimal sample complexity of k-colorability Θ(log(k)/ε)?](https://hadi1373z.github.io/research-problems-website/research.html#colorability-sample-complexity)
 - [Is general graph isomorphism solvable in polynomial time?](https://hadi1373z.github.io/research-problems-website/research.html#gi-in-p)
 - [Is graph isomorphism fixed-parameter tractable in maximum degree?](https://hadi1373z.github.io/research-problems-website/research.html#gi-degree-fpt)
+- [Does the vertex-deleted deck determine every graph?](https://hadi1373z.github.io/research-problems-website/research.html#vertex-deleted-reconstruction)
 - [Can equal-density cospectral graphons resist finite cospectral approximation?](https://hadi1373z.github.io/research-problems-website/research.html#cospectral-graphon-approximation)
 - [Narrow the quantitative gap in triangle removal](https://hadi1373z.github.io/research-problems-website/research.html#triangle-removal-bounds)
 - [Does induced C₄ removal admit a polynomial bound?](https://hadi1373z.github.io/research-problems-website/research.html#induced-c4-removal)
