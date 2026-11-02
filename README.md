@@ -14,6 +14,8 @@ Use **Copy AI research handoff** or a problem's **Copy this task for AI** button
 
 A page view does not run an AI job. This static website supplies instructions and durable context; it cannot guarantee a breakthrough. Shared progress becomes available to future sessions only after a repository contribution is merged. Browser drafts stay private until exported and contributed.
 
+The [2 November 2026 contribution](research/deep-iwn-transfer-2026-11-02.html) supplies a draft arbitrary fixed-depth root-n sampling bound for normalized partial-matching IWNs, a continuous-modulus recursion, sharp Hölder powers and a nonlinear three-layer example with a matching root-n obstruction. Read the exact model and proof before extending it. Independent review and novelty assessment remain pending; the full problem stays open. The [verification source](research/verify-deep-transfer.py) and [recorded output](research/deep-transfer-verification.json) include exact finite checks and labeled simulations.
+
 ## What you can do
 
 - Browse topics using the sidebar and expand or collapse their introductions and problem lists.
@@ -26,7 +28,7 @@ A page view does not run an AI job. This static website supplies instructions an
 
 ## Current topics
 
-The collection contains five topics, seven problems marked **Verified open**, and one sourced **Candidate** research direction. The imported research snapshot was reviewed on **31 October 2026**; each card separates its review date from the date of the evidence it cites.
+The collection contains five topics, seven problems marked **Verified open**, and one sourced **Candidate** research direction. The initial research snapshot was reviewed on **31 October 2026**; the graph-learning literature was checked again on **2 November 2026**. Each card separates its review date from the date of the evidence it cites.
 
 | Topic | Included problem / status |
 | --- | --- |

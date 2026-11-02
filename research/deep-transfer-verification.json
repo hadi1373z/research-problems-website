@@ -1,0 +1,249 @@
+{
+  "date": "2026-11-02",
+  "scope": "Exact finite checks and labeled numerical experiments. Not a formal proof, independent review, or novelty certificate.",
+  "finite_partial_matching_basis": {
+    "arities": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "partial_matchings_checked": 90,
+    "comparison": "Vectorized operators versus explicit sums; sup norm and collision bound checked."
+  },
+  "conditional_type_basis": {
+    "partial_matchings_checked": 90,
+    "conditional_rows_checked": 3544,
+    "probabilities": "Exact Fraction row sums and contraction bounds.",
+    "unconditional_shared_vertex_covariance": "1/256",
+    "conditional_covariances": [
+      "0",
+      "0"
+    ]
+  },
+  "threshold_network_exact_enumeration": [
+    {
+      "n": 2,
+      "graphs": 2,
+      "expected_output_exact": "1/16"
+    },
+    {
+      "n": 3,
+      "graphs": 8,
+      "expected_output_exact": "1/16"
+    },
+    {
+      "n": 4,
+      "graphs": 64,
+      "expected_output_exact": "13/256"
+    },
+    {
+      "n": 5,
+      "graphs": 1024,
+      "expected_output_exact": "91/1600"
+    },
+    {
+      "n": 6,
+      "graphs": 32768,
+      "expected_output_exact": "1051/18432"
+    }
+  ],
+  "threshold_network_root_n_sharpness": {
+    "asymptotic_constant": 0.17274707473566775,
+    "table": [
+      {
+        "n": 16,
+        "expected_output": 0.038439836411271286,
+        "sqrt_n_times_expected_output": 0.15375934564508514,
+        "proved_upper_bound": 0.484375
+      },
+      {
+        "n": 32,
+        "expected_output": 0.02891134900005795,
+        "sqrt_n_times_expected_output": 0.1635472874495351,
+        "proved_upper_bound": 0.3069083691207961
+      },
+      {
+        "n": 64,
+        "expected_output": 0.021039248424732843,
+        "sqrt_n_times_expected_output": 0.16831398739786274,
+        "proved_upper_bound": 0.19921875
+      },
+      {
+        "n": 128,
+        "expected_output": 0.015078588320205777,
+        "sqrt_n_times_expected_output": 0.17059475283100445,
+        "proved_upper_bound": 0.13196980956039805
+      },
+      {
+        "n": 256,
+        "expected_output": 0.010730899442658986,
+        "sqrt_n_times_expected_output": 0.17169439108254378,
+        "proved_upper_bound": 0.0888671875
+      },
+      {
+        "n": 512,
+        "expected_output": 0.007611528155577316,
+        "sqrt_n_times_expected_output": 0.17222922156803377,
+        "proved_upper_bound": 0.06061381103019902
+      },
+      {
+        "n": 1024,
+        "expected_output": 0.0053903498776713904,
+        "sqrt_n_times_expected_output": 0.1724911960854845,
+        "proved_upper_bound": 0.041748046875
+      },
+      {
+        "n": 2048,
+        "expected_output": 0.0038144041071945115,
+        "sqrt_n_times_expected_output": 0.1726202246645157,
+        "proved_upper_bound": 0.02896413207759951
+      },
+      {
+        "n": 4096,
+        "expected_output": 0.0026981880893068356,
+        "sqrt_n_times_expected_output": 0.17268403771563748,
+        "proved_upper_bound": 0.02020263671875
+      },
+      {
+        "n": 8192,
+        "expected_output": 0.001908256852212676,
+        "sqrt_n_times_expected_output": 0.17271569413699567,
+        "proved_upper_bound": 0.014146372679424755
+      }
+    ]
+  },
+  "four_layer_network": {
+    "limit_exact": "2603/32000",
+    "limit_decimal": 0.08134375,
+    "table": [
+      {
+        "n": 12,
+        "repetitions": 120,
+        "mean_absolute_error": 0.026475791497878088,
+        "standard_error": 0.0018499708279961513,
+        "sqrt_n_times_mean_error": 0.09171483208984992,
+        "coarse_proved_bound": 3.833333333333333
+      },
+      {
+        "n": 24,
+        "repetitions": 120,
+        "mean_absolute_error": 0.01621654342665321,
+        "standard_error": 0.0009541925613089857,
+        "sqrt_n_times_mean_error": 0.07944451357397,
+        "coarse_proved_bound": 2.225974008082621
+      },
+      {
+        "n": 48,
+        "repetitions": 120,
+        "mean_absolute_error": 0.011227717149889953,
+        "standard_error": 0.0007188428510467852,
+        "sqrt_n_times_mean_error": 0.0777879062264873,
+        "coarse_proved_bound": 1.3527605243332492
+      },
+      {
+        "n": 96,
+        "repetitions": 120,
+        "mean_absolute_error": 0.006231147795730191,
+        "standard_error": 0.0004605482417387528,
+        "sqrt_n_times_mean_error": 0.061052530445628445,
+        "coarse_proved_bound": 0.8513376835049218
+      }
+    ]
+  },
+  "holder_exponent_checks": [
+    {
+      "product_of_holder_exponents": 1.0,
+      "predicted_power": 0.5,
+      "table": [
+        {
+          "n": 16,
+          "expected_output": 0.196380615234375,
+          "n_to_beta_times_error": 0.7855224609375
+        },
+        {
+          "n": 32,
+          "expected_output": 0.13994993409141898,
+          "n_to_beta_times_error": 0.791676379381222
+        },
+        {
+          "n": 64,
+          "expected_output": 0.09934675374796689,
+          "n_to_beta_times_error": 0.7947740299837351
+        },
+        {
+          "n": 128,
+          "expected_output": 0.07038609217001512,
+          "n_to_beta_times_error": 0.7963277291942249
+        },
+        {
+          "n": 256,
+          "expected_output": 0.04981910993614015,
+          "n_to_beta_times_error": 0.7971057589782424
+        }
+      ]
+    },
+    {
+      "product_of_holder_exponents": 0.5,
+      "predicted_power": 0.25,
+      "table": [
+        {
+          "n": 16,
+          "expected_output": 0.3836986230374329,
+          "n_to_beta_times_error": 0.7673972460748658
+        },
+        {
+          "n": 32,
+          "expected_output": 0.33177822363752457,
+          "n_to_beta_times_error": 0.7891060483054163
+        },
+        {
+          "n": 64,
+          "expected_output": 0.2836574771417254,
+          "n_to_beta_times_error": 0.8023045024847286
+        },
+        {
+          "n": 128,
+          "expected_output": 0.24089433716849956,
+          "n_to_beta_times_error": 0.8102687383196436
+        },
+        {
+          "n": 256,
+          "expected_output": 0.20376353824652027,
+          "n_to_beta_times_error": 0.8150541529860811
+        }
+      ]
+    },
+    {
+      "product_of_holder_exponents": 0.25,
+      "predicted_power": 0.125,
+      "table": [
+        {
+          "n": 16,
+          "expected_output": 0.5505193331745772,
+          "n_to_beta_times_error": 0.7785519073240798
+        },
+        {
+          "n": 32,
+          "expected_output": 0.5280478375861682,
+          "n_to_beta_times_error": 0.8143610914586428
+        },
+        {
+          "n": 64,
+          "expected_output": 0.498306391845921,
+          "n_to_beta_times_error": 0.8380481172024955
+        },
+        {
+          "n": 128,
+          "expected_output": 0.46542050542614904,
+          "n_to_beta_times_error": 0.8535849705322806
+        },
+        {
+          "n": 256,
+          "expected_output": 0.4318650236863745,
+          "n_to_beta_times_error": 0.863730047372749
+        }
+      ]
+    }
+  ]
+}

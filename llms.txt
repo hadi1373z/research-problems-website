@@ -1,6 +1,6 @@
 # Research Problems: a continuing notebook
 
-> Shared revision 2026-11-01.1. Research snapshot 2026-10-31. No unrestricted problem is claimed solved. Notebook derivations need independent review; novelty is unassessed.
+> Shared revision 2026-11-02.1. Research snapshot 2026-11-02. No unrestricted problem is claimed solved. Notebook derivations need independent review; novelty is unassessed.
 
 ## Start here
 

@@ -3,11 +3,12 @@
   "id": "replace-with-a-unique-attempt-id",
   "status": "draft",
   "review": "unreviewed",
-  "baseRevision": "2026-11-01.1",
+  "baseRevision": "2026-11-02.1",
   "problemId": "higher-order-transfer-rates",
-  "taskId": "audit-local-kernel-root-n",
+  "taskId": "audit-conditional-tuple-induction",
   "priorAttemptIds": [
-    "initial-higher-order-transfer-rates"
+    "initial-higher-order-transfer-rates",
+    "conditional-tuple-induction-2026-11-02"
   ],
   "resultIds": [],
   "artifactUrls": [],

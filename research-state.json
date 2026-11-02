@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "revision": "2026-11-01.1",
-  "updated": "2026-11-01",
-  "researchReviewed": "2026-10-31",
+  "revision": "2026-11-02.1",
+  "updated": "2026-11-02",
+  "researchReviewed": "2026-11-02",
   "siteUrl": "https://hadi1373z.github.io/research-problems-website/",
   "repositoryUrl": "https://github.com/hadi1373z/research-problems-website",
   "purpose": "Accumulate reviewable research deltas across AI and human sessions without losing assumptions, failed routes or unresolved gaps.",
@@ -33,6 +33,20 @@
         "higher-order-transfer-rates"
       ],
       "summary": "Initial attempts on all eight public questions: restricted derivations, negative examples, a literature update, and remaining gaps. No unrestricted problem solved."
+    },
+    {
+      "id": "deep-transfer-2026-11-02",
+      "date": "2026-11-02",
+      "kind": "research",
+      "problemIds": [
+        "higher-order-transfer-rates"
+      ],
+      "baseRevision": "2026-11-01.1",
+      "summary": "Draft arbitrary fixed-depth root-n IWN sampling theorem, continuous-modulus/Hölder rates with sharp powers, and a sharp nonlinear three-layer example. Needs independent review; novelty unassessed. The full problem remains open.",
+      "artifactUrls": [
+        "research/deep-iwn-transfer-2026-11-02.html",
+        "research/deep-transfer-verification.json"
+      ]
     }
   ],
   "history": [
@@ -41,6 +55,12 @@
       "kind": "site-update",
       "countsAsResearch": false,
       "summary": "Imported the dated notebook, added shared state, independent-review labels, concrete frontier tasks, an AI handoff, and draft export. This infrastructure update is not a new mathematical result."
+    },
+    {
+      "date": "2026-11-02",
+      "kind": "research-contribution",
+      "countsAsResearch": true,
+      "summary": "Appended the conditional-tuple proof draft and reproducible checks; completed the nonlocal three-layer task and opened independent proof and novelty audits. All older attempts are preserved; no full problem is marked resolved."
     }
   ],
   "topics": [
@@ -925,15 +945,15 @@
           "id": "higher-order-transfer-rates",
           "verified": false,
           "title": "Quantitative transferability of higher-order graphon networks",
-          "lead": "Qualitative transfer is known; general explicit rates are an author-posed research direction.",
+          "lead": "A draft now gives explicit arbitrary fixed-depth Lipschitz rates and sharp regularity examples. Independent review and novelty assessment remain open.",
           "model": "Fix an Invariant Graphon Network N (IWN) with architecture and weights independent of n,m and continuous activation. W:[0,1]²→[0,1] is symmetric measurable; f is scalar measurable, ||f||∞≤r>1. Independently sample simple loopless graph-signals using iid uniform positions, conditional Bernoulli(W(xi,xj)) edges, and f(xi) signals.",
           "statement": "Obtain explicit, tight bounds on E|N(Gn,fn)−N(Gm,fm)| beyond the restricted two-layer analytic architecture. Track tensor order, depth, weights, signal bound, and activation regularity.",
-          "known": "Theorem 5.2/Corollary 5.3 give qualitative transferability. Theorem 5.4 covers a specified two-layer real-analytic class under Theorem G.1's condition r||(a,b,c)||₁<R, where R is the activation's convergence radius.",
-          "formula": "Restricted class, sufficiently large n,m: E|N(Gn,fn)−N(Gm,fm)| ≤ C(N,r)[(log n)^(−1/2)+(log m)^(−1/2)]",
-          "source": "Herbst–Jegelka · ICLR 2025, §6",
-          "checked": "2025 paper; later status unconfirmed",
-          "reviewed": "2026-10-31",
-          "statusNote": "Published future direction; later status unconfirmed. No common rate for all continuous activations or distribution-shift guarantee is claimed. A research snapshot from 31 October 2026 is now recorded below; no unrestricted resolution is claimed.",
+          "known": "Published Theorem 5.2/Corollary 5.3 give qualitative transferability; Theorem 5.4 treats a restricted analytic two-layer class. A 2 November 2026 notebook draft derives a direct root-n sampling rate at arbitrary fixed Lipschitz depth for the normalized partial-matching basis, together with sharp Hölder powers. The draft is not independently reviewed.",
+          "formula": "Draft, n,m>=2K: E|N_n-N_m| <= P_L[(n-K)^(-1/2)+(m-K)^(-1/2)] + Q_L(1/n+1/m). Explicit layer constants and exact scope are in the proof.",
+          "source": "Herbst-Jegelka · ICLR 2025; notebook draft · 2 Nov 2026",
+          "checked": "Primary literature checked 2 Nov 2026; draft proof awaits independent review; novelty unassessed",
+          "reviewed": "2026-11-02",
+          "statusNote": "Full problem remains open. The new draft addresses bounded same-source sampling for fixed normalized partial-matching IWNs. It is not a distribution-shift or trained-model guarantee, and its independent verification and publication novelty remain unassessed.",
           "importance": "Finite-sample guarantees for expressive graph models",
           "links": [
             [
@@ -943,11 +963,15 @@
             [
               "Later framework · Appendix G.3",
               "https://papers.neurips.cc/paper_files/paper/2025/file/60b393761eea35bf491687c46e4f1a5a-Paper-Conference.pdf"
+            ],
+            [
+              "2 Nov 2026 · full draft proof",
+              "https://hadi1373z.github.io/research-problems-website/research/deep-iwn-transfer-2026-11-02.html"
             ]
           ],
           "research": {
             "status": "open",
-            "currentGap": "The local class has an explicit root-n rate and polynomial models have motif-dependent constants. Tight architecture-level rates at arbitrary depth, including activation regularity, are not established. Mere continuity permits arbitrarily slow rates.",
+            "currentGap": "A 2 November 2026 draft now gives architecture-level root-n rates at arbitrary fixed Lipschitz depth in the normalized partial-matching IWN class, explicit modulus/Hölder rates, and a sharp nonlinear three-layer example. The conditional induction, exact architectural coverage and literature novelty still need independent audit. Full partition-basis operations, optimal architecture-specific constants and broader sampling models are outside the claim. No unrestricted resolution has been accepted.",
             "results": [
               {
                 "id": "local-kernel-root-n",
@@ -1000,6 +1024,66 @@
                 "proofUrl": "research/notebook-2026-10-31.html#proposition-9",
                 "verificationUrl": "research/verification-results.json",
                 "date": "2026-10-31"
+              },
+              {
+                "id": "fixed-depth-lipschitz-root-n",
+                "title": "A draft root-n bound at arbitrary fixed Lipschitz depth",
+                "claim": "For the normalized partial-matching IWN class, E|N_n-mu| <= P_L/sqrt(n-K)+Q_L/n. Hence E|N_n-N_m| <= P_L[(n-K)^(-1/2)+(m-K)^(-1/2)]+Q_L(1/n+1/m), uniformly over bounded graphon-signals. P_0=Q_0=0; P_l=L_l a_l(P_(l-1)+M_(l-1) r_l), Q_l=L_l a_l(Q_(l-1)+2M_(l-1)d_l), d_l=k_l r_l+r_l(r_l-1)/2.",
+                "assumptions": [
+                  "Fixed finite depth, tensor orders, channel widths and weights, independently of sample size; scalar output, K=max tensor order and n,m>=2K.",
+                  "Simple loopless symmetric Bernoulli graph samples from one arbitrary measurable graphon W; iid uniform latent positions and one independent edge uniform per unordered pair; bounded measurable signal |f|<=R.",
+                  "Every linear map is a finite linear combination of normalized partial matchings: r free input indices are summed over all tuples with factor n^(-r), including repetitions. No within-input diagonal extraction or output equality masks.",
+                  "Constant channel biases and pointwise activations with the specified Lipschitz or continuity modulus on bounded reachable intervals. The last activation may be the identity.",
+                  "The deterministic limit integrates conditional Bernoulli tuple types; it need not equal the original weighted-input network N(W,f).",
+                  "L_l is the layer activation Lipschitz constant; a_l is the maximum absolute weight row sum; r_l is the maximum free input order among nonzero weights; M_l bounds finite tensors and limiting fields."
+                ],
+                "argument": "Construct a bounded conditional tuple field at each layer. First replace the globally dependent hidden tensor by that local field in unconditional mean. Conditional on the entire output tuple type, kernels on disjoint fresh vertex sets are independent. Their averaging error is at most M r/sqrt(n-q), and collisions cost at most 2M[qr+r(r-1)/2]/n. Lipschitz induction gives the constants. An L1 contraction argument also yields a stated bounded-differences concentration corollary.",
+                "limitation": "This is a self-contained draft, not an independently checked or novelty-certified theorem. It excludes full diagonal partition-basis operations, sparse/unbounded sampling, sample-size-dependent parameters and distribution shift. Constants may be loose or grow rapidly with depth; it is not a runtime or learning guarantee.",
+                "proofUrl": "research/deep-iwn-transfer-2026-11-02.html#lipschitz-theorem",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "date": "2026-11-02",
+                "verificationUrl": "research/deep-transfer-verification.json"
+              },
+              {
+                "id": "activation-modulus-holder-rates",
+                "title": "Explicit continuous-modulus recursion and sharp Hölder powers",
+                "claim": "For continuous activations, e_l(n) <= Omega_l(a_l[e_(l-1)(n)+eta_l(n)]), with eta_l=M_(l-1)[r_l/sqrt(n-K)+2d_l/n] and an explicit concave majorant Omega_l of the activation modulus. If layer l is alpha_l-Hölder, the rate is O(n^(-beta)+m^(-beta)), beta=(1/2) product_l alpha_l. This exponent is worst-case sharp within the stated class.",
+                "assumptions": [
+                  "Fixed finite depth, tensor orders, channel widths and weights, independently of sample size; scalar output, K=max tensor order and n,m>=2K.",
+                  "Simple loopless symmetric Bernoulli graph samples from one arbitrary measurable graphon W; iid uniform latent positions and one independent edge uniform per unordered pair; bounded measurable signal |f|<=R.",
+                  "Every linear map is a finite linear combination of normalized partial matchings: r free input indices are summed over all tuples with factor n^(-r), including repetitions. No within-input diagonal extraction or output equality masks.",
+                  "Constant channel biases and pointwise activations with the specified Lipschitz or continuity modulus on bounded reachable intervals. The last activation may be the identity.",
+                  "The deterministic limit integrates conditional Bernoulli tuple types; it need not equal the original weighted-input network N(W,f).",
+                  "For the Hölder conclusion, 0<alpha_l<=1 and a finite Hölder constant is specified for each activation on its reachable preactivation interval. Sharpness is over the class of architectures, not for every architecture."
+                ],
+                "argument": "Use Omega(t)=inf_(delta>0)(1+t/delta)omega(delta), Omega(0)=0; segment subdivision shows omega<=Omega<=2omega and the infimum is concave. Apply Jensen to the conditional-averaging bound. Hölder Jensen multiplies the exponent at each layer. For sharpness, integrate an iid Rademacher signal and successively apply |t|^(alpha_l): the output is |sample mean|^(product alpha_l); a central limit argument with uniform integrability gives a positive matching constant for independent equal-size transfer.",
+                "limitation": "The modulus-dependent recursion does not give a common rate for arbitrary continuous activations. Worst-case power sharpness does not establish optimal architecture-specific constants. Independent proof and novelty review are pending.",
+                "proofUrl": "research/deep-iwn-transfer-2026-11-02.html#holder-rates",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "date": "2026-11-02",
+                "verificationUrl": "research/deep-transfer-verification.json"
+              },
+              {
+                "id": "nonlocal-common-neighbor-sharpness",
+                "title": "A nonlinear three-layer example with a matching root-n obstruction",
+                "claim": "For H1(i,j,k)=ReLU(A_ik+A_jk-1), H2(i,j)=ReLU(n^(-1)sum_k H1-theta), N_n=n^(-2)sum_(i,j)H2, theta in [0,1], E|N_n-mu_theta| <= (3/2-theta)/sqrt(n)+(3-theta)/n. For W identically p and theta=p^2, sqrt(n) E N_n -> sqrt[p^2(1-p^2)/(2 pi)]>0. Sizes n and n^2 therefore have a matching root-n transfer obstruction.",
+                "assumptions": [
+                  "Orders 2->3->2->0; three affine layers, two ReLUs and an identity readout; all ordered tuples included; A_ii=0.",
+                  "Independent simple Bernoulli graph samples from one W; fixed theta in [0,1]. For sharpness choose 0<p<1, constant W=p, and theta=p^2.",
+                  "mu_theta = integral_(x,y) (integral_z W(x,z)W(y,z) dz-theta)_+ dxdy."
+                ],
+                "argument": "Condition on an off-diagonal pair: its common-neighbor sum is Bin(n-2,q), giving a 1/(2sqrt(n))+2/n approximation. The remaining bounded latent-pair U-statistic contributes (1-theta)/sqrt(n), with a (1-theta)/n diagonal correction. For constant W the exact expectation is a sum of two binomial positive-part expectations; the binomial central limit theorem gives the positive root-n constant.",
+                "limitation": "Finite exhaustive checks corroborate the explicit binomial identity, not the asymptotic proof. The lower bound uses unequal sizes n and n^2; the separate Rademacher example establishes equal-size sharpness across the general class. Independent review and novelty assessment remain pending.",
+                "proofUrl": "research/deep-iwn-transfer-2026-11-02.html#nonlocal-example",
+                "kind": "derivation",
+                "review": "needs-independent-review",
+                "novelty": "unassessed",
+                "date": "2026-11-02",
+                "verificationUrl": "research/deep-transfer-verification.json"
               }
             ],
             "obstacles": [
@@ -1018,9 +1102,43 @@
                 "evidenceResultIds": [
                   "continuous-arbitrarily-slow"
                 ]
+              },
+              {
+                "id": "global-hidden-tensor-independence",
+                "route": "Treat distinct hidden-tensor summands as conditionally independent before replacing them by local type fields.",
+                "reason": "The actual hidden tensor depends on the whole sampled graph. The draft first compares it to a local field in unconditional mean; only the local field is eligible for the fresh-set covariance argument.",
+                "evidenceResultIds": [
+                  "fixed-depth-lipschitz-root-n"
+                ]
               }
             ],
             "nextTasks": [
+              {
+                "id": "audit-conditional-tuple-induction",
+                "title": "Independently audit the conditional-tuple induction",
+                "question": "Prove or refute the conditional averaging lemma in the 2 November draft, including its use with a hidden tensor depending on the full graph. Then check the Lipschitz induction and constants against the exact no-diagonal IWN basis.",
+                "acceptance": "Give an independent complete proof or a specific counterexample under the written hypotheses. Check fresh-set conditional independence, unconditional mean replacement, bad-tuple mass, n>=2K, scalar readout and the distinction between the Bernoulli sampling limit and N(W,f). Finite simulations alone do not count as an audit.",
+                "resultIds": [
+                  "fixed-depth-lipschitz-root-n"
+                ],
+                "priority": 1,
+                "kind": "audit",
+                "status": "ready"
+              },
+              {
+                "id": "audit-deep-transfer-novelty",
+                "title": "Locate prior arbitrary-depth sampling bounds",
+                "question": "Search primary literature for the same root-n theorem or conditional-type induction under equivalent names, and compare the model with Definition 4.3 of Herbst-Jegelka and related dense-network sampling results.",
+                "acceptance": "Give exact theorem or section citations and a hypothesis-by-hypothesis comparison. Attribute an equivalent earlier result if found; otherwise record the searched scope and leave novelty unassessed. A lack of search hits is not a novelty proof.",
+                "resultIds": [
+                  "fixed-depth-lipschitz-root-n",
+                  "activation-modulus-holder-rates",
+                  "nonlocal-common-neighbor-sharpness"
+                ],
+                "priority": 2,
+                "kind": "literature-review",
+                "status": "ready"
+              },
               {
                 "id": "audit-local-kernel-root-n",
                 "title": "Independently audit the local-kernel bound",
@@ -1041,10 +1159,28 @@
                 "resultIds": [
                   "local-kernel-root-n",
                   "motif-polynomial-rate",
-                  "continuous-arbitrarily-slow"
+                  "continuous-arbitrarily-slow",
+                  "fixed-depth-lipschitz-root-n",
+                  "activation-modulus-holder-rates",
+                  "nonlocal-common-neighbor-sharpness"
                 ],
                 "priority": 2,
                 "kind": "new-work",
+                "status": "completed",
+                "completedAt": "2026-11-02",
+                "completionAttemptId": "conditional-tuple-induction-2026-11-02"
+              },
+              {
+                "id": "audit-holder-power-and-edge-sharpness",
+                "title": "Audit the sharp regularity powers and nonlinear example",
+                "question": "Independently check the concave-majorant construction, Hölder recursion, uniform integrability arguments and the exact three-layer binomial expectation, including diagonal terms.",
+                "acceptance": "Reproduce the rate and sharpness proofs from the exact assumptions or give a counterexample. Distinguish equal-size Rademacher transfer from the edge-based unequal-size n versus n^2 lower bound.",
+                "resultIds": [
+                  "activation-modulus-holder-rates",
+                  "nonlocal-common-neighbor-sharpness"
+                ],
+                "priority": 3,
+                "kind": "audit",
                 "status": "ready"
               }
             ],
@@ -1069,6 +1205,49 @@
                   "research/verification-results.json"
                 ],
                 "baseRevision": "initial-import"
+              },
+              {
+                "id": "conditional-tuple-induction-2026-11-02",
+                "sessionId": "deep-transfer-2026-11-02",
+                "date": "2026-11-02",
+                "status": "contributed",
+                "baseRevision": "2026-11-01.1",
+                "taskId": "lipschitz-depth-three-rate",
+                "priorAttemptIds": [
+                  "initial-higher-order-transfer-rates"
+                ],
+                "outcome": "proof",
+                "claim": "A conditional-tuple averaging lemma extends the previous local-kernel bound to arbitrary fixed Lipschitz depth in the normalized no-diagonal partial-matching IWN class; activation-modulus/Hölder rates and a nonlinear three-layer matching root-n obstruction are also derived.",
+                "assumptions": [
+                  "Fixed finite depth, tensor orders, channel widths and weights, independently of sample size; scalar output, K=max tensor order and n,m>=2K.",
+                  "Simple loopless symmetric Bernoulli graph samples from one arbitrary measurable graphon W; iid uniform latent positions and one independent edge uniform per unordered pair; bounded measurable signal |f|<=R.",
+                  "Every linear map is a finite linear combination of normalized partial matchings: r free input indices are summed over all tuples with factor n^(-r), including repetitions. No within-input diagonal extraction or output equality masks.",
+                  "Constant channel biases and pointwise activations with the specified Lipschitz or continuity modulus on bounded reachable intervals. The last activation may be the identity.",
+                  "The deterministic limit integrates conditional Bernoulli tuple types; it need not equal the original weighted-input network N(W,f)."
+                ],
+                "argument": "See the complete 11-section proof: conditional Bernoulli tuple fields; collision mass and conditional covariance lemma; layer induction with explicit constants; bounded-differences corollary; continuous moduli and sharp Hölder exponents; a three-layer common-neighbor threshold network and its binomial sharpness proof.",
+                "validation": "Written proof and self-audit of global dependence, diagonal/collision terms and the sampling limit. Reproducible checks cover all 90 partial matchings at orders 0..3, 3,544 exact conditional rows, all 33,866 graphs at sizes 2..6, exact binomial identities and a four-layer rational limit 2603/32000. Labeled seeded Monte Carlo corroborates examples. These checks are not independent proof review or a novelty certificate.",
+                "limitations": "A 2 November 2026 draft now gives architecture-level root-n rates at arbitrary fixed Lipschitz depth in the normalized partial-matching IWN class, explicit modulus/Hölder rates, and a sharp nonlinear three-layer example. The conditional induction, exact architectural coverage and literature novelty still need independent audit. Full partition-basis operations, optimal architecture-specific constants and broader sampling models are outside the claim. No unrestricted resolution has been accepted.",
+                "sources": [
+                  "https://arxiv.org/html/2503.14338",
+                  "https://papers.neurips.cc/paper_files/paper/2025/file/60b393761eea35bf491687c46e4f1a5a-Paper-Conference.pdf",
+                  "https://arxiv.org/abs/2201.10129"
+                ],
+                "resultIds": [
+                  "fixed-depth-lipschitz-root-n",
+                  "activation-modulus-holder-rates",
+                  "nonlocal-common-neighbor-sharpness"
+                ],
+                "review": "unreviewed",
+                "author": "AI-assisted research session, 2 November 2026",
+                "artifactUrls": [
+                  "research/deep-iwn-transfer-2026-11-02.html",
+                  "research/deep-iwn-transfer-2026-11-02.pdf",
+                  "research/verify-deep-transfer.py",
+                  "research/deep-transfer-verification.json"
+                ],
+                "nextStep": "Independently prove or refute the conditional averaging lemma and audit exact coverage and novelty before changing any review or resolution label.",
+                "supersedes": []
               }
             ]
           }
