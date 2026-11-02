@@ -208,9 +208,14 @@ def run():
                     if len(good)>1:
                         x,y=good[0];s,t=good[1]
                         example={'n':n,'edges':[list(e) for bit,e in enumerate(pairs(n)) if (mask>>bit)&1], 'automorphism_count':len(automorphisms),'pairs':[list(good[0]),list(good[1])],'endpoint_orbits':ds[0],'distance':ds[1], 'profiles':[[paths[l][u][v] for l in range(n-1)] for u,v in good[:2]]}
-            # Verify the formula on every leaf-attachment pair for cores <=5,
-            # and one representative per 6/7-vertex core to avoid duplicate work.
-            samples=representatives if n<=5 else representatives[:1]
+            # Verify every pair for cores <=5. For each larger core, choose
+            # distinct bases at maximum distance, then maximize the path sum.
+            # Taking the first pair would always choose the trivial (0,0) case.
+            def sample_key(xy):
+                x,y=xy
+                distance=next(l for l in range(n) if paths[l][x][y])
+                return (int(x!=y),distance,sum(paths[l][x][y] for l in range(n-1)))
+            samples=representatives if n<=5 else [max(representatives,key=sample_key)]
             for x,y in samples:
                 b=attach(a,x,y);gu=remove(b,n);gv=remove(b,n+1)
                 for l in range(n-1):
